@@ -2,3 +2,6 @@
 /ChessRun.Engine/bin/
 /ChessRun.Engine/obj/
 
+/ChessRun.Pgn/*.user
+/ChessRun.Pgn/bin/
+/ChessRun.Pgn/obj/
