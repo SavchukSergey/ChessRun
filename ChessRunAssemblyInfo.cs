@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyCompany("SergeySavchuk")]
-[assembly: AssemblyProduct("ChessRun.Pgn")]
+[assembly: AssemblyProduct("ChessRun")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 
