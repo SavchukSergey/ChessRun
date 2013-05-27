@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Engine.Debugger", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Rasterizer", "ChessRun.Rasterizer\ChessRun.Rasterizer.csproj", "{781771E3-5508-4B20-81A9-A44194693573}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Engine.Diagnostics", "ChessRun.Engine.Diagnostics\ChessRun.Engine.Diagnostics.csproj", "{9A25ADA9-E825-4497-840E-ACD754CF8D37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,16 @@ Global
 		{781771E3-5508-4B20-81A9-A44194693573}.Release|Mixed Platforms.Build.0 = Release|x86
 		{781771E3-5508-4B20-81A9-A44194693573}.Release|x86.ActiveCfg = Release|x86
 		{781771E3-5508-4B20-81A9-A44194693573}.Release|x86.Build.0 = Release|x86
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9A25ADA9-E825-4497-840E-ACD754CF8D37}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

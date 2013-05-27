@@ -1,0 +1,219 @@
+v0.17 - 20031126
+* Added specific move generator for QSearch, got a nice speed improvement.
+  The improvement prohibits mate detection in QSearch which might make
+  Sharper a little tactically weaker.
+
+v0.16 - 20031022
+* Found a new bug in the book generation, caused by the new move structure.
+* Changed move representation. Created some bugs and hopefully found and
+  fixed them all.
+* Added pawn hash, gained very little in performance. In spite of the
+  very small gain I keep the table for two reasons: 1. I plan to add
+  more pawn evaluation. 2. I've put effort in coding it.
+* Improved time management to avoid wasting time on unfinnished plies.
+
+v0.15 - Never released in public
+* Added wicked much evaluation stuff. I think most of the basic stuff
+  is included now. Not sure about having it turned on yet (NPS drops alot).
+* Optimized move generation a little, NPS in the bench-command passed
+  1M for the first time on my XP 2000+!
+* Optimized search a little to allow faster cut-off.
+* Changed node counting to counting all calls to Search and QSearch,
+  as this seems to be what most people does.
+* Improved extension for pawns reaching 7th rank.
+* Fixed minor bug in the divide command.
+
+v0.14 - 20030803
+* Cleaned and optimized board code a little.
+* Minor change to internal board and move representation.
+* Fixed a bug in the divide command, been there since I added fractional
+  extensions, just never used it in a long time.
+* Fixed a bug in the bench command, that I created when messing with TC.
+* Implemented enough analyze support to allow Arena 0.93 running Sharper
+  to analyze epd files. Note, analyze mode is not officially supported,
+  it just happens to work under this particular circumstance.
+* Fixed a minor problem in engine initialization, only affecting
+  when using the engine manually.
+* Improved logging.
+* Fixed a stupid bug in the level command, now Sharper will be stronger in
+  games with incremental clock =).
+* Fixed bug when using Fritz GUI.
+
+v0.12 - 20030731
+* Rewrote the time management of the engine.
+* Fixed problems with level-command arriving in the middle of a game.
+* Fixed problem when opponent replied immediatly after a move and pondering
+  was about to kick in.
+* Added more slack to avoid losing on time when commands take long time
+  to arrive from the engine to the GUI.
+
+v0.11 - 20030727
+* Fixed hash pruning problems.
+* Found another serious bug cloggin up the hash table, this would also have
+  caused pruning of positions when not supposed to, fixed it.
+* Added more info to the book positions, to be able to use book learning in
+  the future. The book is probed from disk to allow for much bigger books.
+* Tweaked move ordering slightly.
+* Moved evaluation constants to a seperate file to let everybody have a peek
+  at it, and perhaps create a new stronger setting Sharper.
+* Improved detection of repetitions in the search.
+* Fixed a stupid bug in the repetion detection code.
+* Tweaked the PST values a bit.
+* Implemented verified null move pruning.
+* Fixed a bug in the hash table class, clear method wasn't correct, the table
+  filled up after a while.
+* Fixed another bug in the hash table class, the depth was written incorrectly.
+* Implemented fractional depth extensions.
+* Added promotion extension.
+* Added single reply extension.
+* Improved hashing scheme to remember good nodes longer.
+* Improved hash table to allow using hashed nodes from previous moves.
+* Worked more on the problems with pondering, but nothing seems to help.
+
+v0.10 - 20030625
+* Optimized QSearch to get a small 2% speed increase.
+* Fixed better random picking of book moves.
+* Got some closer to finding an irritating bug when using pondering. Many
+  Thanx to Mogens for helping me out. This version has pondering disabled.
+* Optimized the hash items structure size. Discussed this with Benny, and for
+  the first time I actually gave him a tip!
+* Added hashpruning.
+* Improved the hashing scheme to be smarter than always replacing old nodes
+  with new nodes.
+* Removed a bug in the bench command, it didn't work at all in 0.09.
+
+v0.09 - 20030519
+* Changed king safety, it didn't seem to work right, hope it's better now.
+* Implemented pondering.
+* Added hard and easy commands to control pondering.
+* Implemented the move now (?) command.
+* Started messing with threads, to make pondering possible.
+* Fixed a bug in the result reporting, in some specific cases a mate could be
+  reported as a draw.
+* Fixed a bug in the FEN output, castling rights wasn't correct.
+* Worked on better king safety.
+* Corrected a minor bug in the TellICS whispering.
+* Added detection of draw by insufficient material.
+
+v0.08 - 20030501
+* Improved time control.
+* Added TellICS whispering.
+* Minor changes to PST values.
+
+v0.07 - 20030426
+* Added evaluation of king safety, now it just needs some tuning =).
+* Added evaluation bonus for haveing both bishops left.
+* Book moves are now selected with a probability proportional to the number
+  of times the following position occurs in the book. This increased the
+  size with 50% so I soon need to think of something better than having the
+  book in memory.
+* Packed the hashtable items to 12 bytes each, instead of 16 bytes.
+* Optimized the method for updating checking pieces after a move.
+* Improved the move generation when in check. Not much gained when testing
+  from the initial position but I hope it will work nice with check extensions.
+* Added bitboards to prepare for implementing better evaluation. Also added
+  some minor optimizations possible with the bitboard information.
+* Improved timing, now uses a larger slack to let the commands arrive to the
+  game manager.
+* Added a special statistics version to get better data to base optimization
+  decisions on.
+
+v0.06 - 20030404
+* Added pruning by doing NullMoves.
+* Improved randomness by calling "random" routine for every new game. Before
+  engine-engine tournaments could repeat after 2 or 4 games.
+
+v0.05 - 20030330
+* Sharper now automatically creates a book in binary format to speed up loading.
+* Added check extensions.
+* Fixed a bug in the draw claim and mating code.
+
+v0.04 - 20030322
+* Found a bug in the move generator, and fixed it.
+* Ran a book tournament and picked out a the winning book for Sharper.
+* Reworked PV output, now uses the same method as TSCP, thanx to Tom Kerrigan
+  for leading me to the right solution.
+* Improved move ordering by correcting MVV/LVA values.
+* Added history heurestics to improve move ordering.
+* Added some positions to the correct test, it should find almost all possible
+  movegeneration bugs now. (And it doesn't find any!)
+* Improved opening book code to handle any size of book.
+* Found another bug in the legal move control, hope there are no more bugs in
+  that routine now =)
+* Added lazy evaluation, gained nothing, since the current evaluation is very
+  basic and fast.
+* Fixed a bug in the result reporting.
+
+v0.03 - 20030312
+* Implemented a small opening book to enable variations in the playing.
+* Added an ini file to set options for the engine.
+* Found a bug in the legal move control, hope there are no more bugs in that
+  routine now.
+* Found out that my variable window size search messed up my HT pruning,
+  removed HT pruning temporarily.
+* Worked on opening books and found a bug in the move validation that caused
+  the engine to hang if there is no piece on the from square.
+* Added code to start the search with a small window, and then increase the
+  window size. Nice speed gain.
+* Fixed a time control bug, positions with one legal move are not searched and
+  no longer decrease available time.
+
+v0.02 - 20030309
+* One bug was found in the output reporting of course, and I removed it.
+* Fixed result output, now it is implemented as it should.
+* Made the time control more precise a millisecond is a terrible thing to waste!
+* Fixed PV output some, correctly printed when mated now.
+* Added result printing before searching in case the engine gets a "go" in a
+  ended game.
+* Started some testing with WinBoard, and added the "force" command.
+* Added validation of the moves made by the opponent (I love to have a legal
+  move generator =)), no nice error messages but it prevents cheating.
+* Changed PV to be printed from an array instead of relying on the HT for
+  storing the PV.
+* Changed PV output to score mate as 10000, seems this is some kind of a de
+  facto standard.
+* Fixed a bug in the FEN output, fullmove values above 99 wasn't printed
+  correctly.
+* Found a bug in the draw by repetition handling, fixed it now, I think...
+* Added material bonus when promoting, stupid bug!
+* Corrected PV output to avoid circular repetition, lines may still break due
+  to HT overwrites though.
+* Fixed a bug in the time control causing Sharper to consume very little time.
+* Found a bug, alpha-beta didn't handle draw situations correctly.
+* Added a command for changing size of main hash table.
+* Fixed a bug in the PST move ordering, now it actually improves the move
+  ordering!
+* Added Quiecence search, a crude implementation but it seems to work.
+* Fixed a bug causing debug version not to search the same number of nodes as
+  the release version.
+* Tweaked the move generation some (Can't stop, I like to make it faster =)).
+* Fixed a bug that caused Sharper to not move when not finding any moves not
+  leading to defeat.
+* Added "draw by repetion" detection.
+* Added "draw by 50 moves" detection.
+* Found a bug in the PV-printing and fixed it. Since PV is extracted from the
+  hash table the complete might not always be available.
+* Played with quiesent search, got some nice results, but it needs more testing.
+* Fixed the hash table bug by doing things in a diffrent way, still don't know
+  what caused it.
+* Added hash table for pruning and move ordering, caused a strange bug.
+* Added simple move ordering (captures first).
+* Implemented basic Alpha-Beta with iterative deepening.
+* Did some testing on hash table collisions.
+
+v0.01 - 20030215
+* Did more perft testing, found new bugs and fixed them.
+* Added Zobrist hash key generation, slowed down the DoMove by about as much as
+  I've gained from previous optimizations.
+* Optimized more, and even added some comments!
+* Optimized move generation slightly and made the code clearer.
+* Added a piece list, slowed Do/Undo move but increased overall performance.
+* Correctly computed perft values for all my basic test postions YIPPEY!
+* Started computing perft values and cleared many many bugs.
+* Added a SetFEN method.
+* Added a GetFEN method.
+* Correctly computed perft 5 from initial position.
+* Added seperate move generation when in check and not in check.
+* Optimized the InCheck testing.
+* Started on move generator.
+* Implemented 0x88 boardrepresentation.

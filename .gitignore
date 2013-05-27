@@ -24,3 +24,7 @@
 /ChessRun.Rasterizer/*.user
 /ChessRun.Rasterizer/bin/
 /ChessRun.Rasterizer/obj/
+
+/ChessRun.Engine.Diagnostics/*.user
+/ChessRun.Engine.Diagnostics/bin/
+/ChessRun.Engine.Diagnostics/obj/
