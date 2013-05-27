@@ -16,3 +16,11 @@
 /ChessRun.Pgn.Tests/*.user
 /ChessRun.Pgn.Tests/bin/
 /ChessRun.Pgn.Tests/obj/
+
+/ChessRun.Engine.Debugger/*.user
+/ChessRun.Engine.Debugger/bin/
+/ChessRun.Engine.Debugger/obj/
+
+/ChessRun.Rasterizer/*.user
+/ChessRun.Rasterizer/bin/
+/ChessRun.Rasterizer/obj/
