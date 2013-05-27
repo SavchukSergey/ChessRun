@@ -1,8 +1,7 @@
 ﻿using System;
-using Chess.Engine.Pgn;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Chess.Engine.Tests.Pgn {
+namespace ChessRun.Pgn.Tests {
     [TestClass]
     public class PgnFileTest {
 

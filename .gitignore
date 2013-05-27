@@ -12,3 +12,7 @@
 /ChessRun.Engine.Tests/*.user
 /ChessRun.Engine.Tests/bin/
 /ChessRun.Engine.Tests/obj/
+
+/ChessRun.Pgn.Tests/*.user
+/ChessRun.Pgn.Tests/bin/
+/ChessRun.Pgn.Tests/obj/
