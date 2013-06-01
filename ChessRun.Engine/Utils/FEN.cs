@@ -148,7 +148,6 @@ namespace ChessRun.Engine.Utils {
             int emptyCount = 0;
             for (var i = 0; i < _cellSequence.Length; i++) {
                 var cell = _cellSequence[i];
-                var cellIndex = (int)cell;
                 if (emptyCount > 0) {
                     board[cell] = PieceType.None;
                     emptyCount--;
@@ -158,7 +157,7 @@ namespace ChessRun.Engine.Utils {
                     throw new FormatException("Unexpected end of piece positions part in FEN");
                 }
                 char ch = fen[j];
-                if (cellIndex == (int)CellName.None) {
+                if (cell == CellName.None) {
                     if (ch == '/') {
                         j++;
                         continue;
