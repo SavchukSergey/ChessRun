@@ -28,3 +28,5 @@
 /ChessRun.Engine.Diagnostics/*.user
 /ChessRun.Engine.Diagnostics/bin/
 /ChessRun.Engine.Diagnostics/obj/
+
+/libs/Sharper/log.txt
