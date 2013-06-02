@@ -11,19 +11,6 @@ namespace ChessRun.Engine.Moves {
         public static ulong[] WhitePawnsBitBoards = GetWhitePawnsBitBoards();
         public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
 
-        public static CellName[] Rotation90Map = GetRotated90Map();
-
-        private static CellName[] GetRotated90Map() {
-            var res = new CellName[64];
-            for (var i = 0; i < 64; i++) {
-                var rank = i >> 3;
-                var file = i & 0x07;
-                var target = (CellName)(file * 8 + rank);
-                res[i] = target;
-            }
-            return res;
-        }
-
         private static ulong[] GetHorizontalAttackers() {
             var res = new ulong[64 * 256];
             for (var i = 0; i < 64; i++) {
