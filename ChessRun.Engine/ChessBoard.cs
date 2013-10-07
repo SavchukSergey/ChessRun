@@ -35,45 +35,54 @@ namespace ChessRun.Engine {
                 var mask = 0x1ul << (int)cell;
                 var negMask = ~mask;
 
-                WhitePieces &= negMask;
-                BlackPieces &= negMask;
-
                 switch (oldValue) {
                     case PieceType.WhiteKing:
                         WhiteKings &= negMask;
+                        WhitePieces &= negMask;
                         break;
                     case PieceType.WhiteKnight:
                         WhiteKnights &= negMask;
+                        WhitePieces &= negMask;
                         break;
                     case PieceType.WhiteBishop:
                         WhiteBishops &= negMask;
+                        WhitePieces &= negMask;
                         break;
                     case PieceType.WhiteQueen:
                         WhiteQueens &= negMask;
+                        WhitePieces &= negMask;
                         break;
                     case PieceType.WhiteRook:
                         WhiteRooks &= negMask;
+                        WhitePieces &= negMask;
                         break;
                     case PieceType.WhitePawn:
                         WhitePawns &= negMask;
+                        WhitePieces &= negMask;
                         break;
                     case PieceType.BlackKing:
                         BlackKings &= negMask;
+                        BlackPieces &= negMask;
                         break;
                     case PieceType.BlackKnight:
                         BlackKnights &= negMask;
+                        BlackPieces &= negMask;
                         break;
                     case PieceType.BlackBishop:
                         BlackBishops &= negMask;
+                        BlackPieces &= negMask;
                         break;
                     case PieceType.BlackQueen:
                         BlackQueens &= negMask;
+                        BlackPieces &= negMask;
                         break;
                     case PieceType.BlackRook:
                         BlackRooks &= negMask;
+                        BlackPieces &= negMask;
                         break;
                     case PieceType.BlackPawn:
                         BlackPawns &= negMask;
+                        BlackPieces &= negMask;
                         break;
                 }
 
