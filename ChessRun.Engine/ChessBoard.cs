@@ -12,8 +12,8 @@ namespace ChessRun.Engine {
 
         private readonly PieceType[] _cells = new PieceType[64];
 
-        public virtual CastleFlags Castles { get; set; }
-        public virtual CellName EnPassantMove { get; set; }
+        public CastleFlags Castles;
+        public CellName EnPassantMove;
 
         public void Reset() {
             BFEN.Setup(this, BFEN.INITIAL_POSITION);
@@ -166,7 +166,7 @@ namespace ChessRun.Engine {
 
         #region Turn
 
-        public virtual PieceColor Turn { get; set; }
+        public PieceColor Turn;
 
         public void SwitchTurn() {
             Turn = (PieceColor)(1 - (byte)Turn);
@@ -347,6 +347,7 @@ namespace ChessRun.Engine {
 
             var allPieces = WhitePieces | BlackPieces;
             var rqPieces = BlackRooks | BlackQueens;
+            var bqPieces = BlackBishops | BlackQueens;
 
             attacks = BitBoard.HVBitBoards[(int)cell];
             if ((attacks & rqPieces) != 0) {
@@ -356,8 +357,8 @@ namespace ChessRun.Engine {
             }
 
             attacks = BitBoard.DiagonalBitBoards[(int)cell];
-            if ((attacks & (BlackBishops | BlackQueens)) != 0) {
-                if (CheckDiagonal(cell, BlackBishops | BlackQueens)) return true;
+            if ((attacks & bqPieces) != 0) {
+                if (CheckDiagonal(cell, bqPieces)) return true;
             }
 
             return false;
@@ -377,6 +378,7 @@ namespace ChessRun.Engine {
 
             var allPieces = WhitePieces | BlackPieces;
             var rqPieces = WhiteRooks | WhiteQueens;
+            var bqPieces = WhiteBishops | WhiteQueens;
 
             attacks = BitBoard.HVBitBoards[(int)cell];
             if ((attacks & rqPieces) != 0) {
@@ -386,8 +388,8 @@ namespace ChessRun.Engine {
             }
 
             attacks = BitBoard.DiagonalBitBoards[(int)cell];
-            if ((attacks & (WhiteBishops | WhiteQueens)) != 0) {
-                if (CheckDiagonal(cell, WhiteBishops | WhiteQueens)) return true;
+            if ((attacks & bqPieces) != 0) {
+                if (CheckDiagonal(cell, bqPieces)) return true;
             }
 
             return false;
