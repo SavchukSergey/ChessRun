@@ -3,15 +3,23 @@
 namespace ChessRun.Engine.Utils {
     public static class PieceOperations {
 
-        public static bool IsWhite(PieceType piece) {
+        public static bool IsWhite(this PieceType piece) {
             return ((int)piece & 0x08) == 0 && (int)piece != 0;
         }
 
-        public static bool IsBlack(PieceType piece) {
+        public static bool IsBlack(this PieceType piece) {
             return ((int)piece & 0x08) != 0;
         }
 
-        public static PieceColor GetColor(PieceType piece) {
+        public static bool IsWhiteOrEmpty(this PieceType piece) {
+            return (int)piece < 8;
+        }
+
+        public static bool IsBlackOrEmpty(this PieceType piece) {
+            return piece == PieceType.None || (int)piece >= 8;
+        }
+
+        public static PieceColor GetColor(this PieceType piece) {
             if (IsWhite(piece)) return PieceColor.White;
             if (IsBlack(piece)) return PieceColor.Black;
             return PieceColor.None;

@@ -11,7 +11,7 @@ namespace ChessRun.Engine.Moves.Queen {
         public override ValidationResult FastValidate(ChessBoard board) {
             var piece = board[To];
             if (piece == PieceType.None) return ValidationResult.Valid;
-            if (PieceOperations.IsWhite(piece)) return ValidationResult.ValidAndStop;
+            if (piece.IsWhite()) return ValidationResult.ValidAndStop;
             return ValidationResult.Invalid;
         }
 

@@ -8,12 +8,12 @@ namespace ChessRun.Engine.Moves.Pawn {
             : base(from, to) {
             Promotion = promotion;
             if (CellOperations.GetRank(from) != CellRank.R7 || CellOperations.GetRank(to) != CellRank.R8) throw new InvalidOperationException();
-            if (PieceOperations.GetColor(promotion) != PieceColor.White) throw new InvalidOperationException();
+            if (promotion.GetColor() != PieceColor.White) throw new InvalidOperationException();
         }
 
         public override ValidationResult FastValidate(ChessBoard board) {
             var piece = board[To];
-            return PieceOperations.IsBlack(piece) ? ValidationResult.Valid : ValidationResult.Invalid;
+            return piece.IsBlack() ? ValidationResult.Valid : ValidationResult.Invalid;
         }
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {

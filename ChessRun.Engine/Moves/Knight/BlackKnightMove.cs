@@ -10,7 +10,7 @@ namespace ChessRun.Engine.Moves.Knight {
 
         public override ValidationResult FastValidate(ChessBoard board) {
             var piece = board[To];
-            return piece == PieceType.None || PieceOperations.IsWhite(piece) ? ValidationResult.ValidAndStop : ValidationResult.Invalid;
+            return piece.IsWhiteOrEmpty() ? ValidationResult.ValidAndStop : ValidationResult.Invalid;
         }
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {

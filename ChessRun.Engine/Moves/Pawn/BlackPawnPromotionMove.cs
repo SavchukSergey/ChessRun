@@ -8,7 +8,7 @@ namespace ChessRun.Engine.Moves.Pawn {
             : base(from, CellOperations.DecreaseRank(from)) {
             Promotion = promotion;
             if (CellOperations.GetRank(from) != CellRank.R2) throw new InvalidOperationException();
-            if (PieceOperations.GetColor(promotion) != PieceColor.Black) throw new InvalidOperationException();
+            if (promotion.GetColor() != PieceColor.Black) throw new InvalidOperationException();
         }
 
         public override ValidationResult FastValidate(ChessBoard board) {

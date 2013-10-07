@@ -9,7 +9,7 @@ namespace ChessRun.Engine.Moves.Pawn {
 
         public override ValidationResult FastValidate(ChessBoard board) {
             var piece = board[To];
-            return PieceOperations.IsWhite(piece) ? ValidationResult.ValidAndStop : ValidationResult.Invalid;
+            return piece.IsWhite() ? ValidationResult.ValidAndStop : ValidationResult.Invalid;
         }
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
