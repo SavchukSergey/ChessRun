@@ -80,53 +80,88 @@ namespace ChessRun.Engine.Tests.Utils {
 
         [TestMethod]
         public void IsWhiteTest() {
-            Assert.IsFalse(PieceOperations.IsWhite(PieceType.None));
-            Assert.IsTrue(PieceOperations.IsWhite(PieceType.WhiteBishop));
-            Assert.IsTrue(PieceOperations.IsWhite(PieceType.WhiteKing));
-            Assert.IsTrue(PieceOperations.IsWhite(PieceType.WhiteKnight));
-            Assert.IsTrue(PieceOperations.IsWhite(PieceType.WhitePawn));
-            Assert.IsTrue(PieceOperations.IsWhite(PieceType.WhiteQueen));
-            Assert.IsTrue(PieceOperations.IsWhite(PieceType.WhiteRook));
-            Assert.IsFalse(PieceOperations.IsWhite(PieceType.BlackBishop));
-            Assert.IsFalse(PieceOperations.IsWhite(PieceType.BlackKing));
-            Assert.IsFalse(PieceOperations.IsWhite(PieceType.BlackKnight));
-            Assert.IsFalse(PieceOperations.IsWhite(PieceType.BlackPawn));
-            Assert.IsFalse(PieceOperations.IsWhite(PieceType.BlackQueen));
-            Assert.IsFalse(PieceOperations.IsWhite(PieceType.BlackRook));
+            Assert.IsFalse(PieceType.None.IsWhite());
+            Assert.IsTrue(PieceType.WhiteBishop.IsWhite());
+            Assert.IsTrue(PieceType.WhiteKing.IsWhite());
+            Assert.IsTrue(PieceType.WhiteKnight.IsWhite());
+            Assert.IsTrue(PieceType.WhitePawn.IsWhite());
+            Assert.IsTrue(PieceType.WhiteQueen.IsWhite());
+            Assert.IsTrue(PieceType.WhiteRook.IsWhite());
+            Assert.IsFalse(PieceType.BlackBishop.IsWhite());
+            Assert.IsFalse(PieceType.BlackKing.IsWhite());
+            Assert.IsFalse(PieceType.BlackKnight.IsWhite());
+            Assert.IsFalse(PieceType.BlackPawn.IsWhite());
+            Assert.IsFalse(PieceType.BlackQueen.IsWhite());
+            Assert.IsFalse(PieceType.BlackRook.IsWhite());
+        }
+
+
+        [TestMethod]
+        public void IsWhiteOrEmptyTest() {
+            Assert.IsTrue(PieceType.None.IsWhiteOrEmpty());
+            Assert.IsTrue(PieceType.WhiteBishop.IsWhiteOrEmpty());
+            Assert.IsTrue(PieceType.WhiteKing.IsWhiteOrEmpty());
+            Assert.IsTrue(PieceType.WhiteKnight.IsWhiteOrEmpty());
+            Assert.IsTrue(PieceType.WhitePawn.IsWhiteOrEmpty());
+            Assert.IsTrue(PieceType.WhiteQueen.IsWhiteOrEmpty());
+            Assert.IsTrue(PieceType.WhiteRook.IsWhiteOrEmpty());
+            Assert.IsFalse(PieceType.BlackBishop.IsWhiteOrEmpty());
+            Assert.IsFalse(PieceType.BlackKing.IsWhiteOrEmpty());
+            Assert.IsFalse(PieceType.BlackKnight.IsWhiteOrEmpty());
+            Assert.IsFalse(PieceType.BlackPawn.IsWhiteOrEmpty());
+            Assert.IsFalse(PieceType.BlackQueen.IsWhiteOrEmpty());
+            Assert.IsFalse(PieceType.BlackRook.IsWhiteOrEmpty());
         }
 
         [TestMethod]
         public void IsBlackTest() {
-            Assert.IsFalse(PieceOperations.IsBlack(PieceType.None));
-            Assert.IsFalse(PieceOperations.IsBlack(PieceType.WhiteBishop));
-            Assert.IsFalse(PieceOperations.IsBlack(PieceType.WhiteKing));
-            Assert.IsFalse(PieceOperations.IsBlack(PieceType.WhiteKnight));
-            Assert.IsFalse(PieceOperations.IsBlack(PieceType.WhitePawn));
-            Assert.IsFalse(PieceOperations.IsBlack(PieceType.WhiteQueen));
-            Assert.IsFalse(PieceOperations.IsBlack(PieceType.WhiteRook));
-            Assert.IsTrue(PieceOperations.IsBlack(PieceType.BlackBishop));
-            Assert.IsTrue(PieceOperations.IsBlack(PieceType.BlackKing));
-            Assert.IsTrue(PieceOperations.IsBlack(PieceType.BlackKnight));
-            Assert.IsTrue(PieceOperations.IsBlack(PieceType.BlackPawn));
-            Assert.IsTrue(PieceOperations.IsBlack(PieceType.BlackQueen));
-            Assert.IsTrue(PieceOperations.IsBlack(PieceType.BlackRook));
+            Assert.IsFalse(PieceType.None.IsBlack());
+            Assert.IsFalse(PieceType.WhiteBishop.IsBlack());
+            Assert.IsFalse(PieceType.WhiteKing.IsBlack());
+            Assert.IsFalse(PieceType.WhiteKnight.IsBlack());
+            Assert.IsFalse(PieceType.WhitePawn.IsBlack());
+            Assert.IsFalse(PieceType.WhiteQueen.IsBlack());
+            Assert.IsFalse(PieceType.WhiteRook.IsBlack());
+            Assert.IsTrue(PieceType.BlackBishop.IsBlack());
+            Assert.IsTrue(PieceType.BlackKing.IsBlack());
+            Assert.IsTrue(PieceType.BlackKnight.IsBlack());
+            Assert.IsTrue(PieceType.BlackPawn.IsBlack());
+            Assert.IsTrue(PieceType.BlackQueen.IsBlack());
+            Assert.IsTrue(PieceType.BlackRook.IsBlack());
+        }
+
+        [TestMethod]
+        public void IsBlackOrEmptyTest() {
+            Assert.IsTrue(PieceType.None.IsBlackOrEmpty());
+            Assert.IsFalse(PieceType.WhiteBishop.IsBlackOrEmpty());
+            Assert.IsFalse(PieceType.WhiteKing.IsBlackOrEmpty());
+            Assert.IsFalse(PieceType.WhiteKnight.IsBlackOrEmpty());
+            Assert.IsFalse(PieceType.WhitePawn.IsBlackOrEmpty());
+            Assert.IsFalse(PieceType.WhiteQueen.IsBlackOrEmpty());
+            Assert.IsFalse(PieceType.WhiteRook.IsBlackOrEmpty());
+            Assert.IsTrue(PieceType.BlackBishop.IsBlackOrEmpty());
+            Assert.IsTrue(PieceType.BlackKing.IsBlackOrEmpty());
+            Assert.IsTrue(PieceType.BlackKnight.IsBlackOrEmpty());
+            Assert.IsTrue(PieceType.BlackPawn.IsBlackOrEmpty());
+            Assert.IsTrue(PieceType.BlackQueen.IsBlackOrEmpty());
+            Assert.IsTrue(PieceType.BlackRook.IsBlackOrEmpty());
         }
 
         [TestMethod]
         public void GetColorTest() {
-            Assert.AreEqual(PieceColor.None, PieceOperations.GetColor(PieceType.None));
-            Assert.AreEqual(PieceColor.White, PieceOperations.GetColor(PieceType.WhiteBishop));
-            Assert.AreEqual(PieceColor.White, PieceOperations.GetColor(PieceType.WhiteKing));
-            Assert.AreEqual(PieceColor.White, PieceOperations.GetColor(PieceType.WhiteKnight));
-            Assert.AreEqual(PieceColor.White, PieceOperations.GetColor(PieceType.WhitePawn));
-            Assert.AreEqual(PieceColor.White, PieceOperations.GetColor(PieceType.WhiteQueen));
-            Assert.AreEqual(PieceColor.White, PieceOperations.GetColor(PieceType.WhiteRook));
-            Assert.AreEqual(PieceColor.Black, PieceOperations.GetColor(PieceType.BlackBishop));
-            Assert.AreEqual(PieceColor.Black, PieceOperations.GetColor(PieceType.BlackKing));
-            Assert.AreEqual(PieceColor.Black, PieceOperations.GetColor(PieceType.BlackKnight));
-            Assert.AreEqual(PieceColor.Black, PieceOperations.GetColor(PieceType.BlackPawn));
-            Assert.AreEqual(PieceColor.Black, PieceOperations.GetColor(PieceType.BlackQueen));
-            Assert.AreEqual(PieceColor.Black, PieceOperations.GetColor(PieceType.BlackRook));
+            Assert.AreEqual(PieceColor.None, PieceType.None.GetColor());
+            Assert.AreEqual(PieceColor.White, PieceType.WhiteBishop.GetColor());
+            Assert.AreEqual(PieceColor.White, PieceType.WhiteKing.GetColor());
+            Assert.AreEqual(PieceColor.White, PieceType.WhiteKnight.GetColor());
+            Assert.AreEqual(PieceColor.White, PieceType.WhitePawn.GetColor());
+            Assert.AreEqual(PieceColor.White, PieceType.WhiteQueen.GetColor());
+            Assert.AreEqual(PieceColor.White, PieceType.WhiteRook.GetColor());
+            Assert.AreEqual(PieceColor.Black, PieceType.BlackBishop.GetColor());
+            Assert.AreEqual(PieceColor.Black, PieceType.BlackKing.GetColor());
+            Assert.AreEqual(PieceColor.Black, PieceType.BlackKnight.GetColor());
+            Assert.AreEqual(PieceColor.Black, PieceType.BlackPawn.GetColor());
+            Assert.AreEqual(PieceColor.Black, PieceType.BlackQueen.GetColor());
+            Assert.AreEqual(PieceColor.Black, PieceType.BlackRook.GetColor());
         }
 
         [TestMethod]

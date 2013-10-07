@@ -254,7 +254,7 @@ namespace ChessRun.Engine.Moves {
         #endregion
 
         private static void AddPromotionMoves(PieceType piece, CellName from, CellName next, Func<CellName, PieceType, SpeculativeMove> factory) {
-            var color = PieceOperations.GetColor(piece);
+            var color = piece.GetColor();
             AddMove(piece, factory(next, PieceOperations.GetKnight(color)));
             AddMove(piece, factory(next, PieceOperations.GetBishop(color)));
             AddMove(piece, factory(next, PieceOperations.GetRook(color)));
