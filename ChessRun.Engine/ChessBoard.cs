@@ -30,23 +30,52 @@ namespace ChessRun.Engine {
         public virtual PieceType this[CellName cell] {
             get { return _cells[(int)cell]; }
             set {
+                var oldValue = _cells[(int)cell];
                 _cells[(int)cell] = value;
                 var mask = 0x1ul << (int)cell;
                 var negMask = ~mask;
+
                 WhitePieces &= negMask;
-                WhitePawns &= negMask;
-                WhiteKnights &= negMask;
-                WhiteBishops &= negMask;
-                WhiteRooks &= negMask;
-                WhiteQueens &= negMask;
-                WhiteKings &= negMask;
                 BlackPieces &= negMask;
-                BlackPawns &= negMask;
-                BlackKnights &= negMask;
-                BlackBishops &= negMask;
-                BlackRooks &= negMask;
-                BlackQueens &= negMask;
-                BlackKings &= negMask;
+
+                switch (oldValue) {
+                    case PieceType.WhiteKing:
+                        WhiteKings &= negMask;
+                        break;
+                    case PieceType.WhiteKnight:
+                        WhiteKnights &= negMask;
+                        break;
+                    case PieceType.WhiteBishop:
+                        WhiteBishops &= negMask;
+                        break;
+                    case PieceType.WhiteQueen:
+                        WhiteQueens &= negMask;
+                        break;
+                    case PieceType.WhiteRook:
+                        WhiteRooks &= negMask;
+                        break;
+                    case PieceType.WhitePawn:
+                        WhitePawns &= negMask;
+                        break;
+                    case PieceType.BlackKing:
+                        BlackKings &= negMask;
+                        break;
+                    case PieceType.BlackKnight:
+                        BlackKnights &= negMask;
+                        break;
+                    case PieceType.BlackBishop:
+                        BlackBishops &= negMask;
+                        break;
+                    case PieceType.BlackQueen:
+                        BlackQueens &= negMask;
+                        break;
+                    case PieceType.BlackRook:
+                        BlackRooks &= negMask;
+                        break;
+                    case PieceType.BlackPawn:
+                        BlackPawns &= negMask;
+                        break;
+                }
 
                 switch (value) {
                     case PieceType.WhiteKing:
