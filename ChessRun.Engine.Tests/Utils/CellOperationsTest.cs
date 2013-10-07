@@ -10,10 +10,10 @@ namespace ChessRun.Engine.Tests.Utils {
         public void IncreaseRankTest() {
             foreach (CellName cell in Enum.GetValues(typeof(CellName))) {
                 if (cell == CellName.None) continue;
-                var rank = CellOperations.GetRank(cell);
+                var rank = cell.GetRank();
                 if (rank == CellRank.R8) continue;
-                var res = CellOperations.IncreaseRank(cell);
-                Assert.AreEqual(rank + 1, CellOperations.GetRank(res));
+                var res = cell.IncreaseRank();
+                Assert.AreEqual(rank + 1, res.GetRank());
             }
         }
 
@@ -21,10 +21,10 @@ namespace ChessRun.Engine.Tests.Utils {
         public void DecreaseRankTest() {
             foreach (CellName cell in Enum.GetValues(typeof(CellName))) {
                 if (cell == CellName.None) continue;
-                var rank = CellOperations.GetRank(cell);
+                var rank = cell.GetRank();
                 if (rank == CellRank.R1) continue;
-                var res = CellOperations.DecreaseRank(cell);
-                Assert.AreEqual(rank - 1, CellOperations.GetRank(res));
+                var res = cell.DecreaseRank();
+                Assert.AreEqual(rank - 1, res.GetRank());
             }
         }
 
@@ -32,10 +32,10 @@ namespace ChessRun.Engine.Tests.Utils {
         public void IncreaseFileTest() {
             foreach (CellName cell in Enum.GetValues(typeof(CellName))) {
                 if (cell == CellName.None) continue;
-                var file = CellOperations.GetFile(cell);
+                var file = cell.GetFile();
                 if (file == CellFile.H) continue;
-                var res = CellOperations.IncreaseFile(cell);
-                Assert.AreEqual(file + 1, CellOperations.GetFile(res));
+                var res = cell.IncreaseFile();
+                Assert.AreEqual(file + 1, res.GetFile());
             }
         }
 
@@ -43,10 +43,10 @@ namespace ChessRun.Engine.Tests.Utils {
         public void DecreaseFileTest() {
             foreach (CellName cell in Enum.GetValues(typeof(CellName))) {
                 if (cell == CellName.None) continue;
-                var file = CellOperations.GetFile(cell);
+                var file = cell.GetFile();
                 if (file == CellFile.A) continue;
-                var res = CellOperations.DecreaseFile(cell);
-                Assert.AreEqual(file - 1, CellOperations.GetFile(res));
+                var res = cell.DecreaseFile();
+                Assert.AreEqual(file - 1, res.GetFile());
             }
         }
 

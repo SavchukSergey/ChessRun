@@ -98,8 +98,8 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Check, "Check");
             Assert.IsFalse(move.Checkmate, "Checkmate");
 
-            Assert.AreEqual(move.HintFileFrom, CellOperations.GetFile(CellName.E1));
-            Assert.AreEqual(move.HintRankFrom, CellOperations.GetRank(CellName.E1));
+            Assert.AreEqual(move.HintFileFrom, CellName.E1.GetFile());
+            Assert.AreEqual(move.HintRankFrom, CellName.E1.GetRank());
 
             Assert.AreEqual(move.To, CellName.G1);
             Assert.AreEqual(move.Piece, PieceType.WhiteKing);
@@ -117,8 +117,8 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Check, "Check");
             Assert.IsTrue(move.Checkmate, "Checkmate");
 
-            Assert.AreEqual(move.HintFileFrom, CellOperations.GetFile(CellName.E8));
-            Assert.AreEqual(move.HintRankFrom, CellOperations.GetRank(CellName.E8));
+            Assert.AreEqual(move.HintFileFrom, CellName.E8.GetFile());
+            Assert.AreEqual(move.HintRankFrom, CellName.E8.GetRank());
 
             Assert.AreEqual(move.To, CellName.G8);
             Assert.AreEqual(move.Piece, PieceType.BlackKing);
@@ -136,8 +136,8 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Check);
             Assert.IsTrue(move.Checkmate);
 
-            Assert.AreEqual(move.HintFileFrom, CellOperations.GetFile(CellName.E1));
-            Assert.AreEqual(move.HintRankFrom, CellOperations.GetRank(CellName.E1));
+            Assert.AreEqual(move.HintFileFrom, CellName.E1.GetFile());
+            Assert.AreEqual(move.HintRankFrom, CellName.E1.GetRank());
 
             Assert.AreEqual(move.To, CellName.C1);
             Assert.AreEqual(move.Piece, PieceType.WhiteKing);
@@ -155,8 +155,8 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Check, "Check");
             Assert.IsFalse(move.Checkmate, "Checkmate");
 
-            Assert.AreEqual(move.HintFileFrom, CellOperations.GetFile(CellName.E8));
-            Assert.AreEqual(move.HintRankFrom, CellOperations.GetRank(CellName.E8));
+            Assert.AreEqual(move.HintFileFrom, CellName.E8.GetFile());
+            Assert.AreEqual(move.HintRankFrom, CellName.E8.GetRank());
 
             Assert.AreEqual(move.To, CellName.C8);
             Assert.AreEqual(move.Piece, PieceType.BlackKing);

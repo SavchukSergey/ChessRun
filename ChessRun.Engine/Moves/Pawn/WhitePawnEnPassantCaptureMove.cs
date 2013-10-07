@@ -8,10 +8,10 @@ namespace ChessRun.Engine.Moves.Pawn {
 
         public WhitePawnEnPassantCaptureMove(CellName from, CellName to)
             : base(from, to) {
-            if (CellOperations.GetRank(from) != CellRank.R5 || CellOperations.GetRank(to) != CellRank.R6) {
+            if (@from.GetRank() != CellRank.R5 || to.GetRank() != CellRank.R6) {
                 throw new InvalidOperationException();
             }
-            _opponentCell = CellOperations.DecreaseRank(to);
+            _opponentCell = to.DecreaseRank();
         }
 
         public override ValidationResult FastValidate(ChessBoard board) {

@@ -7,7 +7,7 @@ namespace ChessRun.Engine.Moves.Pawn {
         public WhitePawnPromotionCaptureMove(CellName from, CellName to, PieceType promotion)
             : base(from, to) {
             Promotion = promotion;
-            if (CellOperations.GetRank(from) != CellRank.R7 || CellOperations.GetRank(to) != CellRank.R8) throw new InvalidOperationException();
+            if (@from.GetRank() != CellRank.R7 || to.GetRank() != CellRank.R8) throw new InvalidOperationException();
             if (promotion.GetColor() != PieceColor.White) throw new InvalidOperationException();
         }
 
@@ -28,7 +28,7 @@ namespace ChessRun.Engine.Moves.Pawn {
         }
 
         protected override string GetNotationBody(ChessBoard board) {
-            return CellOperations.GetFileSymbol(From).ToString() + CellOperations.GetFileSymbol(To).ToString() + "=" + PieceOperations.GetPromotionPieceSymbol(Promotion);
+            return From.GetFileSymbol().ToString() + To.GetFileSymbol().ToString() + "=" + PieceOperations.GetPromotionPieceSymbol(Promotion);
         }
 
         public override bool IsCapture(ChessBoard board) {

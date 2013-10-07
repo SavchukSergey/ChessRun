@@ -82,18 +82,18 @@ namespace ChessRun.Engine.Moves {
                       .Where(item => item.Piece == Piece && item.To == To && item.Promotion == Promotion)
                       .ToList();
             string captureSymbol = IsCapture(board) ? CaptureSymbol : "";
-            if (moves.Count == 1) return NotationSymbol + captureSymbol + CellOperations.GetCellName(To);
+            if (moves.Count == 1) return NotationSymbol + captureSymbol + To.GetCellName();
 
-            var fromFile = CellOperations.GetFile(From);
-            var fromRank = CellOperations.GetRank(From);
+            var fromFile = From.GetFile();
+            var fromRank = From.GetRank();
 
-            var byFile = moves.Where(item => CellOperations.GetFile(item.From) == fromFile).ToList();
-            if (byFile.Count == 1) return NotationSymbol + CellOperations.GetFileSymbol(fromFile) + captureSymbol + CellOperations.GetCellName(To);
+            var byFile = moves.Where(item => item.From.GetFile() == fromFile).ToList();
+            if (byFile.Count == 1) return NotationSymbol + CellOperations.GetFileSymbol(fromFile) + captureSymbol + To.GetCellName();
 
-            var byRank = moves.Where(item => CellOperations.GetRank(item.From) == fromRank).ToList();
-            if (byRank.Count == 1) return NotationSymbol + CellOperations.GetRankSymbol(fromRank) + captureSymbol + CellOperations.GetCellName(To);
+            var byRank = moves.Where(item => item.From.GetRank() == fromRank).ToList();
+            if (byRank.Count == 1) return NotationSymbol + fromRank.GetRankSymbol() + captureSymbol + To.GetCellName();
 
-            return NotationSymbol + CellOperations.GetCellName(From) + captureSymbol + CellOperations.GetCellName(To);
+            return NotationSymbol + From.GetCellName() + captureSymbol + To.GetCellName();
         }
 
         /// <summary>

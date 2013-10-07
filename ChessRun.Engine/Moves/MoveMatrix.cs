@@ -92,7 +92,7 @@ namespace ChessRun.Engine.Moves {
         #region Black Pawns
 
         private static void AddBlackPawnMoves(CellName from) {
-            var rank = CellOperations.GetRank(from);
+            var rank = @from.GetRank();
             switch (rank) {
                 case CellRank.R1:
                 case CellRank.R8:
@@ -116,14 +116,14 @@ namespace ChessRun.Engine.Moves {
 
         private static void AddBlackCaptureMoves(CellName from) {
             const PieceType piece = PieceType.BlackPawn;
-            var file = CellOperations.GetFile(from);
-            var next = CellOperations.DecreaseRank(from);
+            var file = @from.GetFile();
+            var next = @from.DecreaseRank();
             if (file > CellFile.A) {
-                AddMove(piece, new BlackPawnCaptureMove(from, CellOperations.DecreaseFile(next)));
+                AddMove(piece, new BlackPawnCaptureMove(from, next.DecreaseFile()));
                 AddMove(piece, new BreakMove(from));
             }
             if (file < CellFile.H) {
-                AddMove(piece, new BlackPawnCaptureMove(from, CellOperations.IncreaseFile(next)));
+                AddMove(piece, new BlackPawnCaptureMove(from, next.IncreaseFile()));
                 AddMove(piece, new BreakMove(from));
             }
         }
@@ -145,26 +145,26 @@ namespace ChessRun.Engine.Moves {
 
         private static void AddBlackPawnMovesRank4(CellName from) {
             const PieceType piece = PieceType.BlackPawn;
-            var file = CellOperations.GetFile(from);
-            var next = CellOperations.DecreaseRank(from);
+            var file = @from.GetFile();
+            var next = @from.DecreaseRank();
 
             AddMove(piece, new BlackPawnRegularMove(from));
             AddMove(piece, new BreakMove(from));
             AddBlackCaptureMoves(from);
 
             if (file > CellFile.A) {
-                AddMove(piece, new BlackPawnEnPassantCaptureMove(from, CellOperations.DecreaseFile(next)));
+                AddMove(piece, new BlackPawnEnPassantCaptureMove(from, next.DecreaseFile()));
                 AddMove(piece, new BreakMove(from));
             }
             if (file < CellFile.H) {
-                AddMove(piece, new BlackPawnEnPassantCaptureMove(from, CellOperations.IncreaseFile(next)));
+                AddMove(piece, new BlackPawnEnPassantCaptureMove(from, next.IncreaseFile()));
                 AddMove(piece, new BreakMove(from));
             }
         }
 
         private static void AddBlackPawnMovesRank2(CellName from) {
             const PieceType piece = PieceType.BlackPawn;
-            var next = CellOperations.DecreaseRank(from);
+            var next = @from.DecreaseRank();
             AddPromotionMoves(piece, from, next, (to, promotion) => new BlackPawnPromotionMove(from, promotion));
             AddPromotionCaptureMoves(piece, from, next, (to, promotion) => new BlackPawnPromotionCaptureMove(from, to, promotion));
         }
@@ -174,7 +174,7 @@ namespace ChessRun.Engine.Moves {
         #region White Pawns
 
         private static void AddWhitePawnMoves(CellName from) {
-            var rank = CellOperations.GetRank(from);
+            var rank = @from.GetRank();
             switch (rank) {
                 case CellRank.R1:
                 case CellRank.R8:
@@ -198,14 +198,14 @@ namespace ChessRun.Engine.Moves {
 
         private static void AddWhiteCaptureMoves(CellName from) {
             const PieceType piece = PieceType.WhitePawn;
-            var file = CellOperations.GetFile(from);
-            var next = CellOperations.IncreaseRank(from);
+            var file = @from.GetFile();
+            var next = @from.IncreaseRank();
             if (file > CellFile.A) {
-                AddMove(piece, new WhitePawnCaptureMove(from, CellOperations.DecreaseFile(next)));
+                AddMove(piece, new WhitePawnCaptureMove(from, next.DecreaseFile()));
                 AddMove(piece, new BreakMove(from));
             }
             if (file < CellFile.H) {
-                AddMove(piece, new WhitePawnCaptureMove(from, CellOperations.IncreaseFile(next)));
+                AddMove(piece, new WhitePawnCaptureMove(from, next.IncreaseFile()));
                 AddMove(piece, new BreakMove(from));
             }
         }
@@ -227,26 +227,26 @@ namespace ChessRun.Engine.Moves {
 
         private static void AddWhitePawnMovesRank5(CellName from) {
             const PieceType piece = PieceType.WhitePawn;
-            var file = CellOperations.GetFile(from);
-            var next = CellOperations.IncreaseRank(from);
+            var file = @from.GetFile();
+            var next = @from.IncreaseRank();
 
             AddMove(piece, new WhitePawnRegularMove(from));
             AddMove(piece, new BreakMove(from));
             AddWhiteCaptureMoves(from);
 
             if (file > CellFile.A) {
-                AddMove(piece, new WhitePawnEnPassantCaptureMove(from, CellOperations.DecreaseFile(next)));
+                AddMove(piece, new WhitePawnEnPassantCaptureMove(from, next.DecreaseFile()));
                 AddMove(piece, new BreakMove(from));
             }
             if (file < CellFile.H) {
-                AddMove(piece, new WhitePawnEnPassantCaptureMove(from, CellOperations.IncreaseFile(next)));
+                AddMove(piece, new WhitePawnEnPassantCaptureMove(from, next.IncreaseFile()));
                 AddMove(piece, new BreakMove(from));
             }
         }
 
         private static void AddWhitePawnMovesRank7(CellName from) {
             const PieceType piece = PieceType.WhitePawn;
-            var next = CellOperations.IncreaseRank(from);
+            var next = @from.IncreaseRank();
             AddPromotionMoves(piece, from, next, (to, promotion) => new WhitePawnPromotionMove(from, promotion));
             AddPromotionCaptureMoves(piece, from, next, (to, promotion) => new WhitePawnPromotionCaptureMove(from, to, promotion));
         }
@@ -263,10 +263,10 @@ namespace ChessRun.Engine.Moves {
         }
 
         private static void AddPromotionCaptureMoves(PieceType piece, CellName from, CellName next, Func<CellName, PieceType, SpeculativeMove> factory) {
-            var file = CellOperations.GetFile(from);
-            var color = PieceOperations.GetColor(piece);
+            var file = @from.GetFile();
+            var color = piece.GetColor();
             if (file > CellFile.A) {
-                var left = CellOperations.DecreaseFile(next);
+                var left = next.DecreaseFile();
                 AddMove(piece, factory(left, PieceOperations.GetKnight(color)));
                 AddMove(piece, factory(left, PieceOperations.GetBishop(color)));
                 AddMove(piece, factory(left, PieceOperations.GetRook(color)));
@@ -274,7 +274,7 @@ namespace ChessRun.Engine.Moves {
                 AddMove(piece, new BreakMove(from));
             }
             if (file < CellFile.H) {
-                var right = CellOperations.IncreaseFile(next);
+                var right = next.IncreaseFile();
                 AddMove(piece, factory(right, PieceOperations.GetKnight(color)));
                 AddMove(piece, factory(right, PieceOperations.GetBishop(color)));
                 AddMove(piece, factory(right, PieceOperations.GetRook(color)));
@@ -406,8 +406,8 @@ namespace ChessRun.Engine.Moves {
         private static void AddDirectionalMoves(PieceType piece, CellName from, int fileShift, int rankShift, Func<CellName, SpeculativeMove> factory) {
             var cell = from;
             for (int i = 0; i < 8; i++) {
-                var rank = CellOperations.GetRank(cell);
-                var file = CellOperations.GetFile(cell);
+                var rank = cell.GetRank();
+                var file = cell.GetFile();
                 rank += rankShift;
                 file += fileShift;
                 if (rank >= CellRank.R1 && rank <= CellRank.R8 && file >= CellFile.A && file <= CellFile.H) {

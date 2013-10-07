@@ -146,16 +146,16 @@ namespace ChessRun.Engine {
             AlgebraicMove.ParseMove(moveString, Turn, out algMove);
             IEnumerable<SpeculativeMove> moves = GetValidMovesList();
             if (algMove.HintFileFrom > 0) {
-                moves = moves.Where(move => CellOperations.GetFile(move.From) == algMove.HintFileFrom);
+                moves = moves.Where(move => move.From.GetFile() == algMove.HintFileFrom);
             }
             if (algMove.HintRankFrom > 0) {
-                moves = moves.Where(move => CellOperations.GetRank(move.From) == algMove.HintRankFrom);
+                moves = moves.Where(move => move.From.GetRank() == algMove.HintRankFrom);
             }
             if (algMove.HintFileTo > 0) {
-                moves = moves.Where(move => CellOperations.GetFile(move.To) == algMove.HintFileTo);
+                moves = moves.Where(move => move.To.GetFile() == algMove.HintFileTo);
             }
             if (algMove.HintRankTo > 0) {
-                moves = moves.Where(move => CellOperations.GetRank(move.To) == algMove.HintRankTo);
+                moves = moves.Where(move => move.To.GetRank() == algMove.HintRankTo);
             }
             moves = moves.Where(move => move.Piece == algMove.Piece && move.Promotion == algMove.Promotion);
             var movesList = moves.ToList();

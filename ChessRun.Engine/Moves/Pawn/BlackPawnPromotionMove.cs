@@ -5,9 +5,9 @@ namespace ChessRun.Engine.Moves.Pawn {
     public class BlackPawnPromotionMove : BlackPawnMove, IPromotionMove {
 
         public BlackPawnPromotionMove(CellName from, PieceType promotion)
-            : base(from, CellOperations.DecreaseRank(from)) {
+            : base(from, @from.DecreaseRank()) {
             Promotion = promotion;
-            if (CellOperations.GetRank(from) != CellRank.R2) throw new InvalidOperationException();
+            if (@from.GetRank() != CellRank.R2) throw new InvalidOperationException();
             if (promotion.GetColor() != PieceColor.Black) throw new InvalidOperationException();
         }
 
@@ -26,7 +26,7 @@ namespace ChessRun.Engine.Moves.Pawn {
         }
 
         protected override string GetNotationBody(ChessBoard board) {
-            return CellOperations.GetCellName(To) + "=" + PieceOperations.GetPromotionPieceSymbol(Promotion);
+            return To.GetCellName() + "=" + PieceOperations.GetPromotionPieceSymbol(Promotion);
         }
 
     }

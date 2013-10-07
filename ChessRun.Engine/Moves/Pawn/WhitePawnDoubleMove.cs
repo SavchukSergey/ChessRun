@@ -6,8 +6,8 @@ namespace ChessRun.Engine.Moves.Pawn {
         private readonly CellName _middleCell;
 
         public WhitePawnDoubleMove(CellName from)
-            : base(from, CellOperations.IncreaseRank(from, 2)) {
-            _middleCell = CellOperations.IncreaseRank(from);
+            : base(from, @from.IncreaseRank(2)) {
+            _middleCell = @from.IncreaseRank();
         }
 
         public CellName MiddleCell {
@@ -30,7 +30,7 @@ namespace ChessRun.Engine.Moves.Pawn {
         }
 
         protected override string GetNotationBody(ChessBoard board) {
-            return CellOperations.GetCellName(To);
+            return To.GetCellName();
         }
 
     }

@@ -35,8 +35,8 @@ namespace ChessRun.Engine {
                 throw new InvalidOperationException("'To' property can be used only when both destination file and rank are specified");
             }
             set {
-                HintFileTo = CellOperations.GetFile(value);
-                HintRankTo = CellOperations.GetRank(value);
+                HintFileTo = value.GetFile();
+                HintRankTo = value.GetRank();
             }
         }
 
@@ -48,8 +48,8 @@ namespace ChessRun.Engine {
                 throw new InvalidOperationException("'From' property can be used only when both destination file and rank are specified");
             }
             set {
-                HintFileFrom = CellOperations.GetFile(value);
-                HintRankFrom = CellOperations.GetRank(value);
+                HintFileFrom = value.GetFile();
+                HintRankFrom = value.GetRank();
             }
         }
 

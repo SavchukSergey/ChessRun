@@ -4,8 +4,7 @@ using System.Text;
 namespace ChessRun.Engine.Utils {
     public class FEN {
 
-        private static readonly CellName[] _cellSequence = new[] {
-            
+        private static readonly CellName[] _cellSequence = {
             CellName.A8, CellName.B8, CellName.C8, CellName.D8, CellName.E8, CellName.F8, CellName.G8, CellName.H8,
             CellName.None,
             CellName.A7, CellName.B7, CellName.C7, CellName.D7, CellName.E7, CellName.F7, CellName.G7, CellName.H7,
@@ -136,7 +135,7 @@ namespace ChessRun.Engine.Utils {
         private static void WriteEnPassant(StringBuilder res, ChessBoard board) {
             var cell = board.EnPassantMove;
             if (cell == CellName.None) res.Append(" -");
-            else res.Append(' ').Append(CellOperations.GetCellName(cell));
+            else res.Append(' ').Append(cell.GetCellName());
         }
 
         #endregion

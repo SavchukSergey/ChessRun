@@ -7,11 +7,11 @@ namespace ChessRun.Engine.Moves {
     public static class DirectionalMoveUtils {
 
         public static CellName[] GetMiddleCells(CellName from, CellName to) {
-            var rankFrom = CellOperations.GetRank(from);
-            var fileFrom = CellOperations.GetFile(from);
+            var rankFrom = @from.GetRank();
+            var fileFrom = @from.GetFile();
 
-            var rankTo = CellOperations.GetRank(to);
-            var fileTo = CellOperations.GetFile(to);
+            var rankTo = to.GetRank();
+            var fileTo = to.GetFile();
 
             var dFile = fileTo - fileFrom;
             var dRank = rankTo - rankFrom;

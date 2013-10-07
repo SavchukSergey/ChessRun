@@ -4,7 +4,7 @@ namespace ChessRun.Engine.Moves.Pawn {
     public class BlackPawnRegularMove : BlackPawnMove {
 
         public BlackPawnRegularMove(CellName from)
-            : base(from, CellOperations.DecreaseRank(from)) {
+            : base(from, @from.DecreaseRank()) {
         }
 
         public override ValidationResult FastValidate(ChessBoard board) {
@@ -22,7 +22,7 @@ namespace ChessRun.Engine.Moves.Pawn {
         }
 
         protected override string GetNotationBody(ChessBoard board) {
-            return CellOperations.GetCellName(To);
+            return To.GetCellName();
         }
 
     }

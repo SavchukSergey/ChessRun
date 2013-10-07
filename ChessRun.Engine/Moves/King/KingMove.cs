@@ -8,7 +8,7 @@ namespace ChessRun.Engine.Moves.King {
         }
 
         protected override string GetNotationBody(ChessBoard board) {
-            return NotationSymbol + CellOperations.GetCellName(To);
+            return NotationSymbol + To.GetCellName();
         }
 
         protected override string NotationSymbol {
