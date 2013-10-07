@@ -89,7 +89,7 @@ namespace ChessRun.Engine.Tests.Moves.Rook {
         protected override ChessBoard CreateBoard(string fen) {
             var board = base.CreateBoard(fen);
 
-            if (PieceOperations.GetColor(PieceType) == PieceColor.Black) {
+            if (PieceType.GetColor() == PieceColor.Black) {
                 InvertColor(board);
             }
             return board;

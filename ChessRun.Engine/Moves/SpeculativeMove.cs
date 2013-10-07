@@ -121,10 +121,10 @@ namespace ChessRun.Engine.Moves {
         /// <param name="board"></param>
         /// <returns></returns>
         public virtual bool IsCapture(ChessBoard board) {
-            var color = PieceOperations.GetColor(Piece);
+            var color = Piece.GetColor();
             var opponentColor = color == PieceColor.White ? PieceColor.Black : PieceColor.White;
             var otherPiece = board[To];
-            return PieceOperations.GetColor(otherPiece) == opponentColor;
+            return otherPiece.GetColor() == opponentColor;
         }
 
     }
