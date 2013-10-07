@@ -317,7 +317,7 @@ namespace ChessRun.Engine.Moves {
         }
 
         private static void AddBishopMoves(PieceType piece, CellName from, Func<CellName, BishopMove> factory) {
-            AddDiagonalMoves(piece, from, to => factory(to));
+            AddDiagonalMoves(piece, from, factory);
         }
 
         private static void AddWhiteRookMoves(CellName from) {
@@ -331,8 +331,8 @@ namespace ChessRun.Engine.Moves {
         }
 
         private static void AddRookMoves(PieceType piece, CellName from, Func<CellName, RookMove> factory) {
-            AddHorizontalMoves(piece, from, to => factory(to));
-            AddVerticalMoves(piece, from, to => factory(to));
+            AddHorizontalMoves(piece, from, factory);
+            AddVerticalMoves(piece, from, factory);
         }
 
         private static void AddWhiteQueenMoves(CellName from) {
@@ -346,9 +346,9 @@ namespace ChessRun.Engine.Moves {
         }
 
         private static void AddQueenMoves(PieceType piece, CellName cell, Func<CellName, QueenMove> factory) {
-            AddDiagonalMoves(piece, cell, to => factory(to));
-            AddHorizontalMoves(piece, cell, to => factory(to));
-            AddVerticalMoves(piece, cell, to => factory(to));
+            AddDiagonalMoves(piece, cell, factory);
+            AddHorizontalMoves(piece, cell, factory);
+            AddVerticalMoves(piece, cell, factory);
         }
 
         private static void AddWhiteKingMoves(CellName from) {
