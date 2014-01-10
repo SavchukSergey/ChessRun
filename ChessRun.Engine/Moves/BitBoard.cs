@@ -1,15 +1,21 @@
-﻿using ChessRun.Engine.Utils;
+﻿using System;
+using ChessRun.Engine.Utils;
 
 namespace ChessRun.Engine.Moves {
     public static class BitBoard {
 
         public static ulong[] KnightBitBoards = GetKnightBitBoards();
         public static ulong[] KingBitBoards = GetKingBitBoards();
-        public static ulong[] DiagonalBitBoards = GetDiagonalBitBoards();
+        public static ulong[] DiagonalBitBoards = GetBitboards(GetDiagonalMoves);
         public static ulong[] HVBitBoards = GetHVBitBoards();
         public static ulong[] BlackPawnsBitBoards = GetBlackPawnsBitBoards();
         public static ulong[] WhitePawnsBitBoards = GetWhitePawnsBitBoards();
         public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
+
+        public static ulong[] NorthEast = GetBitboards(GetNorthEastMoves);
+        public static ulong[] NorthWest = GetBitboards(GetNorthWestMoves);
+        public static ulong[] SouthEast = GetBitboards(GetSouthEastMoves);
+        public static ulong[] SouthWest = GetBitboards(GetSouthWestMoves);
 
         private static ulong[] GetHorizontalAttackers() {
             var res = new ulong[64 * 256];
@@ -53,15 +59,6 @@ namespace ChessRun.Engine.Moves {
             return res;
         }
 
-        private static ulong[] GetDiagonalBitBoards() {
-            var res = new ulong[64];
-            for (var i = 0; i < 64; i++) {
-                var cell = (CellName)i;
-                AddGeneralDiagonalMoves(res, cell);
-            }
-            return res;
-        }
-
         private static ulong[] GetHVBitBoards() {
             var res = new ulong[64];
             for (var i = 0; i < 64; i++) {
@@ -89,61 +86,61 @@ namespace ChessRun.Engine.Moves {
             return res;
         }
 
-        private static void AddGeneralDiagonalMoves(ulong[] bitboards, CellName from) {
-            AddNorthWestMoves(bitboards, from);
-            AddNorthEastMoves(bitboards, from);
-            AddSouthWestMoves(bitboards, from);
-            AddSouthEastMoves(bitboards, from);
+        private static ulong[] GetBitboards(Func<CellName, ulong> builder) {
+            var res = new ulong[64];
+            for (var i = 0; i < 64; i++) {
+                var cell = (CellName)i;
+                res[i] = builder(cell);
+            }
+            return res;
         }
 
-        private static void AddNorthWestMoves(ulong[] bitboards, CellName from) {
-            var rank = (int)from >> 3;
-            var file = (int)from & 0x07;
-            var rank7 = 7 - rank;
-            var file7 = 7 - file;
-
-            var index = (int)from;
-            for (var len = rank > file7 ? rank7 : file; len > 0; len--) {
-                index += 7;
-                AddGeneralMove(bitboards, from, (CellName)index);
-            }
+        private static ulong GetDiagonalMoves(CellName from) {
+            var nw = GetNorthWestMoves(from);
+            var ne = GetNorthEastMoves(from);
+            var sw = GetSouthWestMoves(from);
+            var se =  GetSouthEastMoves(from);
+            return nw | ne | sw | se;
         }
 
-        private static void AddNorthEastMoves(ulong[] bitboards, CellName from) {
-            var rank = (int)from >> 3;
-            var file = (int)from & 0x07;
-            var rank7 = 7 - rank;
-            var file7 = 7 - file;
-
-            var index = (int)from;
-            for (var len = rank > file ? rank7 : file7; len > 0; len--) {
-                index += 9;
-                AddGeneralMove(bitboards, from, (CellName)index);
+        private static ulong GetSouthEastMoves(CellName from) {
+            var res = 0ul;
+            while (from.GetRank() > CellRank.R1 && from.GetFile() < CellFile.H) {
+                from = from.DecreaseRank().IncreaseFile();
+                res |= from.Bit();
             }
+
+            return res;
         }
 
-        private static void AddSouthWestMoves(ulong[] bitboards, CellName from) {
-            var rank = (int)from >> 3;
-            var file = (int)from & 0x07;
-
-            var index = (int)from;
-            for (var len = rank < file ? rank : file; len > 0; len--) {
-                index -= 9;
-                AddGeneralMove(bitboards, from, (CellName)index);
+        private static ulong GetSouthWestMoves(CellName from) {
+            var res = 0ul;
+            while (from.GetRank() > CellRank.R1 && from.GetFile() > CellFile.A) {
+                from = from.DecreaseRank().DecreaseFile();
+                res |= from.Bit();
             }
+
+            return res;
         }
 
-        private static void AddSouthEastMoves(ulong[] bitboards, CellName from) {
-            var rank = (int)from >> 3;
-            var file = (int)from & 0x07;
-            var file7 = 7 - file;
-
-
-            var index = (int)from;
-            for (var len = rank < file7 ? rank : file7; len > 0; len--) {
-                index -= 7;
-                AddGeneralMove(bitboards, from, (CellName)index);
+        private static ulong GetNorthEastMoves(CellName from) {
+            var res = 0ul;
+            while (from.GetRank() < CellRank.R8 && from.GetFile() < CellFile.H) {
+                from = from.IncreaseRank().IncreaseFile();
+                res |= from.Bit();
             }
+
+            return res;
+        }
+
+        private static ulong GetNorthWestMoves(CellName from) {
+            var res = 0ul;
+            while (from.GetRank() < CellRank.R8 && from.GetFile() > CellFile.A) {
+                from = from.IncreaseRank().DecreaseFile();
+                res |= from.Bit();
+            }
+
+            return res;
         }
 
         private static void AddGeneralHVMoves(ulong[] bitboards, CellName from) {
@@ -265,7 +262,7 @@ namespace ChessRun.Engine.Moves {
         }
 
         private static void AddGeneralMove(ulong[] bitboards, CellName from, CellName to) {
-            var mask = 0x1ul << (int)to;
+            var mask = to.Bit();
             bitboards[(int)from] |= mask;
         }
 

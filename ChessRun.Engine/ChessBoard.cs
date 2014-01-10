@@ -403,34 +403,48 @@ namespace ChessRun.Engine {
             int file7 = 7 - file;
 
             int len;
+            ulong mask;
 
-            var mask = 1ul << ((int)cell);
-            for (len = rank > file ? rank7 : file7; len > 0; len--) {
-                mask <<= 9;
-                if ((attackersMask & mask) != 0) return true;
-                if ((allPieces & mask) != 0) break;
+            var ne = BitBoard.NorthEast[(int)cell];
+            if ((attackersMask & ne) > 0) {
+                mask = 1ul << ((int)cell);
+                for (len = rank > file ? rank7 : file7; len > 0; len--) {
+                    mask <<= 9;
+                    if ((attackersMask & mask) != 0) return true;
+                    if ((allPieces & mask) != 0) break;
+                }
             }
 
-            mask = 1ul << ((int)cell);
-            for (len = rank > file7 ? rank7 : file; len > 0; len--) {
-                mask <<= 7;
-                if ((attackersMask & mask) != 0) return true;
-                if ((allPieces & mask) != 0) break;
+            var nw = BitBoard.NorthWest[(int)cell];
+            if ((attackersMask & nw) > 0) {
+                mask = 1ul << ((int)cell);
+                for (len = rank > file7 ? rank7 : file; len > 0; len--) {
+                    mask <<= 7;
+                    if ((attackersMask & mask) != 0) return true;
+                    if ((allPieces & mask) != 0) break;
+                }
             }
 
-            mask = 1ul << ((int)cell);
-            for (len = rank < file ? rank : file; len > 0; len--) {
-                mask >>= 9;
-                if ((attackersMask & mask) != 0) return true;
-                if ((allPieces & mask) != 0) break;
+            var se = BitBoard.SouthEast[(int)cell];
+            if ((attackersMask & se) > 0) {
+                mask = 1ul << ((int)cell);
+                for (len = rank < file7 ? rank : file7; len > 0; len--) {
+                    mask >>= 7;
+                    if ((attackersMask & mask) != 0) return true;
+                    if ((allPieces & mask) != 0) break;
+                }
             }
 
-            mask = 1ul << ((int)cell);
-            for (len = rank < file7 ? rank : file7; len > 0; len--) {
-                mask >>= 7;
-                if ((attackersMask & mask) != 0) return true;
-                if ((allPieces & mask) != 0) break;
+            var sw = BitBoard.SouthWest[(int)cell];
+            if ((attackersMask & sw) > 0) {
+                mask = 1ul << ((int)cell);
+                for (len = rank < file ? rank : file; len > 0; len--) {
+                    mask >>= 9;
+                    if ((attackersMask & mask) != 0) return true;
+                    if ((allPieces & mask) != 0) break;
+                }
             }
+
             return false;
         }
 

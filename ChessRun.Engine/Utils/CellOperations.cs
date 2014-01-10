@@ -3,6 +3,10 @@
 namespace ChessRun.Engine.Utils {
     public static class CellOperations {
 
+        public static ulong Bit(this CellName cell) {
+            return 1ul << (int)cell;
+        }
+
         public static CellName IncreaseRank(this CellName cell) {
             return (CellName)((int)cell + 8);
         }
