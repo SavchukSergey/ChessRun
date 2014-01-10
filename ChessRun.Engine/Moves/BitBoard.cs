@@ -90,32 +90,57 @@ namespace ChessRun.Engine.Moves {
         }
 
         private static void AddGeneralDiagonalMoves(ulong[] bitboards, CellName from) {
+            AddNorthWestMoves(bitboards, from);
+            AddNorthEastMoves(bitboards, from);
+            AddSouthWestMoves(bitboards, from);
+            AddSouthEastMoves(bitboards, from);
+        }
+
+        private static void AddNorthWestMoves(ulong[] bitboards, CellName from) {
             var rank = (int)from >> 3;
             var file = (int)from & 0x07;
             var rank7 = 7 - rank;
             var file7 = 7 - file;
 
-            int len;
             var index = (int)from;
-            for (len = rank > file ? rank7 : file7; len > 0; len--) {
-                index += 9;
-                AddGeneralMove(bitboards, from, (CellName)index);
-            }
-
-            index = (int)from;
-            for (len = rank > file7 ? rank7 : file; len > 0; len--) {
+            for (var len = rank > file7 ? rank7 : file; len > 0; len--) {
                 index += 7;
                 AddGeneralMove(bitboards, from, (CellName)index);
             }
+        }
 
-            index = (int)from;
-            for (len = rank < file ? rank : file; len > 0; len--) {
+        private static void AddNorthEastMoves(ulong[] bitboards, CellName from) {
+            var rank = (int)from >> 3;
+            var file = (int)from & 0x07;
+            var rank7 = 7 - rank;
+            var file7 = 7 - file;
+
+            var index = (int)from;
+            for (var len = rank > file ? rank7 : file7; len > 0; len--) {
+                index += 9;
+                AddGeneralMove(bitboards, from, (CellName)index);
+            }
+        }
+
+        private static void AddSouthWestMoves(ulong[] bitboards, CellName from) {
+            var rank = (int)from >> 3;
+            var file = (int)from & 0x07;
+
+            var index = (int)from;
+            for (var len = rank < file ? rank : file; len > 0; len--) {
                 index -= 9;
                 AddGeneralMove(bitboards, from, (CellName)index);
             }
+        }
 
-            index = (int)from;
-            for (len = rank < file7 ? rank : file7; len > 0; len--) {
+        private static void AddSouthEastMoves(ulong[] bitboards, CellName from) {
+            var rank = (int)from >> 3;
+            var file = (int)from & 0x07;
+            var file7 = 7 - file;
+
+
+            var index = (int)from;
+            for (var len = rank < file7 ? rank : file7; len > 0; len--) {
                 index -= 7;
                 AddGeneralMove(bitboards, from, (CellName)index);
             }
