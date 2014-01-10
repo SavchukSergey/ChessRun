@@ -35,15 +35,14 @@ namespace ChessRun.Engine.Moves {
                 throw new InvalidOperationException();
             }
 
-            protected override string NotationSymbol
-            {
+            protected override string NotationSymbol {
                 get { return ""; }
             }
         }
 
         static MoveMatrix() {
             DirectMatrix = new SpeculativeMove[15 * 64][];
-            for (var i=0; i < 64; i++) {
+            for (var i = 0; i < 64; i++) {
                 var cell = (CellName)i;
 
                 AddBlackPawnMoves(cell);

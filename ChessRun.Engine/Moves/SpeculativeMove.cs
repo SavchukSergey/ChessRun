@@ -3,17 +3,35 @@ using System.Linq;
 using ChessRun.Engine.Utils;
 
 namespace ChessRun.Engine.Moves {
+    /// <summary>
+    /// Represents base pirce move
+    /// </summary>
     [DebuggerDisplay("Piece: {Piece}, From: {From}, To: {To}")]
     public abstract class SpeculativeMove {
 
+        /// <summary>
+        /// Gets or sets piece type
+        /// </summary>
         public PieceType Piece;
 
+        /// <summary>
+        /// Gets or sets cell from which move is performed
+        /// </summary>
         public readonly CellName From;
 
+        /// <summary>
+        /// Gets or sets cell to which move is performed
+        /// </summary>
         public readonly CellName To;
 
+        /// <summary>
+        /// Gets or sets pawn promotion piece
+        /// </summary>
         public PieceType Promotion = PieceType.None;
 
+        /// <summary>
+        /// Gets or sets castles mask
+        /// </summary>
         public CastleFlags CastlesMask;
 
         protected SpeculativeMove(CellName from, CellName to) {
@@ -43,8 +61,14 @@ namespace ChessRun.Engine.Moves {
             }
         }
 
+        /// <summary>
+        /// Gets or sets next move in case this move is not valid in current board state.
+        /// </summary>
         public SpeculativeMove NextGroupMove;
 
+        /// <summary>
+        /// Gets or sets next move in case this move is valid in current board state.
+        /// </summary>
         public SpeculativeMove NextMove;
 
         /// <summary>
@@ -54,8 +78,18 @@ namespace ChessRun.Engine.Moves {
         /// <returns></returns>
         public abstract ValidationResult FastValidate(ChessBoard board);
 
+        /// <summary>
+        /// Executes move.
+        /// </summary>
+        /// <param name="board">Board on which move is executed</param>
+        /// <param name="rollbackData">Rollback data for unexecute operation</param>
         public abstract void Execute(ChessBoard board, ref RollbackData rollbackData);
 
+        /// <summary>
+        /// Revert board to originial state before move
+        /// </summary>
+        /// <param name="board">Board on which move was executed</param>
+        /// <param name="rollbackData">Rollback data retrieved during execute operation</param>
         public abstract void Unexecute(ChessBoard board, ref RollbackData rollbackData);
 
         /// <summary>

@@ -181,7 +181,7 @@ namespace ChessRun.Engine {
         /// </summary>
         /// <param name="move"></param>
         /// <param name="rollbackData"></param>
-        public virtual void Move(SpeculativeMove move, out RollbackData rollbackData) {
+        public void Move(SpeculativeMove move, out RollbackData rollbackData) {
             rollbackData.Castles = Castles;
             rollbackData.EnPassant = EnPassantMove;
             rollbackData.CapturedPiece = PieceType.None;
@@ -191,7 +191,7 @@ namespace ChessRun.Engine {
             SwitchTurn();
         }
 
-        public virtual void Unmove(SpeculativeMove move, ref RollbackData rollbackData) {
+        public void Unmove(SpeculativeMove move, ref RollbackData rollbackData) {
             move.Unexecute(this, ref rollbackData);
             SwitchTurn();
             EnPassantMove = rollbackData.EnPassant;
