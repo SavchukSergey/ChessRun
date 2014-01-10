@@ -23,11 +23,10 @@ namespace ChessRun.Engine {
         public ChessBoard() {
             Turn = PieceColor.White;
             EnPassantMove = CellName.None;
-            Castles = CastleFlags.BlackCanDoLongCastle | CastleFlags.BlackCanDoShortCastle |
-                      CastleFlags.WhiteCanDoLongCastle | CastleFlags.WhiteCanDoShortCastle;
+            Castles = CastleFlags.All;
         }
 
-        public virtual PieceType this[CellName cell] {
+        public PieceType this[CellName cell] {
             get { return _cells[(int)cell]; }
             set {
                 var oldValue = _cells[(int)cell];
@@ -405,32 +404,32 @@ namespace ChessRun.Engine {
 
             int len;
 
-            int index = (int)cell;
+            var mask = 1ul << ((int)cell);
             for (len = rank > file ? rank7 : file7; len > 0; len--) {
-                index += 9;
-                if ((attackersMask & (1ul << index)) != 0) return true;
-                if ((allPieces & (1ul << index)) != 0) break;
+                mask <<= 9;
+                if ((attackersMask & mask) != 0) return true;
+                if ((allPieces & mask) != 0) break;
             }
 
-            index = (int)cell;
+            mask = 1ul << ((int)cell);
             for (len = rank > file7 ? rank7 : file; len > 0; len--) {
-                index += 7;
-                if ((attackersMask & (1ul << index)) != 0) return true;
-                if ((allPieces & (1ul << index)) != 0) break;
+                mask <<= 7;
+                if ((attackersMask & mask) != 0) return true;
+                if ((allPieces & mask) != 0) break;
             }
 
-            index = (int)cell;
+            mask = 1ul << ((int)cell);
             for (len = rank < file ? rank : file; len > 0; len--) {
-                index -= 9;
-                if ((attackersMask & (1ul << index)) != 0) return true;
-                if ((allPieces & (1ul << index)) != 0) break;
+                mask >>= 9;
+                if ((attackersMask & mask) != 0) return true;
+                if ((allPieces & mask) != 0) break;
             }
 
-            index = (int)cell;
+            mask = 1ul << ((int)cell);
             for (len = rank < file7 ? rank : file7; len > 0; len--) {
-                index -= 7;
-                if ((attackersMask & (1ul << index)) != 0) return true;
-                if ((allPieces & (1ul << index)) != 0) break;
+                mask >>= 7;
+                if ((attackersMask & mask) != 0) return true;
+                if ((allPieces & mask) != 0) break;
             }
             return false;
         }
@@ -439,17 +438,17 @@ namespace ChessRun.Engine {
             var allPieces = WhitePieces | BlackPieces;
 
             int rank = (int)cell >> 3;
-            int index = (int)cell;
+            var mask = 1ul << ((int)cell);
             for (var i = rank + 1; i < 8; i++) {
-                index += 8;
-                if ((attackersMask & (1ul << index)) != 0) return true;
-                if ((allPieces & (1ul << index)) != 0) break;
+                mask <<= 8;
+                if ((attackersMask & mask) != 0) return true;
+                if ((allPieces & mask) != 0) break;
             }
-            index = (int)cell;
+            mask = 1ul << ((int)cell);
             for (var i = rank - 1; i >= 0; i--) {
-                index -= 8;
-                if ((attackersMask & (1ul << index)) != 0) return true;
-                if ((allPieces & (1ul << index)) != 0) break;
+                mask >>= 8;
+                if ((attackersMask & mask) != 0) return true;
+                if ((allPieces & mask) != 0) break;
             }
             return false;
         }

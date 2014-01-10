@@ -37,7 +37,7 @@ namespace ChessRun.Engine.Moves {
         protected SpeculativeMove(CellName from, CellName to) {
             From = from;
             To = to;
-            CastlesMask = CastleFlags.WhiteCanDoLongCastle | CastleFlags.WhiteCanDoShortCastle | CastleFlags.BlackCanDoLongCastle | CastleFlags.BlackCanDoShortCastle;
+            CastlesMask = CastleFlags.All;
             var mergedCells = (1ul << (int)from) | (1ul << (int)to);
             if ((mergedCells & (1ul << (int)CellName.A1)) != 0) {
                 CastlesMask &= ~CastleFlags.WhiteCanDoLongCastle;

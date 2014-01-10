@@ -7,7 +7,9 @@ namespace ChessRun.Engine.Moves {
         WhiteCanDoShortCastle = 0x01,
         WhiteCanDoLongCastle = 0x02,
         BlackCanDoShortCastle = 0x04,
-        BlackCanDoLongCastle = 0x08
+        BlackCanDoLongCastle = 0x08,
+
+        All = 1 | 2 | 4 | 8
 
     }
 }
