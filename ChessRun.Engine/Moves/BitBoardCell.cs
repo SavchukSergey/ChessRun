@@ -11,6 +11,12 @@
 
         public ulong Diagonals;
 
+        public ulong Horizontal;
+
+        public ulong Vertical;
+
+        public ulong HorizontalVertical;
+
         public ulong Knights;
 
         public ulong Kings;

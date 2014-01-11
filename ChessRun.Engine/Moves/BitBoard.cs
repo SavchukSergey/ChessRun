@@ -4,7 +4,6 @@ using ChessRun.Engine.Utils;
 namespace ChessRun.Engine.Moves {
     public static class BitBoard {
 
-        public static ulong[] HVBitBoards = GetBitboards(GetHVMoves);
         public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
 
         public static BitBoardCell[] Cells;
@@ -29,6 +28,7 @@ namespace ChessRun.Engine.Moves {
                 cell.RankInverted = (byte)(7 - cell.Rank);
                 cell.FileInverted = (byte)(7 - cell.File);
                 cell.Diagonals = cell.NorthWest | cell.NorthEast | cell.SouthWest | cell.SouthEast;
+                cell.HorizontalVertical = GetHVMoves(cellName);
 
                 Cells[i] = cell;
             }
@@ -54,15 +54,6 @@ namespace ChessRun.Engine.Moves {
                     mask <<= rank * 8;
                     res[i * 256 + j] = mask;
                 }
-            }
-            return res;
-        }
-
-        private static ulong[] GetBitboards(Func<CellName, ulong> builder) {
-            var res = new ulong[64];
-            for (var i = 0; i < 64; i++) {
-                var cell = (CellName)i;
-                res[i] = builder(cell);
             }
             return res;
         }
@@ -153,7 +144,7 @@ namespace ChessRun.Engine.Moves {
             var res = 0ul;
             int rank = (int)from >> 3;
             int file = (int)from & 0x07;
-            if (rank < 7) {
+            if (rank > 0) {
                 if (file > 0) {
                     res |= @from.DecreaseRank().DecreaseFile().Bit();
                 }

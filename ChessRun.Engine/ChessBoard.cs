@@ -335,14 +335,11 @@ namespace ChessRun.Engine {
         public bool IsAttackedByBlack(CellName cell) {
             var bbc = BitBoard.Cells[(int)cell];
 
-            var attacks = bbc.Knights;
-            if ((attacks & BlackKnights) != 0) return true;
+            if ((bbc.Knights & BlackKnights) != 0) return true;
 
-            attacks = bbc.Kings;
-            if ((attacks & BlackKings) != 0) return true;
+            if ((bbc.Kings & BlackKings) != 0) return true;
 
-            attacks = bbc.BlackPawn;
-            if ((attacks & BlackPawns) != 0) {
+            if ((bbc.BlackPawn & BlackPawns) != 0) {
                 return true;
             }
 
@@ -350,15 +347,13 @@ namespace ChessRun.Engine {
             var rqPieces = BlackRooks | BlackQueens;
             var bqPieces = BlackBishops | BlackQueens;
 
-            attacks = BitBoard.HVBitBoards[(int)cell];
-            if ((attacks & rqPieces) != 0) {
+            if ((bbc.HorizontalVertical & rqPieces) != 0) {
                 var rqAttacks = BitBoard.HorizontalAttackers[(int)cell * 256 + (int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
                 if (rqAttacks != 0) return true;
                 if (CheckVertical(cell, rqPieces)) return true;
             }
 
-            attacks = bbc.Diagonals;
-            if ((attacks & bqPieces) != 0) {
+            if ((bbc.Diagonals & bqPieces) != 0) {
                 if (CheckDiagonal(bbc, bqPieces)) return true;
             }
 
@@ -368,14 +363,11 @@ namespace ChessRun.Engine {
         public bool IsAttackedByWhite(CellName cell) {
             var bbc = BitBoard.Cells[(int)cell];
 
-            var attacks = bbc.Knights;
-            if ((attacks & WhiteKnights) != 0) return true;
+            if ((bbc.Knights & WhiteKnights) != 0) return true;
 
-            attacks = bbc.Kings;
-            if ((attacks & WhiteKings) != 0) return true;
+            if ((bbc.Kings & WhiteKings) != 0) return true;
 
-            attacks = bbc.WhitePawn;
-            if ((attacks & WhitePawns) != 0) {
+            if ((bbc.WhitePawn & WhitePawns) != 0) {
                 return true;
             }
 
@@ -383,15 +375,13 @@ namespace ChessRun.Engine {
             var rqPieces = WhiteRooks | WhiteQueens;
             var bqPieces = WhiteBishops | WhiteQueens;
 
-            attacks = BitBoard.HVBitBoards[(int)cell];
-            if ((attacks & rqPieces) != 0) {
+            if ((bbc.HorizontalVertical & rqPieces) != 0) {
                 var rqAttacks = BitBoard.HorizontalAttackers[(int)cell * 256 + (int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
                 if (rqAttacks != 0) return true;
                 if (CheckVertical(cell, rqPieces)) return true;
             }
 
-            attacks = bbc.Diagonals;
-            if ((attacks & bqPieces) != 0) {
+            if ((bbc.Diagonals & bqPieces) != 0) {
                 if (CheckDiagonal(bbc, bqPieces)) return true;
             }
 
