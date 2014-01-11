@@ -293,7 +293,7 @@ namespace ChessRun.Engine.Moves {
         }
 
         private static void AddKnightMoves(PieceType piece, CellName from, Func<CellName, KnightMove> factory) {
-            var mask = BitBoard.KnightBitBoards[(int)from];
+            var mask = BitBoard.Cells[(int)from].Knights;
             var scan = 1ul;
             for (var i = 0; i < 64; i++) {
                 if ((mask & scan) != 0) {

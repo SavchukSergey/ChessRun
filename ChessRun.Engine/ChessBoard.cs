@@ -335,7 +335,7 @@ namespace ChessRun.Engine {
         public bool IsAttackedByBlack(CellName cell) {
             var bbc = BitBoard.Cells[(int)cell];
 
-            var attacks = BitBoard.KnightBitBoards[(int)cell];
+            var attacks = bbc.Knights;
             if ((attacks & BlackKnights) != 0) return true;
 
             attacks = BitBoard.KingBitBoards[(int)cell];
@@ -368,7 +368,7 @@ namespace ChessRun.Engine {
         public bool IsAttackedByWhite(CellName cell) {
             var bbc = BitBoard.Cells[(int)cell];
 
-            var attacks = BitBoard.KnightBitBoards[(int)cell];
+            var attacks = bbc.Knights;
             if ((attacks & WhiteKnights) != 0) return true;
 
             attacks = BitBoard.KingBitBoards[(int)cell];

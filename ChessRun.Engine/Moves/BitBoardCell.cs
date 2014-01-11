@@ -9,6 +9,8 @@
 
         public ulong SouthWest;
 
+        public ulong Knights;
+
         public ulong Bit;
 
         public CellName CellName;
