@@ -15,6 +15,8 @@
 
         public ulong Kings;
 
+        public ulong WhitePawn;
+
         public ulong BlackPawn;
 
         public ulong Bit;

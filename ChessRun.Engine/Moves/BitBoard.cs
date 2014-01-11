@@ -5,7 +5,6 @@ namespace ChessRun.Engine.Moves {
     public static class BitBoard {
 
         public static ulong[] HVBitBoards = GetHVBitBoards();
-        public static ulong[] WhitePawnsBitBoards = GetWhitePawnsBitBoards();
         public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
 
         public static BitBoardCell[] Cells;
@@ -24,6 +23,7 @@ namespace ChessRun.Engine.Moves {
                     SouthEast = GetSouthEastMoves(cellName),
                     Knights = GetKnightMoves(cellName),
                     Kings = GetKingMoves(cellName),
+                    WhitePawn = GetWhitePawnsMoves(cellName),
                     BlackPawn = GetBlackPawnsMoves(cellName)
                 };
                 cell.RankInverted = (byte) (7 - cell.Rank);
@@ -63,15 +63,6 @@ namespace ChessRun.Engine.Moves {
             for (var i = 0; i < 64; i++) {
                 var cell = (CellName)i;
                 AddGeneralHVMoves(res, cell);
-            }
-            return res;
-        }
-
-        private static ulong[] GetWhitePawnsBitBoards() {
-            var res = new ulong[64];
-            for (var i = 0; i < 64; i++) {
-                var cell = (CellName)i;
-                AddGeneralWhitePawnsMoves(res, cell);
             }
             return res;
         }
@@ -165,17 +156,19 @@ namespace ChessRun.Engine.Moves {
             return res;
         }
 
-        private static void AddGeneralWhitePawnsMoves(ulong[] bitboards, CellName from) {
+        private static ulong GetWhitePawnsMoves(CellName from) {
+            var res = 0ul;
             int rank = (int)from >> 3;
             int file = (int)from & 0x07;
-            if (rank > 0) {
+            if (rank < 7) {
                 if (file > 0) {
-                    AddGeneralMove(bitboards, from, (CellName)(int)(from) - 8 - 1);
+                    res |= @from.DecreaseRank().DecreaseFile().Bit();
                 }
                 if (file < 7) {
-                    AddGeneralMove(bitboards, from, (CellName)(int)(from) - 8 + 1);
+                    res |= @from.DecreaseRank().IncreaseFile().Bit();
                 }
             }
+            return res;
         }
 
         private static ulong GetKnightMoves(CellName from) {
