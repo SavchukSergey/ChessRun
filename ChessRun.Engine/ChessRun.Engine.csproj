@@ -75,6 +75,7 @@
     <Compile Include="AlgebraicMove.cs" />
     <Compile Include="ChessEngineApiM.cs" />
     <Compile Include="MovesIterator.cs" />
+    <Compile Include="Moves\BitBoardCell.cs" />
     <Compile Include="Moves\Pawn\IPromotionMove.cs" />
     <Compile Include="Utils\Iterators\DelegateIterator.cs" />
     <Compile Include="Utils\Iterators\DivideIterator.cs" />

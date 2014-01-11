@@ -333,6 +333,8 @@ namespace ChessRun.Engine {
         }
 
         public bool IsAttackedByBlack(CellName cell) {
+            var bbc = BitBoard.Cells[(int)cell];
+
             var attacks = BitBoard.KnightBitBoards[(int)cell];
             if ((attacks & BlackKnights) != 0) return true;
 
@@ -357,13 +359,15 @@ namespace ChessRun.Engine {
 
             attacks = BitBoard.DiagonalBitBoards[(int)cell];
             if ((attacks & bqPieces) != 0) {
-                if (CheckDiagonal(cell, bqPieces)) return true;
+                if (CheckDiagonal(bbc, bqPieces)) return true;
             }
 
             return false;
         }
 
         public bool IsAttackedByWhite(CellName cell) {
+            var bbc = BitBoard.Cells[(int)cell];
+
             var attacks = BitBoard.KnightBitBoards[(int)cell];
             if ((attacks & WhiteKnights) != 0) return true;
 
@@ -388,26 +392,26 @@ namespace ChessRun.Engine {
 
             attacks = BitBoard.DiagonalBitBoards[(int)cell];
             if ((attacks & bqPieces) != 0) {
-                if (CheckDiagonal(cell, bqPieces)) return true;
+                if (CheckDiagonal(bbc, bqPieces)) return true;
             }
 
             return false;
         }
 
-        private bool CheckDiagonal(CellName cell, ulong attackersMask) {
+        private bool CheckDiagonal(BitBoardCell bbc, ulong attackersMask) {
             var allPieces = WhitePieces | BlackPieces;
 
-            int rank = (int)cell >> 3;
-            int file = (int)cell & 0x07;
+            int rank = bbc.Rank;
+            int file = bbc.File;
             int rank7 = 7 - rank;
             int file7 = 7 - file;
 
             int len;
             ulong mask;
 
-            var ne = BitBoard.NorthEast[(int)cell];
+            var ne = bbc.NorthEast;
             if ((attackersMask & ne) > 0) {
-                mask = 1ul << ((int)cell);
+                mask = bbc.Bit;
                 for (len = rank > file ? rank7 : file7; len > 0; len--) {
                     mask <<= 9;
                     if ((attackersMask & mask) != 0) return true;
@@ -415,9 +419,9 @@ namespace ChessRun.Engine {
                 }
             }
 
-            var nw = BitBoard.NorthWest[(int)cell];
+            var nw = bbc.NorthWest;
             if ((attackersMask & nw) > 0) {
-                mask = 1ul << ((int)cell);
+                mask = bbc.Bit;
                 for (len = rank > file7 ? rank7 : file; len > 0; len--) {
                     mask <<= 7;
                     if ((attackersMask & mask) != 0) return true;
@@ -425,9 +429,9 @@ namespace ChessRun.Engine {
                 }
             }
 
-            var se = BitBoard.SouthEast[(int)cell];
+            var se = bbc.SouthEast;
             if ((attackersMask & se) > 0) {
-                mask = 1ul << ((int)cell);
+                mask = bbc.Bit;
                 for (len = rank < file7 ? rank : file7; len > 0; len--) {
                     mask >>= 7;
                     if ((attackersMask & mask) != 0) return true;
@@ -435,9 +439,9 @@ namespace ChessRun.Engine {
                 }
             }
 
-            var sw = BitBoard.SouthWest[(int)cell];
+            var sw = bbc.SouthWest;
             if ((attackersMask & sw) > 0) {
-                mask = 1ul << ((int)cell);
+                mask = bbc.Bit;
                 for (len = rank < file ? rank : file; len > 0; len--) {
                     mask >>= 9;
                     if ((attackersMask & mask) != 0) return true;

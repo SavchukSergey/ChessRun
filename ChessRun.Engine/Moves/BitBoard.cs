@@ -12,10 +12,25 @@ namespace ChessRun.Engine.Moves {
         public static ulong[] WhitePawnsBitBoards = GetWhitePawnsBitBoards();
         public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
 
-        public static ulong[] NorthEast = GetBitboards(GetNorthEastMoves);
-        public static ulong[] NorthWest = GetBitboards(GetNorthWestMoves);
-        public static ulong[] SouthEast = GetBitboards(GetSouthEastMoves);
-        public static ulong[] SouthWest = GetBitboards(GetSouthWestMoves);
+        public static BitBoardCell[] Cells;
+        static BitBoard() {
+            Cells = new BitBoardCell[64];
+            for (var i = 0; i < 64; i++) {
+                var cellName = (CellName)i;
+                var cell = new BitBoardCell {
+                    CellName = cellName,
+                    Bit = 1ul << i,
+                    Rank = (byte) (i >> 3),
+                    File = (byte)(i & 0x07),
+                    NorthWest = GetNorthWestMoves(cellName),
+                    NorthEast = GetNorthEastMoves(cellName),
+                    SouthWest = GetSouthWestMoves(cellName),
+                    SouthEast = GetSouthEastMoves(cellName)
+                };
+
+                Cells[i] = cell;
+            }
+        }
 
         private static ulong[] GetHorizontalAttackers() {
             var res = new ulong[64 * 256];
@@ -99,7 +114,7 @@ namespace ChessRun.Engine.Moves {
             var nw = GetNorthWestMoves(from);
             var ne = GetNorthEastMoves(from);
             var sw = GetSouthWestMoves(from);
-            var se =  GetSouthEastMoves(from);
+            var se = GetSouthEastMoves(from);
             return nw | ne | sw | se;
         }
 
