@@ -64,6 +64,34 @@ namespace ChessRun.Engine.Tests.Moves {
                             FormatMask(mask));
         }
 
+        [TestMethod]
+        public void VerticalB4Test() {
+            var mask = BitBoard.Cells[(int)CellName.B4].Vertical;
+            Assert.AreEqual("01000000" +
+                            "01000000" +
+                            "01000000" +
+                            "01000000" +
+                            "00000000" +
+                            "01000000" +
+                            "01000000" +
+                            "01000000",
+                            FormatMask(mask));
+        }
+
+        [TestMethod]
+        public void HorizontalB4Test() {
+            var mask = BitBoard.Cells[(int)CellName.B4].Horizontal;
+            Assert.AreEqual("00000000" +
+                            "00000000" +
+                            "00000000" +
+                            "00000000" +
+                            "10111111" +
+                            "00000000" +
+                            "00000000" +
+                            "00000000",
+                            FormatMask(mask));
+        }
+
         private static string FormatMask(ulong mask) {
             StringBuilder sb = new StringBuilder();
             for (var row = 7; row >= 0; row--) {

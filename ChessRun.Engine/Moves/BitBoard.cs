@@ -1,10 +1,7 @@
-﻿using System;
-using ChessRun.Engine.Utils;
+﻿using ChessRun.Engine.Utils;
 
 namespace ChessRun.Engine.Moves {
     public static class BitBoard {
-
-        public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
 
         public static BitBoardCell[] Cells;
         static BitBoard() {
@@ -25,7 +22,8 @@ namespace ChessRun.Engine.Moves {
                     Knights = GetKnightMoves(cellName),
                     Kings = GetKingMoves(cellName),
                     WhitePawn = GetWhitePawnsMoves(cellName),
-                    BlackPawn = GetBlackPawnsMoves(cellName)
+                    BlackPawn = GetBlackPawnsMoves(cellName),
+                    HorizontalAttackers = GetHorizontalAttackers(cellName)
                 };
                 cell.RankInverted = (byte)(7 - cell.Rank);
                 cell.FileInverted = (byte)(7 - cell.File);
@@ -36,26 +34,25 @@ namespace ChessRun.Engine.Moves {
             }
         }
 
-        private static ulong[] GetHorizontalAttackers() {
-            var res = new ulong[64 * 256];
-            for (var i = 0; i < 64; i++) {
-                var rank = i >> 3;
-                var file = i & 0x07;
-                for (var j = 0; j < 256; j++) {
-                    ulong mask = 0;
-                    for (var k = file + 1; k < 8; k++) {
-                        var submask = 1 << k;
-                        mask |= (ulong)submask;
-                        if ((j & submask) != 0) break;
-                    }
-                    for (var k = file - 1; k >= 0; k--) {
-                        var submask = 1 << k;
-                        mask |= (ulong)submask;
-                        if ((j & submask) != 0) break;
-                    }
-                    mask <<= rank * 8;
-                    res[i * 256 + j] = mask;
+        private static ulong[] GetHorizontalAttackers(CellName cell) {
+            var res = new ulong[256];
+            var i = (int)cell;
+            var rank = i >> 3;
+            var file = i & 0x07;
+            for (var j = 0; j < 256; j++) {
+                ulong mask = 0;
+                for (var k = file + 1; k < 8; k++) {
+                    var submask = 1 << k;
+                    mask |= (ulong)submask;
+                    if ((j & submask) != 0) break;
                 }
+                for (var k = file - 1; k >= 0; k--) {
+                    var submask = 1 << k;
+                    mask |= (ulong)submask;
+                    if ((j & submask) != 0) break;
+                }
+                mask <<= rank * 8;
+                res[j] = mask;
             }
             return res;
         }

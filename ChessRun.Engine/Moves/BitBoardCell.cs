@@ -1,4 +1,6 @@
-﻿namespace ChessRun.Engine.Moves {
+﻿using System.Linq.Expressions;
+
+namespace ChessRun.Engine.Moves {
     public class BitBoardCell {
 
         public ulong NorthEast;
@@ -16,6 +18,8 @@
         public ulong Vertical;
 
         public ulong HorizontalVertical;
+
+        public ulong[] HorizontalAttackers;
 
         public ulong Knights;
 

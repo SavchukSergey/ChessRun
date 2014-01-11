@@ -348,12 +348,12 @@ namespace ChessRun.Engine {
             var bqPieces = BlackBishops | BlackQueens;
 
             if ((bbc.Horizontal & rqPieces) != 0) {
-                var rqAttacks = BitBoard.HorizontalAttackers[(int)cell * 256 + (int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
+                var rqAttacks = bbc.HorizontalAttackers[(int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
                 if (rqAttacks != 0) return true;
             }
 
             if ((bbc.Vertical & rqPieces) != 0) {
-                if (CheckVertical(cell, rqPieces)) return true;
+                if (CheckVertical(bbc, rqPieces)) return true;
             }
 
             if ((bbc.Diagonals & bqPieces) != 0) {
@@ -379,12 +379,12 @@ namespace ChessRun.Engine {
             var bqPieces = WhiteBishops | WhiteQueens;
 
             if ((bbc.Horizontal & rqPieces) != 0) {
-                var rqAttacks = BitBoard.HorizontalAttackers[(int)cell * 256 + (int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
+                var rqAttacks = bbc.HorizontalAttackers[(int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
                 if (rqAttacks != 0) return true;
             }
 
             if ((bbc.Vertical & rqPieces) != 0) {
-                if (CheckVertical(cell, rqPieces)) return true;
+                if (CheckVertical(bbc, rqPieces)) return true;
             }
 
             if ((bbc.Diagonals & bqPieces) != 0) {
@@ -448,17 +448,17 @@ namespace ChessRun.Engine {
             return false;
         }
 
-        private bool CheckVertical(CellName cell, ulong attackersMask) {
+        private bool CheckVertical(BitBoardCell bbc, ulong attackersMask) {
             var allPieces = WhitePieces | BlackPieces;
 
-            int rank = (int)cell >> 3;
-            var mask = 1ul << ((int)cell);
+            int rank = bbc.Rank;
+            var mask = bbc.Bit;
             for (var i = rank + 1; i < 8; i++) {
                 mask <<= 8;
                 if ((attackersMask & mask) != 0) return true;
                 if ((allPieces & mask) != 0) break;
             }
-            mask = 1ul << ((int)cell);
+            mask = bbc.Bit;
             for (var i = rank - 1; i >= 0; i--) {
                 mask >>= 8;
                 if ((attackersMask & mask) != 0) return true;
