@@ -4,7 +4,7 @@ using ChessRun.Engine.Utils;
 namespace ChessRun.Engine.Moves {
     public static class BitBoard {
 
-        public static ulong[] HVBitBoards = GetHVBitBoards();
+        public static ulong[] HVBitBoards = GetBitboards(GetHVMoves);
         public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
 
         public static BitBoardCell[] Cells;
@@ -26,8 +26,8 @@ namespace ChessRun.Engine.Moves {
                     WhitePawn = GetWhitePawnsMoves(cellName),
                     BlackPawn = GetBlackPawnsMoves(cellName)
                 };
-                cell.RankInverted = (byte) (7 - cell.Rank);
-                cell.FileInverted = (byte) (7 - cell.File);
+                cell.RankInverted = (byte)(7 - cell.Rank);
+                cell.FileInverted = (byte)(7 - cell.File);
                 cell.Diagonals = cell.NorthWest | cell.NorthEast | cell.SouthWest | cell.SouthEast;
 
                 Cells[i] = cell;
@@ -54,15 +54,6 @@ namespace ChessRun.Engine.Moves {
                     mask <<= rank * 8;
                     res[i * 256 + j] = mask;
                 }
-            }
-            return res;
-        }
-
-        private static ulong[] GetHVBitBoards() {
-            var res = new ulong[64];
-            for (var i = 0; i < 64; i++) {
-                var cell = (CellName)i;
-                AddGeneralHVMoves(res, cell);
             }
             return res;
         }
@@ -116,29 +107,31 @@ namespace ChessRun.Engine.Moves {
             return res;
         }
 
-        private static void AddGeneralHVMoves(ulong[] bitboards, CellName from) {
+        private static ulong GetHVMoves(CellName from) {
+            var res = 0ul;
             var rank = (int)from >> 3;
             var file = (int)from & 0x07;
-            var index = (int)from;
+            var index = from;
             for (var i = file + 1; i < 8; i++) {
-                index++;
-                AddGeneralMove(bitboards, from, (CellName)index);
+                index = index.IncreaseFile();
+                res |= index.Bit();
             }
-            index = (int)from;
+            index = from;
             for (var i = file - 1; i >= 0; i--) {
-                index--;
-                AddGeneralMove(bitboards, from, (CellName)index);
+                index = index.DecreaseFile();
+                res |= index.Bit();
             }
-            index = (int)from;
+            index = from;
             for (var i = rank + 1; i < 8; i++) {
-                index += 8;
-                AddGeneralMove(bitboards, from, (CellName)index);
+                index = index.IncreaseRank();
+                res |= index.Bit();
             }
-            index = (int)from;
+            index = from;
             for (var i = rank - 1; i >= 0; i--) {
-                index -= 8;
-                AddGeneralMove(bitboards, from, (CellName)index);
+                index = index.DecreaseRank();
+                res |= index.Bit();
             }
+            return res;
         }
 
         private static ulong GetBlackPawnsMoves(CellName from) {
@@ -240,11 +233,6 @@ namespace ChessRun.Engine.Moves {
                 res |= @from.Shift(-1, 0).Bit();
             }
             return res;
-        }
-
-        private static void AddGeneralMove(ulong[] bitboards, CellName from, CellName to) {
-            var mask = to.Bit();
-            bitboards[(int)from] |= mask;
         }
 
     }
