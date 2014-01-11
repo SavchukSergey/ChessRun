@@ -4,7 +4,6 @@ using ChessRun.Engine.Utils;
 namespace ChessRun.Engine.Moves {
     public static class BitBoard {
 
-        public static ulong[] DiagonalBitBoards = GetBitboards(GetDiagonalMoves);
         public static ulong[] HVBitBoards = GetHVBitBoards();
         public static ulong[] WhitePawnsBitBoards = GetWhitePawnsBitBoards();
         public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
@@ -19,8 +18,6 @@ namespace ChessRun.Engine.Moves {
                     Bit = 1ul << i,
                     Rank = (byte)(i >> 3),
                     File = (byte)(i & 0x07),
-                    RankInverted = (byte)(7 - (i >> 3)),
-                    FileInverted = (byte)(7 - (i & 0x07)),
                     NorthWest = GetNorthWestMoves(cellName),
                     NorthEast = GetNorthEastMoves(cellName),
                     SouthWest = GetSouthWestMoves(cellName),
@@ -29,6 +26,9 @@ namespace ChessRun.Engine.Moves {
                     Kings = GetKingMoves(cellName),
                     BlackPawn = GetBlackPawnsMoves(cellName)
                 };
+                cell.RankInverted = (byte) (7 - cell.Rank);
+                cell.FileInverted = (byte) (7 - cell.File);
+                cell.Diagonals = cell.NorthWest | cell.NorthEast | cell.SouthWest | cell.SouthEast;
 
                 Cells[i] = cell;
             }
@@ -83,14 +83,6 @@ namespace ChessRun.Engine.Moves {
                 res[i] = builder(cell);
             }
             return res;
-        }
-
-        private static ulong GetDiagonalMoves(CellName from) {
-            var nw = GetNorthWestMoves(from);
-            var ne = GetNorthEastMoves(from);
-            var sw = GetSouthWestMoves(from);
-            var se = GetSouthEastMoves(from);
-            return nw | ne | sw | se;
         }
 
         private static ulong GetSouthEastMoves(CellName from) {

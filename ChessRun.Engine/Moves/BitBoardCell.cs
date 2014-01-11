@@ -9,6 +9,8 @@
 
         public ulong SouthWest;
 
+        public ulong Diagonals;
+
         public ulong Knights;
 
         public ulong Kings;

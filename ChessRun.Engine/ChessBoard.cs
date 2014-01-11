@@ -357,7 +357,7 @@ namespace ChessRun.Engine {
                 if (CheckVertical(cell, rqPieces)) return true;
             }
 
-            attacks = BitBoard.DiagonalBitBoards[(int)cell];
+            attacks = bbc.Diagonals;
             if ((attacks & bqPieces) != 0) {
                 if (CheckDiagonal(bbc, bqPieces)) return true;
             }
@@ -390,7 +390,7 @@ namespace ChessRun.Engine {
                 if (CheckVertical(cell, rqPieces)) return true;
             }
 
-            attacks = BitBoard.DiagonalBitBoards[(int)cell];
+            attacks = bbc.Diagonals;
             if ((attacks & bqPieces) != 0) {
                 if (CheckDiagonal(bbc, bqPieces)) return true;
             }
