@@ -20,6 +20,8 @@ namespace ChessRun.Engine.Moves {
                     NorthEast = GetNorthEastMoves(cellName),
                     SouthWest = GetSouthWestMoves(cellName),
                     SouthEast = GetSouthEastMoves(cellName),
+                    Horizontal = GetHorizontalMoves(cellName),
+                    Vertical = GetVerticalMoves(cellName),
                     Knights = GetKnightMoves(cellName),
                     Kings = GetKingMoves(cellName),
                     WhitePawn = GetWhitePawnsMoves(cellName),
@@ -28,7 +30,7 @@ namespace ChessRun.Engine.Moves {
                 cell.RankInverted = (byte)(7 - cell.Rank);
                 cell.FileInverted = (byte)(7 - cell.File);
                 cell.Diagonals = cell.NorthWest | cell.NorthEast | cell.SouthWest | cell.SouthEast;
-                cell.HorizontalVertical = GetHVMoves(cellName);
+                cell.HorizontalVertical = cell.Horizontal | cell.Vertical;
 
                 Cells[i] = cell;
             }
@@ -98,9 +100,8 @@ namespace ChessRun.Engine.Moves {
             return res;
         }
 
-        private static ulong GetHVMoves(CellName from) {
+        private static ulong GetHorizontalMoves(CellName from) {
             var res = 0ul;
-            var rank = (int)from >> 3;
             var file = (int)from & 0x07;
             var index = from;
             for (var i = file + 1; i < 8; i++) {
@@ -112,13 +113,19 @@ namespace ChessRun.Engine.Moves {
                 index = index.DecreaseFile();
                 res |= index.Bit();
             }
-            index = from;
-            for (var i = rank + 1; i < 8; i++) {
+            return res;
+        }
+
+        private static ulong GetVerticalMoves(CellName from) {
+            var res = 0ul;
+            var file = (int)from & 0x07;
+            var index = from;
+            for (var i = file + 1; i < 8; i++) {
                 index = index.IncreaseRank();
                 res |= index.Bit();
             }
             index = from;
-            for (var i = rank - 1; i >= 0; i--) {
+            for (var i = file - 1; i >= 0; i--) {
                 index = index.DecreaseRank();
                 res |= index.Bit();
             }

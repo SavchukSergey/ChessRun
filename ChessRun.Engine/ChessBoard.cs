@@ -347,9 +347,12 @@ namespace ChessRun.Engine {
             var rqPieces = BlackRooks | BlackQueens;
             var bqPieces = BlackBishops | BlackQueens;
 
-            if ((bbc.HorizontalVertical & rqPieces) != 0) {
+            if ((bbc.Horizontal & rqPieces) != 0) {
                 var rqAttacks = BitBoard.HorizontalAttackers[(int)cell * 256 + (int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
                 if (rqAttacks != 0) return true;
+            }
+
+            if ((bbc.Vertical & rqPieces) != 0) {
                 if (CheckVertical(cell, rqPieces)) return true;
             }
 
@@ -375,9 +378,12 @@ namespace ChessRun.Engine {
             var rqPieces = WhiteRooks | WhiteQueens;
             var bqPieces = WhiteBishops | WhiteQueens;
 
-            if ((bbc.HorizontalVertical & rqPieces) != 0) {
+            if ((bbc.Horizontal & rqPieces) != 0) {
                 var rqAttacks = BitBoard.HorizontalAttackers[(int)cell * 256 + (int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
                 if (rqAttacks != 0) return true;
+            }
+
+            if ((bbc.Vertical & rqPieces) != 0) {
                 if (CheckVertical(cell, rqPieces)) return true;
             }
 
