@@ -11,6 +11,8 @@
 
         public ulong Knights;
 
+        public ulong Kings;
+
         public ulong Bit;
 
         public CellName CellName;

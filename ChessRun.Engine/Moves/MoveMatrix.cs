@@ -373,7 +373,7 @@ namespace ChessRun.Engine.Moves {
         }
 
         private static void AddKingRegularMoves(PieceType piece, CellName from, Func<CellName, SpeculativeMove> factory) {
-            var mask = BitBoard.KingBitBoards[(int)from];
+            var mask = BitBoard.Cells[(int)from].Kings;
             var scan = 1ul;
             for (var i = 0; i < 64; i++) {
                 if ((mask & scan) != 0) {

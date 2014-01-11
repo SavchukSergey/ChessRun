@@ -8,7 +8,7 @@ namespace ChessRun.Engine.Tests.Moves {
 
         [TestMethod]
         public void KingA1Test() {
-            var mask = BitBoard.KingBitBoards[(int)CellName.A1];
+            var mask = BitBoard.Cells[(int)CellName.A1].Kings;
             Assert.AreEqual("00000000" +
                             "00000000" +
                             "00000000" +
@@ -23,7 +23,7 @@ namespace ChessRun.Engine.Tests.Moves {
 
         [TestMethod]
         public void KingA8Test() {
-            var mask = BitBoard.KingBitBoards[(int)CellName.A8];
+            var mask = BitBoard.Cells[(int)CellName.A8].Kings;
             Assert.AreEqual("01000000" +
                             "11000000" +
                             "00000000" +
@@ -37,7 +37,7 @@ namespace ChessRun.Engine.Tests.Moves {
 
         [TestMethod]
         public void KingH1Test() {
-            var mask = BitBoard.KingBitBoards[(int)CellName.H1];
+            var mask = BitBoard.Cells[(int)CellName.H1].Kings;
             Assert.AreEqual("00000000" +
                             "00000000" +
                             "00000000" +
@@ -52,7 +52,7 @@ namespace ChessRun.Engine.Tests.Moves {
 
         [TestMethod]
         public void KingH8Test() {
-            var mask = BitBoard.KingBitBoards[(int)CellName.H8];
+            var mask = BitBoard.Cells[(int)CellName.H8].Kings;
             Assert.AreEqual("00000010" +
                             "00000011" +
                             "00000000" +

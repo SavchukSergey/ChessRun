@@ -4,7 +4,6 @@ using ChessRun.Engine.Utils;
 namespace ChessRun.Engine.Moves {
     public static class BitBoard {
 
-        public static ulong[] KingBitBoards = GetKingBitBoards();
         public static ulong[] DiagonalBitBoards = GetBitboards(GetDiagonalMoves);
         public static ulong[] HVBitBoards = GetHVBitBoards();
         public static ulong[] BlackPawnsBitBoards = GetBlackPawnsBitBoards();
@@ -27,7 +26,8 @@ namespace ChessRun.Engine.Moves {
                     NorthEast = GetNorthEastMoves(cellName),
                     SouthWest = GetSouthWestMoves(cellName),
                     SouthEast = GetSouthEastMoves(cellName),
-                    Knights = GetKnightMoves(cellName)
+                    Knights = GetKnightMoves(cellName),
+                    Kings = GetKingMoves(cellName)
                 };
 
                 Cells[i] = cell;
@@ -54,15 +54,6 @@ namespace ChessRun.Engine.Moves {
                     mask <<= rank * 8;
                     res[i * 256 + j] = mask;
                 }
-            }
-            return res;
-        }
-
-        private static ulong[] GetKingBitBoards() {
-            var res = new ulong[64];
-            for (var i = 0; i < 64; i++) {
-                var cell = (CellName)i;
-                AddGeneralKingMoves(res, cell);
             }
             return res;
         }
@@ -241,34 +232,36 @@ namespace ChessRun.Engine.Moves {
             return res;
         }
 
-        private static void AddGeneralKingMoves(ulong[] bitboards, CellName from) {
+        private static ulong GetKingMoves(CellName from) {
+            var res = 0ul;
             var file = @from.GetFile();
             var rank = @from.GetRank();
 
             if (file >= CellFile.B && rank <= CellRank.R7) {
-                AddGeneralMove(bitboards, from, @from.Shift(-1, 1));
+                res |= @from.Shift(-1, 1).Bit();
             }
             if (rank <= CellRank.R7) {
-                AddGeneralMove(bitboards, from, @from.Shift(0, 1));
+                res |= @from.Shift(0, 1).Bit();
             }
             if (file <= CellFile.G && rank <= CellRank.R7) {
-                AddGeneralMove(bitboards, from, @from.Shift(1, 1));
+                res |= @from.Shift(1, 1).Bit();
             }
             if (file <= CellFile.G) {
-                AddGeneralMove(bitboards, from, @from.Shift(1, 0));
+                res |= @from.Shift(1, 0).Bit();
             }
             if (file <= CellFile.G && rank >= CellRank.R2) {
-                AddGeneralMove(bitboards, from, @from.Shift(1, -1));
+                res |= @from.Shift(1, -1).Bit();
             }
             if (rank >= CellRank.R2) {
-                AddGeneralMove(bitboards, from, @from.Shift(0, -1));
+                res |= @from.Shift(0, -1).Bit();
             }
             if (file >= CellFile.B && rank >= CellRank.R2) {
-                AddGeneralMove(bitboards, from, @from.Shift(-1, -1));
+                res |= @from.Shift(-1, -1).Bit();
             }
             if (file >= CellFile.B) {
-                AddGeneralMove(bitboards, from, @from.Shift(-1, 0));
+                res |= @from.Shift(-1, 0).Bit();
             }
+            return res;
         }
 
         private static void AddGeneralMove(ulong[] bitboards, CellName from, CellName to) {
