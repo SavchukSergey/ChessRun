@@ -341,7 +341,7 @@ namespace ChessRun.Engine {
             attacks = bbc.Kings;
             if ((attacks & BlackKings) != 0) return true;
 
-            attacks = BitBoard.BlackPawnsBitBoards[(int)cell];
+            attacks = bbc.BlackPawn;
             if ((attacks & BlackPawns) != 0) {
                 return true;
             }

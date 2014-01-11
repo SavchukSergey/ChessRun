@@ -6,7 +6,6 @@ namespace ChessRun.Engine.Moves {
 
         public static ulong[] DiagonalBitBoards = GetBitboards(GetDiagonalMoves);
         public static ulong[] HVBitBoards = GetHVBitBoards();
-        public static ulong[] BlackPawnsBitBoards = GetBlackPawnsBitBoards();
         public static ulong[] WhitePawnsBitBoards = GetWhitePawnsBitBoards();
         public static ulong[] HorizontalAttackers = GetHorizontalAttackers();
 
@@ -27,7 +26,8 @@ namespace ChessRun.Engine.Moves {
                     SouthWest = GetSouthWestMoves(cellName),
                     SouthEast = GetSouthEastMoves(cellName),
                     Knights = GetKnightMoves(cellName),
-                    Kings = GetKingMoves(cellName)
+                    Kings = GetKingMoves(cellName),
+                    BlackPawn = GetBlackPawnsMoves(cellName)
                 };
 
                 Cells[i] = cell;
@@ -63,15 +63,6 @@ namespace ChessRun.Engine.Moves {
             for (var i = 0; i < 64; i++) {
                 var cell = (CellName)i;
                 AddGeneralHVMoves(res, cell);
-            }
-            return res;
-        }
-
-        private static ulong[] GetBlackPawnsBitBoards() {
-            var res = new ulong[64];
-            for (var i = 0; i < 64; i++) {
-                var cell = (CellName)i;
-                AddGeneralBlackPawnsMoves(res, cell);
             }
             return res;
         }
@@ -167,17 +158,19 @@ namespace ChessRun.Engine.Moves {
             }
         }
 
-        private static void AddGeneralBlackPawnsMoves(ulong[] bitboards, CellName from) {
+        private static ulong GetBlackPawnsMoves(CellName from) {
+            var res = 0ul;
             int rank = (int)from >> 3;
             int file = (int)from & 0x07;
             if (rank < 7) {
                 if (file > 0) {
-                    AddGeneralMove(bitboards, from, (CellName)(int)(from) + 8 - 1);
+                    res |= @from.IncreaseRank().DecreaseFile().Bit();
                 }
                 if (file < 7) {
-                    AddGeneralMove(bitboards, from, (CellName)(int)(from) + 8 + 1);
+                    res |= @from.IncreaseRank().IncreaseFile().Bit();
                 }
             }
+            return res;
         }
 
         private static void AddGeneralWhitePawnsMoves(ulong[] bitboards, CellName from) {

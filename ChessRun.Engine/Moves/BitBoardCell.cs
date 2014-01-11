@@ -13,6 +13,8 @@
 
         public ulong Kings;
 
+        public ulong BlackPawn;
+
         public ulong Bit;
 
         public CellName CellName;
