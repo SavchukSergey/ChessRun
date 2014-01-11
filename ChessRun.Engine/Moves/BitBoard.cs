@@ -21,6 +21,8 @@ namespace ChessRun.Engine.Moves {
                     Bit = 1ul << i,
                     Rank = (byte)(i >> 3),
                     File = (byte)(i & 0x07),
+                    RankInverted = (byte)(7 - (i >> 3)),
+                    FileInverted = (byte)(7 - (i & 0x07)),
                     NorthWest = GetNorthWestMoves(cellName),
                     NorthEast = GetNorthEastMoves(cellName),
                     SouthWest = GetSouthWestMoves(cellName),

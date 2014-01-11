@@ -403,8 +403,8 @@ namespace ChessRun.Engine {
 
             int rank = bbc.Rank;
             int file = bbc.File;
-            int rank7 = 7 - rank;
-            int file7 = 7 - file;
+            int rank7 = bbc.RankInverted;
+            int file7 = bbc.FileInverted;
 
             int len;
             ulong mask;
