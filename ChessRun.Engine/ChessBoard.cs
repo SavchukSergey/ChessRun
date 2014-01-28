@@ -36,105 +36,105 @@ namespace ChessRun.Engine {
 
                 switch (oldValue) {
                     case PieceType.WhiteKing:
-                        WhiteKings &= negMask;
-                        WhitePieces &= negMask;
+                        Whites.Kings &= negMask;
+                        Whites.Pieces &= negMask;
                         break;
                     case PieceType.WhiteKnight:
-                        WhiteKnights &= negMask;
-                        WhitePieces &= negMask;
+                        Whites.Knights &= negMask;
+                        Whites.Pieces &= negMask;
                         break;
                     case PieceType.WhiteBishop:
-                        WhiteBishops &= negMask;
-                        WhitePieces &= negMask;
+                        Whites.Bishops &= negMask;
+                        Whites.Pieces &= negMask;
                         break;
                     case PieceType.WhiteQueen:
-                        WhiteQueens &= negMask;
-                        WhitePieces &= negMask;
+                        Whites.Queens &= negMask;
+                        Whites.Pieces &= negMask;
                         break;
                     case PieceType.WhiteRook:
-                        WhiteRooks &= negMask;
-                        WhitePieces &= negMask;
+                        Whites.Rooks &= negMask;
+                        Whites.Pieces &= negMask;
                         break;
                     case PieceType.WhitePawn:
-                        WhitePawns &= negMask;
-                        WhitePieces &= negMask;
+                        Whites.Pawns &= negMask;
+                        Whites.Pieces &= negMask;
                         break;
                     case PieceType.BlackKing:
-                        BlackKings &= negMask;
-                        BlackPieces &= negMask;
+                        Blacks.Kings &= negMask;
+                        Blacks.Pieces &= negMask;
                         break;
                     case PieceType.BlackKnight:
-                        BlackKnights &= negMask;
-                        BlackPieces &= negMask;
+                        Blacks.Knights &= negMask;
+                        Blacks.Pieces &= negMask;
                         break;
                     case PieceType.BlackBishop:
-                        BlackBishops &= negMask;
-                        BlackPieces &= negMask;
+                        Blacks.Bishops &= negMask;
+                        Blacks.Pieces &= negMask;
                         break;
                     case PieceType.BlackQueen:
-                        BlackQueens &= negMask;
-                        BlackPieces &= negMask;
+                        Blacks.Queens &= negMask;
+                        Blacks.Pieces &= negMask;
                         break;
                     case PieceType.BlackRook:
-                        BlackRooks &= negMask;
-                        BlackPieces &= negMask;
+                        Blacks.Rooks &= negMask;
+                        Blacks.Pieces &= negMask;
                         break;
                     case PieceType.BlackPawn:
-                        BlackPawns &= negMask;
-                        BlackPieces &= negMask;
+                        Blacks.Pawns &= negMask;
+                        Blacks.Pieces &= negMask;
                         break;
                 }
 
                 switch (value) {
                     case PieceType.WhiteKing:
                         WhiteKingPosition = cell;
-                        WhiteKings |= mask;
-                        WhitePieces |= mask;
+                        Whites.Kings |= mask;
+                        Whites.Pieces |= mask;
                         break;
                     case PieceType.WhiteKnight:
-                        WhiteKnights |= mask;
-                        WhitePieces |= mask;
+                        Whites.Knights |= mask;
+                        Whites.Pieces |= mask;
                         break;
                     case PieceType.WhiteBishop:
-                        WhiteBishops |= mask;
-                        WhitePieces |= mask;
+                        Whites.Bishops |= mask;
+                        Whites.Pieces |= mask;
                         break;
                     case PieceType.WhiteQueen:
-                        WhiteQueens |= mask;
-                        WhitePieces |= mask;
+                        Whites.Queens |= mask;
+                        Whites.Pieces |= mask;
                         break;
                     case PieceType.WhiteRook:
-                        WhiteRooks |= mask;
-                        WhitePieces |= mask;
+                        Whites.Rooks |= mask;
+                        Whites.Pieces |= mask;
                         break;
                     case PieceType.WhitePawn:
-                        WhitePawns |= mask;
-                        WhitePieces |= mask;
+                        Whites.Pawns |= mask;
+                        Whites.Pieces |= mask;
                         break;
                     case PieceType.BlackKing:
                         BlackKingPosition = cell;
-                        BlackKings |= mask;
-                        BlackPieces |= mask;
+                        Blacks.Kings |= mask;
+                        Blacks.Pieces |= mask;
                         break;
                     case PieceType.BlackKnight:
-                        BlackKnights |= mask;
-                        BlackPieces |= mask;
+                        Blacks.Knights |= mask;
+                        Blacks.Pieces |= mask;
                         break;
                     case PieceType.BlackBishop:
-                        BlackBishops |= mask;
-                        BlackPieces |= mask;
+                        Blacks.Bishops |= mask;
+                        Blacks.Pieces |= mask;
                         break;
                     case PieceType.BlackQueen:
-                        BlackQueens |= mask;
-                        BlackPieces |= mask;
+                        Blacks.Queens |= mask;
+                        Blacks.Pieces |= mask;
                         break;
                     case PieceType.BlackRook:
-                        BlackRooks |= mask;
-                        BlackPieces |= mask;
+                        Blacks.Rooks |= mask;
+                        Blacks.Pieces |= mask;
                         break;
                     case PieceType.BlackPawn:
-                        BlackPawns |= mask;
-                        BlackPieces |= mask;
+                        Blacks.Pawns |= mask;
+                        Blacks.Pieces |= mask;
                         break;
                 }
             }
@@ -237,7 +237,7 @@ namespace ChessRun.Engine {
         }
 
         public void GenerateValidMoves(MovesIterator iterator) {
-            var pieces = Turn == PieceColor.White ? WhitePieces : BlackPieces;
+            var pieces = Turn == PieceColor.White ? Whites.Pieces : Blacks.Pieces;
             RollbackData rollback;
             for (var i = 0; i < 64; i++) {
                 if ((pieces & 0x01) != 0) {
@@ -276,7 +276,7 @@ namespace ChessRun.Engine {
         /// </summary>
         /// <param name="iterator"></param>
         public void GeneratePossibleMoves(MovesIterator iterator) {
-            var pieces = Turn == PieceColor.White ? WhitePieces : BlackPieces;
+            var pieces = Turn == PieceColor.White ? Whites.Pieces : Blacks.Pieces;
             RollbackData rollback;
             for (var i = 0; i < 64; i++) {
                 if ((pieces & 0x01) != 0) {
@@ -335,17 +335,17 @@ namespace ChessRun.Engine {
         public bool IsAttackedByBlack(CellName cell) {
             var bbc = BitBoard.Cells[(int)cell];
 
-            if ((bbc.Knights & BlackKnights) != 0) return true;
+            if ((bbc.Knights & Blacks.Knights) != 0) return true;
 
-            if ((bbc.Kings & BlackKings) != 0) return true;
+            if ((bbc.Kings & Blacks.Kings) != 0) return true;
 
-            if ((bbc.BlackPawn & BlackPawns) != 0) {
+            if ((bbc.BlackPawn & Blacks.Pawns) != 0) {
                 return true;
             }
 
-            var allPieces = WhitePieces | BlackPieces;
-            var rqPieces = BlackRooks | BlackQueens;
-            var bqPieces = BlackBishops | BlackQueens;
+            var allPieces = Whites.Pieces | Blacks.Pieces;
+            var rqPieces = Blacks.Rooks | Blacks.Queens;
+            var bqPieces = Blacks.Bishops | Blacks.Queens;
 
             if ((bbc.Horizontal & rqPieces) != 0) {
                 var rqAttacks = bbc.HorizontalAttackers[(int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
@@ -366,17 +366,17 @@ namespace ChessRun.Engine {
         public bool IsAttackedByWhite(CellName cell) {
             var bbc = BitBoard.Cells[(int)cell];
 
-            if ((bbc.Knights & WhiteKnights) != 0) return true;
+            if ((bbc.Knights & Whites.Knights) != 0) return true;
 
-            if ((bbc.Kings & WhiteKings) != 0) return true;
+            if ((bbc.Kings & Whites.Kings) != 0) return true;
 
-            if ((bbc.WhitePawn & WhitePawns) != 0) {
+            if ((bbc.WhitePawn & Whites.Pawns) != 0) {
                 return true;
             }
 
-            var allPieces = WhitePieces | BlackPieces;
-            var rqPieces = WhiteRooks | WhiteQueens;
-            var bqPieces = WhiteBishops | WhiteQueens;
+            var allPieces = Whites.Pieces | Blacks.Pieces;
+            var rqPieces = Whites.Rooks | Whites.Queens;
+            var bqPieces = Whites.Bishops | Whites.Queens;
 
             if ((bbc.Horizontal & rqPieces) != 0) {
                 var rqAttacks = bbc.HorizontalAttackers[(int)((allPieces >> ((int)cell & 0x38)) & 0xff)] & rqPieces;
@@ -395,7 +395,7 @@ namespace ChessRun.Engine {
         }
 
         private bool CheckDiagonal(BitBoardCell bbc, ulong attackersMask) {
-            var allPieces = WhitePieces | BlackPieces;
+            var allPieces = Whites.Pieces | Blacks.Pieces;
 
             int rank = bbc.Rank;
             int file = bbc.File;
@@ -449,7 +449,7 @@ namespace ChessRun.Engine {
         }
 
         private bool CheckVertical(BitBoardCell bbc, ulong attackersMask) {
-            var allPieces = WhitePieces | BlackPieces;
+            var allPieces = Whites.Pieces | Blacks.Pieces;
 
             int rank = bbc.Rank;
             var mask = bbc.Bit;
@@ -469,21 +469,8 @@ namespace ChessRun.Engine {
 
         #region Pool
 
-        public ulong WhitePieces;
-        public ulong WhitePawns;
-        public ulong WhiteKnights;
-        public ulong WhiteBishops;
-        public ulong WhiteRooks;
-        public ulong WhiteQueens;
-        public ulong WhiteKings;
-
-        public ulong BlackPieces;
-        public ulong BlackPawns;
-        public ulong BlackKnights;
-        public ulong BlackBishops;
-        public ulong BlackRooks;
-        public ulong BlackQueens;
-        public ulong BlackKings;
+        public PiecesPool Whites;
+        public PiecesPool Blacks; 
 
         public CellName WhiteKingPosition = CellName.None;
         public CellName BlackKingPosition = CellName.None;
