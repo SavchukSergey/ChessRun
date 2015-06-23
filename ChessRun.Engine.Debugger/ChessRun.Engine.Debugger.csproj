@@ -123,6 +123,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetDir)*.*" "%25USERPROFILE%25\Documents\Visual Studio 2012\Visualizers\*.*"</PostBuildEvent>
+    <PostBuildEvent>copy /Y "$(TargetDir)*.*" "%25USERPROFILE%25\Documents\Visual Studio 2013\Visualizers\*.*"</PostBuildEvent>
   </PropertyGroup>
 </Project>

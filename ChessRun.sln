@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Engine", "ChessRun.Engine\ChessRun.Engine.csproj", "{C5DEA7DE-0DD8-454E-8C04-4EAC916BC8FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Pgn", "ChessRun.Pgn\ChessRun.Pgn.csproj", "{8114B0C8-0F98-42D0-AF9E-237A79FBA0CD}"
