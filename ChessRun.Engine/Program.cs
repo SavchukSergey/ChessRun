@@ -3,7 +3,7 @@
 namespace ChessRun.Engine {
     class Program {
 
-        private static readonly ChessEngineApi _engine = new ChessEngineApiM();
+        private static readonly ChessEngineApi _engine = new ChessEngineApi();
 
         static void Main(string[] args) {
             while (true) {
