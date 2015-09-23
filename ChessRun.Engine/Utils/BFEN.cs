@@ -257,7 +257,7 @@ namespace ChessRun.Engine.Utils {
             CellName.A6, CellName.B6, CellName.C6, CellName.D6, CellName.E6, CellName.F6, CellName.G6, CellName.H6,
         };
 
-        private static readonly CellName[] _cellSequence = new[] {
+        private static readonly CellName[] _cellSequence = {
             CellName.A8, CellName.B8, CellName.C8, CellName.D8, CellName.E8, CellName.F8, CellName.G8, CellName.H8,
             CellName.A7, CellName.B7, CellName.C7, CellName.D7, CellName.E7, CellName.F7, CellName.G7, CellName.H7,
             CellName.A6, CellName.B6, CellName.C6, CellName.D6, CellName.E6, CellName.F6, CellName.G6, CellName.H6,

@@ -25,19 +25,16 @@ namespace ChessRun.Engine {
             if (depth <= 4) {
                 return base.Perft(depth);
             }
-            ulong nodes = 0;
+            long nodes = 0;
             int topLevelNodes = 0;
             var done = new Semaphore(0, int.MaxValue);
-            var countSync = new object();
             var iterator = new DelegateIterator(_board, move => {
                 var clonedBoard = _board.Clone();
                 Enqueue(() => {
                     if (depth > 1) {
                         var perftIterator = new PerftIterator(clonedBoard, depth - 1);
                         clonedBoard.GenerateValidMoves(perftIterator);
-                        lock (countSync) {
-                            nodes += perftIterator.CurrentMoveNodes;
-                        }
+                        Interlocked.Add(ref nodes, (long)perftIterator.CurrentMoveNodes);
                     }
                     done.Release(1);
                 });
@@ -47,7 +44,7 @@ namespace ChessRun.Engine {
             for (var i = 0; i < topLevelNodes; i++) {
                 done.WaitOne();
             }
-            return nodes;
+            return (ulong)nodes;
         }
 
         private void ThreadEntry() {

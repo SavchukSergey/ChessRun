@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace ChessRun.Engine.Moves {
+﻿namespace ChessRun.Engine.Moves {
     public class BitBoardCell {
 
         public ulong NorthEast;

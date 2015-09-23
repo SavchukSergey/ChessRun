@@ -11,9 +11,6 @@ namespace ChessRun.Engine.Moves.King {
             return NotationSymbol + To.GetCellName();
         }
 
-        protected override string NotationSymbol {
-            get { return "K"; }
-        }
-
+        protected override string NotationSymbol => "K";
     }
 }

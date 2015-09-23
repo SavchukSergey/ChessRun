@@ -35,9 +35,7 @@ namespace ChessRun.Engine.Moves {
                 throw new InvalidOperationException();
             }
 
-            protected override string NotationSymbol {
-                get { return ""; }
-            }
+            protected override string NotationSymbol => "";
         }
 
         static MoveMatrix() {

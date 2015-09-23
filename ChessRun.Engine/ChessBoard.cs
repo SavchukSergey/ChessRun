@@ -307,17 +307,9 @@ namespace ChessRun.Engine {
         }
         #endregion
 
-        public bool WhiteUnderCheck {
-            get {
-                return IsAttackedByBlack(WhiteKingPosition);
-            }
-        }
+        public bool WhiteUnderCheck => IsAttackedByBlack(WhiteKingPosition);
 
-        public bool BlackUnderCheck {
-            get {
-                return IsAttackedByWhite(BlackKingPosition);
-            }
-        }
+        public bool BlackUnderCheck => IsAttackedByWhite(BlackKingPosition);
 
         public bool UnderCheck {
             get {

@@ -9,7 +9,7 @@ namespace ChessRun.Engine.Moves.Pawn {
 
         }
 
-        public override string CaptureSymbol { get { return ""; } }
+        public override string CaptureSymbol => "";
 
         protected string GetCaptureNotationBody(ChessBoard board) {
             var fromRank = From.GetRank();

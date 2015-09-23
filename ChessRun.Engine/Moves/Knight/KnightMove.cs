@@ -5,9 +5,6 @@
             : base(from, to) {
         }
 
-        protected override string NotationSymbol {
-            get { return "N"; }
-        }
-
+        protected override string NotationSymbol => "N";
     }
 }

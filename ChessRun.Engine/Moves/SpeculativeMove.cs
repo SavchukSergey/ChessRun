@@ -147,7 +147,7 @@ namespace ChessRun.Engine.Moves {
 
         protected abstract string NotationSymbol { get; }
 
-        public virtual string CaptureSymbol { get { return "x"; } }
+        public virtual string CaptureSymbol => "x";
 
         /// <summary>
         /// Checks whether current move performs piece capture. Must be invoked before move took place.
