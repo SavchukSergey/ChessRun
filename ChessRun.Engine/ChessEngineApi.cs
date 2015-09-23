@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using ChessRun.Engine.Utils;
 using ChessRun.Engine.Utils.Iterators;
 
@@ -26,17 +27,8 @@ namespace ChessRun.Engine {
         }
 
         public ulong Divide(int depth) {
-            var started = DateTime.Now;
-
             var iterator = new DivideIterator(_board, depth);
-
             _board.GenerateValidMoves(iterator);
-
-            var ended = DateTime.Now;
-            var time = (ended - started).TotalSeconds;
-            Console.WriteLine("Time: {0}", time);
-            Console.WriteLine("Nodes: {0}", iterator.TotalMoveNodes);
-            Console.WriteLine("Speed: {0}", time != 0 ? Math.Round(iterator.TotalMoveNodes / 1000.0 / time, 2) + "kN/Sec" : "Time is too small");
             return iterator.TotalMoveNodes;
         }
 

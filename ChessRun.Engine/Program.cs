@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace ChessRun.Engine {
     class Program {
@@ -22,7 +23,7 @@ namespace ChessRun.Engine {
                         break;
                     case "divide":
                         depth = int.Parse(lineArgs[1]);
-                        _engine.Divide(depth);
+                        Divide(depth);
                         break;
                     case "perft":
                         depth = int.Parse(lineArgs[1]);
@@ -35,14 +36,28 @@ namespace ChessRun.Engine {
             }
         }
 
-        public static void Perft(int depth) {
-            var started = DateTime.Now;
-            ulong nodes = _engine.Perft(depth);
-            var ended = DateTime.Now;
-            var time = (ended - started).TotalSeconds;
-            Console.WriteLine("Time: {0}", time);
+        public static void Divide(int depth) {
+            var watch = new Stopwatch();
+            watch.Start();
+            var nodes = _engine.Divide(depth);
+            watch.Stop();
+            var time = watch.Elapsed;
+            var ts = time.TotalSeconds;
+            Console.WriteLine("Time: {0} sec", ts);
             Console.WriteLine("Nodes: {0}", nodes);
-            Console.WriteLine("Speed: {0}", time != 0 ? Math.Round(nodes / 1000.0 / time, 2) + "kN/Sec" : "Time is too small");
+            Console.WriteLine("Speed: {0}", ts != 0 ? Math.Round(nodes / 1000.0 / ts, 2) + "kN/Sec" : "Time is too small");
+
+        }
+
+        public static void Perft(int depth) {
+            var watch = new Stopwatch();
+            watch.Start();
+            var nodes = _engine.Perft(depth);
+            var time = watch.Elapsed;
+            var ts = time.TotalSeconds;
+            Console.WriteLine("Time: {0} sec", ts);
+            Console.WriteLine("Nodes: {0}", nodes);
+            Console.WriteLine("Speed: {0}", ts != 0 ? Math.Round(nodes / 1000.0 / ts, 2) + "kN/Sec" : "Time is too small");
         }
 
     }
