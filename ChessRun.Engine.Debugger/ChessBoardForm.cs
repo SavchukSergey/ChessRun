@@ -10,13 +10,11 @@ namespace ChessRun.Engine.Debugger {
             InitializeComponent();
         }
 
-        public void Visualize(ChessBoard board)
-        {
+        public void Visualize(ChessBoard board) {
             var bmp = _rasterizer.Rasterize(board, 400);
             //Invoke( new Action(() => {
             pctBoard.Image = bmp;
-            switch (board.Turn)
-            {
+            switch (board.Turn) {
                 case PieceColor.White:
                     lblTurnValue.Text = "White";
                     break;
@@ -27,8 +25,9 @@ namespace ChessRun.Engine.Debugger {
                     lblTurnValue.Text = "None";
                     break;
             }
+            lblEnPassantValue.Text = board.EnPassantMove.ToString();
             //}));
         }
-     
+
     }
 }
