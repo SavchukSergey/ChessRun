@@ -1,12 +1,11 @@
 ﻿using System;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Utils {
-    [TestClass]
     public class PieceOperationsTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void GetPawnTest() {
             Assert.AreEqual(PieceType.WhitePawn, PieceOperations.GetPawn(PieceColor.White));
             Assert.AreEqual(PieceType.BlackPawn, PieceOperations.GetPawn(PieceColor.Black));
@@ -18,7 +17,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GetKnightTest() {
             Assert.AreEqual(PieceType.WhiteKnight, PieceOperations.GetKnight(PieceColor.White));
             Assert.AreEqual(PieceType.BlackKnight, PieceOperations.GetKnight(PieceColor.Black));
@@ -30,7 +29,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GetBishopTest() {
             Assert.AreEqual(PieceType.WhiteBishop, PieceOperations.GetBishop(PieceColor.White));
             Assert.AreEqual(PieceType.BlackBishop, PieceOperations.GetBishop(PieceColor.Black));
@@ -42,7 +41,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GetRookTest() {
             Assert.AreEqual(PieceType.WhiteRook, PieceOperations.GetRook(PieceColor.White));
             Assert.AreEqual(PieceType.BlackRook, PieceOperations.GetRook(PieceColor.Black));
@@ -54,7 +53,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GetQueenTest() {
             Assert.AreEqual(PieceType.WhiteQueen, PieceOperations.GetQueen(PieceColor.White));
             Assert.AreEqual(PieceType.BlackQueen, PieceOperations.GetQueen(PieceColor.Black));
@@ -66,7 +65,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GetKingTest() {
             Assert.AreEqual(PieceType.WhiteKing, PieceOperations.GetKing(PieceColor.White));
             Assert.AreEqual(PieceType.BlackKing, PieceOperations.GetKing(PieceColor.Black));
@@ -78,7 +77,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void IsWhiteTest() {
             Assert.IsFalse(PieceType.None.IsWhite());
             Assert.IsTrue(PieceType.WhiteBishop.IsWhite());
@@ -96,7 +95,7 @@ namespace ChessRun.Engine.Tests.Utils {
         }
 
 
-        [TestMethod]
+        [Test]
         public void IsWhiteOrEmptyTest() {
             Assert.IsTrue(PieceType.None.IsWhiteOrEmpty());
             Assert.IsTrue(PieceType.WhiteBishop.IsWhiteOrEmpty());
@@ -113,7 +112,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.IsFalse(PieceType.BlackRook.IsWhiteOrEmpty());
         }
 
-        [TestMethod]
+        [Test]
         public void IsBlackTest() {
             Assert.IsFalse(PieceType.None.IsBlack());
             Assert.IsFalse(PieceType.WhiteBishop.IsBlack());
@@ -130,7 +129,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.IsTrue(PieceType.BlackRook.IsBlack());
         }
 
-        [TestMethod]
+        [Test]
         public void IsBlackOrEmptyTest() {
             Assert.IsTrue(PieceType.None.IsBlackOrEmpty());
             Assert.IsFalse(PieceType.WhiteBishop.IsBlackOrEmpty());
@@ -147,7 +146,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.IsTrue(PieceType.BlackRook.IsBlackOrEmpty());
         }
 
-        [TestMethod]
+        [Test]
         public void GetColorTest() {
             Assert.AreEqual(PieceColor.None, PieceType.None.GetColor());
             Assert.AreEqual(PieceColor.White, PieceType.WhiteBishop.GetColor());
@@ -164,7 +163,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(PieceColor.Black, PieceType.BlackRook.GetColor());
         }
 
-        [TestMethod]
+        [Test]
         public void GetPromotionPieceTest() {
             Assert.AreEqual(PieceType.WhiteKnight, PieceOperations.GetPromotionPiece('N', PieceColor.White));
             Assert.AreEqual(PieceType.WhiteBishop, PieceOperations.GetPromotionPiece('B', PieceColor.White));
@@ -176,13 +175,13 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(PieceType.BlackQueen, PieceOperations.GetPromotionPiece('Q', PieceColor.Black));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetPromotionPieceFailTest() {
             PieceOperations.GetPromotionPiece('x', PieceColor.White);
         }
 
-        [TestMethod]
+        [Test]
         public void GetPromotionPieceSymbolTest() {
             Assert.AreEqual("N", PieceOperations.GetPromotionPieceSymbol(PieceType.WhiteKnight));
             Assert.AreEqual("B", PieceOperations.GetPromotionPieceSymbol(PieceType.WhiteBishop));
@@ -194,13 +193,13 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual("Q", PieceOperations.GetPromotionPieceSymbol(PieceType.BlackQueen));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetPromotionPieceSymbolPawnFailTest() {
             PieceOperations.GetPromotionPieceSymbol(PieceType.WhitePawn);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetPromotionPieceSymbolKingFailTest() {
             PieceOperations.GetPromotionPieceSymbol(PieceType.WhiteKing);

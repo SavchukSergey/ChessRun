@@ -1,12 +1,11 @@
 ﻿using ChessRun.Engine.Moves;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests {
-    [TestClass]
     public class CastleTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void RookCaptureWhiteA1A8Test() {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
@@ -17,7 +16,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(board.WhiteCanDoLongCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void RookCaptureBlackA8A1Test() {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1");
@@ -28,7 +27,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(board.WhiteCanDoLongCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void RookCaptureWhiteH1H8Test() {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
@@ -39,7 +38,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(board.WhiteCanDoShortCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void RookCaptureBlackH8H1Test() {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1");
@@ -50,7 +49,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(board.WhiteCanDoShortCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void RookCaptureWhiteG8H8Test() {
             var board = new ChessBoard();
             FEN.Setup(board, "r3knRr/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
@@ -61,7 +60,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(board.WhiteCanDoShortCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void RookCaptureBlackG1H1Test() {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3KNrR b KQkq - 0 1");
@@ -72,7 +71,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(board.BlackCanDoShortCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void RookCaptureWhiteC8A8Test() {
             var board = new ChessBoard();
             FEN.Setup(board, "r1Rnk2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
@@ -83,7 +82,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(board.WhiteCanDoLongCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void RookCaptureBlackC1A1Test() {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R1rNK2R b KQkq - 0 1");

@@ -1,19 +1,19 @@
 ﻿using ChessRun.Engine.Moves;
 using ChessRun.Engine.Moves.Rook;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Rook {
-    [TestClass]
     public class WhiteRookRegularMoveTest : BaseRookMoveTest<WhiteRookMove> {
 
-        [TestMethod]
+        [Test]
         public void FastValidateTest() {
             var move = new WhiteRookRegularMove(CellName.A1, CellName.A7);
 
-            var board = new ChessBoard();
-            board[move.From] = PieceType.WhiteRook;
+            var board = new ChessBoard {
+                [move.From] = PieceType.WhiteRook,
+                [move.To] = PieceType.BlackKnight
+            };
 
-            board[move.To] = PieceType.BlackKnight;
             Assert.AreEqual(ValidationResult.ValidAndStop, move.FastValidate(board));
 
             board[move.To] = PieceType.None;
@@ -23,38 +23,37 @@ namespace ChessRun.Engine.Tests.Moves.Rook {
             Assert.AreEqual(ValidationResult.Invalid, move.FastValidate(board));
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureNotationTest() {
             RunToShortNotationCaptureNotationTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureDisambiguatingFileTest() {
             RunToShortNotationCaptureDisambiguatingFileTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureDisambiguatingRankTest() {
             RunToShortNotationCaptureDisambiguatingRankTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationTest() {
             RunToShortNotationTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationDisambiguatingFileTest() {
             RunToShortNotationDisambiguatingFileTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationDisambiguatingRankTest() {
             RunToShortNotationDisambiguatingRankTest();
         }
 
-        protected override PieceType PieceType {
-            get { return PieceType.WhiteRook; }
-        }
+        protected override PieceType PieceType => PieceType.WhiteRook;
+
     }
 }

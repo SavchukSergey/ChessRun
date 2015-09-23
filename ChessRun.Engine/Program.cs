@@ -5,7 +5,7 @@ namespace ChessRun.Engine {
 
         private static readonly ChessEngineApi _engine = new ChessEngineApiM();
 
-        static void Main(string[] args) {
+        static void Main() {
             while (true) {
                 var line = Console.ReadLine();
                 if (line == null) break;

@@ -1,11 +1,10 @@
 ﻿using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests {
     public class BaseTestFixture {
 
         protected void SetInitialBoard(ChessBoard board) {
-            //TODO: don't use FEN.
             FEN.Setup(board, FEN.INITIAL_POSITION);
         }
 

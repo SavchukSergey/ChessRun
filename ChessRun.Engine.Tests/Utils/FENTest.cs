@@ -1,11 +1,10 @@
 ﻿using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Utils {
-    [TestClass]
     public class FENTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void WriteInitialPositionTest() {
             var board = new ChessBoard();
             SetInitialBoard(board);
@@ -13,14 +12,14 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.IsTrue(FEN.INITIAL_POSITION.StartsWith(fen));
         }
 
-        [TestMethod]
+        [Test]
         public void ReadInitialPositionTest() {
             var board = new ChessBoard();
             FEN.Setup(board, FEN.INITIAL_POSITION);
             AssertInitialBoard(board);
         }
 
-        [TestMethod]
+        [Test]
         public void MinimalStringTest() {
             var board = new ChessBoard();
             FEN.Setup(board, "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq");
@@ -31,7 +30,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.IsTrue(board.BlackCanDoLongCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void WriteEnpassantTest() {
             var board = new ChessBoard();
             board.EnPassantMove = CellName.None;
@@ -42,7 +41,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(@"8/8/8/8/8/8/8/8 w KQkq e3", res);
         }
 
-        [TestMethod]
+        [Test]
         public void ReadEnpassantTest() {
             var board = new ChessBoard();
             board.EnPassantMove = CellName.None;
@@ -52,7 +51,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(CellName.E3, board.EnPassantMove);
         }
 
-        [TestMethod]
+        [Test]
         public void WriteTurnTest() {
             var board = new ChessBoard();
             board.Turn = PieceColor.White;
@@ -63,7 +62,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(@"8/8/8/8/8/8/8/8 b KQkq -", res);
         }
 
-        [TestMethod]
+        [Test]
         public void ReadTurnTest() {
             var board = new ChessBoard();
             FEN.Setup(board, @"8/8/8/8/8/8/8/8 w KQkq -");

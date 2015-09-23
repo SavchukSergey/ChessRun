@@ -1,12 +1,11 @@
 ﻿using System;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Utils {
-    [TestClass]
     public class CellOperationsTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void IncreaseRankTest() {
             foreach (CellName cell in Enum.GetValues(typeof(CellName))) {
                 if (cell == CellName.None) continue;
@@ -17,7 +16,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DecreaseRankTest() {
             foreach (CellName cell in Enum.GetValues(typeof(CellName))) {
                 if (cell == CellName.None) continue;
@@ -28,7 +27,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void IncreaseFileTest() {
             foreach (CellName cell in Enum.GetValues(typeof(CellName))) {
                 if (cell == CellName.None) continue;
@@ -39,7 +38,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DecreaseFileTest() {
             foreach (CellName cell in Enum.GetValues(typeof(CellName))) {
                 if (cell == CellName.None) continue;
@@ -50,7 +49,7 @@ namespace ChessRun.Engine.Tests.Utils {
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GetCellTest() {
             Assert.AreEqual(CellName.A1, CellOperations.GetCell('A', '1'));
             Assert.AreEqual(CellName.A8, CellOperations.GetCell('a', '8'));

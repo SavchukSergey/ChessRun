@@ -1,46 +1,45 @@
 ﻿using ChessRun.Engine.Moves.Knight;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Knight {
-    [TestClass]
     public class WhiteKnightMoveTest : BaseKnightMoveTest<WhiteKnightMove> {
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureNotationTest() {
             RunToShortNotationCaptureNotationTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureDisambiguatingFileTest() {
             RunToShortNotationCaptureDisambiguatingFileTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureDisambiguatingRankTest() {
             RunToShortNotationCaptureDisambiguatingRankTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureDisambiguatingRankAndFileTest() {
             RunToShortNotationCaptureDisambiguatingRankAndFileTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationTest() {
             RunToShortNotationTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationDisambiguatingFileTest() {
             RunToShortNotationDisambiguatingFileTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationDisambiguatingRankTest() {
             RunToShortNotationDisambiguatingRankTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationDisambiguatingRankAndFileTest() {
             RunToShortNotationDisambiguatingRankAndFileTest();
         }

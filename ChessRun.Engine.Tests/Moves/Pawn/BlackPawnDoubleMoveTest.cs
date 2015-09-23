@@ -2,21 +2,21 @@
 using ChessRun.Engine.Moves;
 using ChessRun.Engine.Moves.Pawn;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Pawn {
-    [TestClass]
     public class BlackPawnDoubleMoveTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void ExecuteTest() {
             var move = new BlackPawnDoubleMove(CellName.F7);
-            var board = new ChessBoard();
-            board[move.From] = PieceType.BlackPawn;
-            board[move.MiddleCell] = PieceType.None;
-            board[move.To] = PieceType.None;
-            board.EnPassantMove = CellName.F3;
-            RollbackData rollback = new RollbackData();
+            var board = new ChessBoard {
+                [move.From] = PieceType.BlackPawn,
+                [move.MiddleCell] = PieceType.None,
+                [move.To] = PieceType.None,
+                EnPassantMove = CellName.F3
+            };
+            var rollback = new RollbackData();
             move.Execute(board, ref rollback);
             Assert.AreEqual(PieceType.None, board[move.From]);
             Assert.AreEqual(PieceType.None, board[move.MiddleCell]);
@@ -24,7 +24,7 @@ namespace ChessRun.Engine.Tests.Moves.Pawn {
             Assert.AreEqual(move.MiddleCell, board.EnPassantMove);
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationTest() {
             var board = new ChessBoard();
             FEN.Setup(board, "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq");

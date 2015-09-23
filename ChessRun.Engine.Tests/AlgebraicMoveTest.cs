@@ -1,11 +1,10 @@
 ﻿using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests {
-    [TestClass]
     public class AlgebraicMoveTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void WhiteQueenTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qe6", PieceColor.White, out move);
@@ -25,7 +24,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Not a Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void BlackQueenTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qe6", PieceColor.Black, out move);
@@ -45,7 +44,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Not a Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void CheckTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qe6+", PieceColor.Black, out move);
@@ -54,7 +53,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Not a Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void CheckmateTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qe6#", PieceColor.Black, out move);
@@ -63,7 +62,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Not a Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void CaptureTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qxe6", PieceColor.Black, out move);
@@ -72,7 +71,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Is Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void CaptureAndCheckTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qxe6+", PieceColor.Black, out move);
@@ -81,7 +80,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Is Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void CaptureAndCheckmateTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qxe6#", PieceColor.Black, out move);
@@ -90,7 +89,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Is Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void WhiteShortCastleCheck() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("O-O+", PieceColor.White, out move);
@@ -109,7 +108,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.IsShortCastle, "IsShortCastle");
         }
 
-        [TestMethod]
+        [Test]
         public void BlackShortCastleCheck() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("O-O#", PieceColor.Black, out move);
@@ -128,7 +127,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.IsShortCastle, "IsShortCastle");
         }
 
-        [TestMethod]
+        [Test]
         public void WhiteLongCastleCheck() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("O-O-O#", PieceColor.White, out move);
@@ -147,7 +146,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.IsShortCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void BlackLongCastleCheck() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("O-O-O+", PieceColor.Black, out move);
@@ -166,7 +165,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.IsShortCastle);
         }
 
-        [TestMethod]
+        [Test]
         public void WhitePawnPromotionCaptureCheckmateTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("ed=Q#", PieceColor.White, out move);
@@ -179,7 +178,7 @@ namespace ChessRun.Engine.Tests {
             Assert.AreEqual(PieceType.WhiteQueen, move.Promotion);
         }
 
-        [TestMethod]
+        [Test]
         public void BlackPawnPromotionCaptureCheckmateTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("ed=Q#", PieceColor.Black, out move);
@@ -192,7 +191,7 @@ namespace ChessRun.Engine.Tests {
             Assert.AreEqual(PieceType.BlackQueen, move.Promotion);
         }
 
-        [TestMethod]
+        [Test]
         public void FileRankCaptureFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qg8xe6", PieceColor.White, out move);
@@ -210,7 +209,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void FileRankFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Bg8e6", PieceColor.White, out move);
@@ -228,7 +227,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void FileCaptureFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qgxe6", PieceColor.White, out move);
@@ -247,7 +246,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void FileFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Bge6", PieceColor.White, out move);
@@ -266,7 +265,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void RankCaptureFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Q8xe6", PieceColor.White, out move);
@@ -285,7 +284,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void RankFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("B8e6", PieceColor.White, out move);
@@ -304,7 +303,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void CaptureFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Qxe6", PieceColor.White, out move);
@@ -323,7 +322,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void FileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("Be6", PieceColor.White, out move);
@@ -342,7 +341,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void PawnFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("e6", PieceColor.White, out move);
@@ -361,7 +360,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void PawnFileFileTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("de", PieceColor.White, out move);
@@ -381,7 +380,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void PawnFileCaptureFileTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("dxe", PieceColor.White, out move);
@@ -399,7 +398,8 @@ namespace ChessRun.Engine.Tests {
             Assert.IsFalse(move.Checkmate, "Checkmate");
             Assert.IsTrue(move.Capture, "Capture");
         }
-        [TestMethod]
+
+        [Test]
         public void PawnFileFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("de6", PieceColor.White, out move);
@@ -418,7 +418,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move.Capture, "Capture");
         }
 
-        [TestMethod]
+        [Test]
         public void PawnFileCaptureFileRankTest() {
             AlgebraicMove move;
             AlgebraicMove.ParseMove("dxe6", PieceColor.White, out move);

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using ChessRun.Engine.Moves.Queen;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Queen {
     public abstract class BaseQueenMoveTest<TQueenMoveType> : BaseMoveTest where TQueenMoveType : QueenMove {

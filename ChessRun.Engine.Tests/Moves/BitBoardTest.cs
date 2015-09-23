@@ -1,12 +1,11 @@
 ﻿using System.Text;
 using ChessRun.Engine.Moves;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves {
-    [TestClass]
     public class BitBoardTest {
 
-        [TestMethod]
+        [Test]
         public void KingA1Test() {
             var mask = BitBoard.Cells[(int)CellName.A1].Kings;
             Assert.AreEqual("00000000" +
@@ -21,7 +20,7 @@ namespace ChessRun.Engine.Tests.Moves {
         }
 
 
-        [TestMethod]
+        [Test]
         public void KingA8Test() {
             var mask = BitBoard.Cells[(int)CellName.A8].Kings;
             Assert.AreEqual("01000000" +
@@ -35,7 +34,7 @@ namespace ChessRun.Engine.Tests.Moves {
                             FormatMask(mask));
         }
 
-        [TestMethod]
+        [Test]
         public void KingH1Test() {
             var mask = BitBoard.Cells[(int)CellName.H1].Kings;
             Assert.AreEqual("00000000" +
@@ -50,7 +49,7 @@ namespace ChessRun.Engine.Tests.Moves {
         }
 
 
-        [TestMethod]
+        [Test]
         public void KingH8Test() {
             var mask = BitBoard.Cells[(int)CellName.H8].Kings;
             Assert.AreEqual("00000010" +
@@ -64,7 +63,7 @@ namespace ChessRun.Engine.Tests.Moves {
                             FormatMask(mask));
         }
 
-        [TestMethod]
+        [Test]
         public void VerticalB4Test() {
             var mask = BitBoard.Cells[(int)CellName.B4].Vertical;
             Assert.AreEqual("01000000" +
@@ -78,7 +77,7 @@ namespace ChessRun.Engine.Tests.Moves {
                             FormatMask(mask));
         }
 
-        [TestMethod]
+        [Test]
         public void HorizontalB4Test() {
             var mask = BitBoard.Cells[(int)CellName.B4].Horizontal;
             Assert.AreEqual("00000000" +

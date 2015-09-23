@@ -1,11 +1,10 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Pgn.Tests {
-    [TestClass]
     public class PgnFileTest {
 
-        [TestMethod]
+        [Test]
         public void EventTest() {
             var file = new PgnFile();
             var expected = Guid.NewGuid().ToString();
@@ -13,7 +12,7 @@ namespace ChessRun.Pgn.Tests {
             Assert.AreEqual(expected, file.Event);
         }
 
-        [TestMethod]
+        [Test]
         public void SiteTest() {
             var file = new PgnFile();
             var expected = Guid.NewGuid().ToString();
@@ -21,7 +20,7 @@ namespace ChessRun.Pgn.Tests {
             Assert.AreEqual(expected, file.Site);
         }
 
-        [TestMethod]
+        [Test]
         public void WhiteTest() {
             var file = new PgnFile();
             var expected = Guid.NewGuid().ToString();
@@ -29,7 +28,7 @@ namespace ChessRun.Pgn.Tests {
             Assert.AreEqual(expected, file.White);
         }
 
-        [TestMethod]
+        [Test]
         public void BlackTest() {
             var file = new PgnFile();
             var expected = Guid.NewGuid().ToString();
@@ -37,7 +36,7 @@ namespace ChessRun.Pgn.Tests {
             Assert.AreEqual(expected, file.Black);
         }
 
-        [TestMethod]
+        [Test]
         public void ResultTest() {
             var file = new PgnFile();
             var expected = Guid.NewGuid().ToString();
@@ -45,7 +44,7 @@ namespace ChessRun.Pgn.Tests {
             Assert.AreEqual(expected, file.Result);
         }
 
-        [TestMethod]
+        [Test]
         public void MovesWhitespaceTest() {
             string pgnString = @"
 [Event ""Live Chess""]
@@ -61,7 +60,7 @@ namespace ChessRun.Pgn.Tests {
             Assert.AreEqual(50, pgn.Moves.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void LongCastleWithFlagsTest() {
             string pgnString = "1.O-O-O+ O-O-O#";
             var pgn = new PgnReader().Read(pgnString);
@@ -71,7 +70,7 @@ namespace ChessRun.Pgn.Tests {
             Assert.AreEqual("O-O-O#", move.Blacks);
         }
 
-        [TestMethod]
+        [Test]
         public void ShortCastleWithFlagsTest() {
             string pgnString = "1.O-O+ O-O#";
             var pgn = new PgnReader().Read(pgnString);

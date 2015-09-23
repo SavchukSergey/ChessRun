@@ -1,11 +1,10 @@
 ﻿using ChessRun.Engine.Moves;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves {
-    [TestClass]
     public class DirectionalMoveUtilsTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void GetMiddleCellsForMainDiagonal1Test() {
             var cells = DirectionalMoveUtils.GetMiddleCells(CellName.A1, CellName.H8);
             Assert.AreEqual(6, cells.Length);
@@ -17,7 +16,7 @@ namespace ChessRun.Engine.Tests.Moves {
             Assert.AreEqual(CellName.G7, cells[5]);
         }
 
-        [TestMethod]
+        [Test]
         public void GetMiddleCellsForMainDiagonal2Test() {
             var cells = DirectionalMoveUtils.GetMiddleCells(CellName.A8, CellName.H1);
             Assert.AreEqual(6, cells.Length);
@@ -29,7 +28,7 @@ namespace ChessRun.Engine.Tests.Moves {
             Assert.AreEqual(CellName.G2, cells[5]);
         }
 
-        [TestMethod]
+        [Test]
         public void GetMiddleCellsForHorizonralTest() {
             var cells = DirectionalMoveUtils.GetMiddleCells(CellName.C4, CellName.G4);
             Assert.AreEqual(3, cells.Length);
@@ -38,7 +37,7 @@ namespace ChessRun.Engine.Tests.Moves {
             Assert.AreEqual(CellName.F4, cells[2]);
         }
 
-        [TestMethod]
+        [Test]
         public void GetMiddleCellsForVerticalTest() {
             var cells = DirectionalMoveUtils.GetMiddleCells(CellName.C7, CellName.C2);
             Assert.AreEqual(4, cells.Length);

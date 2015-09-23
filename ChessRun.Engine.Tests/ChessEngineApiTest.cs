@@ -1,20 +1,19 @@
 ﻿using System;
 using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests {
-    [TestClass]
     public class ChessEngineApiTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void DivideSuiteTest() {
             var resource = GetType().Assembly.GetManifestResourceStream("ChessRun.Engine.Tests.Resources.perftsuite.epd");
             if (resource == null) throw new InvalidOperationException("Test resource is not found");
             var engine = new ChessEngineApi();
             using (var reader = new StreamReader(resource)) {
-                int lineIndex = 0;
+                var lineIndex = 0;
                 while (!reader.EndOfStream) {
-                    var line = reader.ReadLine();
+                    var line = reader.ReadLine() ?? "";
                     lineIndex++;
                     line = line.Trim();
                     if (line.StartsWith("#") || line == string.Empty) continue;

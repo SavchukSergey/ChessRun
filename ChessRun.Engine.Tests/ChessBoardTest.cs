@@ -1,26 +1,25 @@
 ﻿using ChessRun.Engine.Moves.King;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests {
-    [TestClass]
     public class ChessBoardTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void IsAttackedByWhiteHorizontalCheckTest() {
             var board = new ChessBoard();
             FEN.Setup(board, "r4k1Q/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N4p/PPPBBPPP/R3K2R b KQ -");
             Assert.IsTrue(board.IsAttackedByWhite(CellName.G8));
         }
 
-        [TestMethod]
+        [Test]
         public void IsAttackedByBlackVerticalCheckTest() {
             var board = new ChessBoard();
             FEN.Setup(board, "5rk1/8/8/8/8/8/5K2/8 w - -");
             Assert.IsTrue(board.IsAttackedByBlack(CellName.F3));
         }
 
-        [TestMethod]
+        [Test]
         public void ResetTest() {
             var board = new ChessBoard();
             board.Reset();
@@ -52,7 +51,7 @@ namespace ChessRun.Engine.Tests {
             Assert.AreEqual(PieceType.None, board[CellName.H3]);
         }
 
-        [TestMethod]
+        [Test]
         public void GetMoveWhiteShortCastleTest() {
             var chessBoard = new ChessBoard();
             chessBoard.Reset();
@@ -63,7 +62,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move is WhiteShortCastleMove);
         }
 
-        [TestMethod]
+        [Test]
         public void GetMoveBlackShortCastleTest() {
             var chessBoard = new ChessBoard();
             chessBoard.Reset();
@@ -74,7 +73,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move is BlackShortCastleMove);
         }
 
-        [TestMethod]
+        [Test]
         public void GetMoveWhiteLongCastleTest() {
             var chessBoard = new ChessBoard();
             chessBoard.Reset();
@@ -86,7 +85,7 @@ namespace ChessRun.Engine.Tests {
             Assert.IsTrue(move is WhiteLongCastleMove);
         }
 
-        [TestMethod]
+        [Test]
         public void GetMoveBlackLongCastleTest() {
             var chessBoard = new ChessBoard();
             chessBoard.Reset();

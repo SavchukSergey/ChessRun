@@ -2,20 +2,20 @@
 using ChessRun.Engine.Moves;
 using ChessRun.Engine.Moves.King;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.King {
-    [TestClass]
     public class WhiteKingRegularMoveTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void FastValidateTest() {
             var move = new WhiteKingRegularMove(CellName.A1, CellName.B2);
 
-            var board = new ChessBoard();
-            board[move.From] = PieceType.WhiteKing;
+            var board = new ChessBoard {
+                [move.From] = PieceType.WhiteKing,
+                [move.To] = PieceType.BlackKnight
+            };
 
-            board[move.To] = PieceType.BlackKnight;
             Assert.AreEqual(ValidationResult.ValidAndStop, move.FastValidate(board));
 
             board[move.To] = PieceType.None;
@@ -25,7 +25,7 @@ namespace ChessRun.Engine.Tests.Moves.King {
             Assert.AreEqual(ValidationResult.Invalid, move.FastValidate(board));
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationTest() {
             var board = new ChessBoard();
             FEN.Setup(board, "rnbqkbnr/pppppppp/8/8/8/8/PPP3PP/RNB1K1NR w KQkq");

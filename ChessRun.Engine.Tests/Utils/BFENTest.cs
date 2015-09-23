@@ -1,11 +1,10 @@
 ﻿using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Utils {
-    [TestClass]
     public class BFENTest : BaseTestFixture {
 
-        [TestMethod]
+        [Test]
         public void WriteInitialPositionTest() {
             var board = new ChessBoard();
             SetInitialBoard(board);
@@ -13,17 +12,16 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(BFEN.INITIAL_POSITION, bfen);
         }
 
-        [TestMethod]
+        [Test]
         public void ReadInitialPositionTest() {
             var board = new ChessBoard();
             BFEN.Setup(board, BFEN.INITIAL_POSITION);
             AssertInitialBoard(board);
         }
 
-        [TestMethod]
+        [Test]
         public void WriteEnpassantTest() {
-            var board = new ChessBoard();
-            board.EnPassantMove = CellName.None;
+            var board = new ChessBoard { EnPassantMove = CellName.None };
             var res = BFEN.GetPackedBFEN(board);
             Assert.AreEqual(@"//////////8P", res);
             board.EnPassantMove = CellName.E3;
@@ -31,7 +29,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(@"//////////9PQA==", res);
         }
 
-        [TestMethod]
+        [Test]
         public void ReadEnpassantTest() {
             var board = new ChessBoard();
             board.EnPassantMove = CellName.None;
@@ -41,7 +39,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(CellName.E3, board.EnPassantMove);
         }
 
-        [TestMethod]
+        [Test]
         public void WriteTurnTest() {
             var board = new ChessBoard();
             board.Turn = PieceColor.White;
@@ -52,7 +50,7 @@ namespace ChessRun.Engine.Tests.Utils {
             Assert.AreEqual(@"//////////+P", res);
         }
 
-        [TestMethod]
+        [Test]
         public void ReadTurnTest() {
             var board = new ChessBoard();
             BFEN.Setup(board, @"//////////8P");

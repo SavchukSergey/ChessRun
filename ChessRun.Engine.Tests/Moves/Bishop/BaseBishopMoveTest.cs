@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using ChessRun.Engine.Moves.Bishop;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Bishop {
     public abstract class BaseBishopMoveTest<TBishopMoveType> : BaseMoveTest where TBishopMoveType : BishopMove {

@@ -1,13 +1,12 @@
 ﻿using System.Linq;
 using ChessRun.Engine.Moves.Pawn;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Pawn {
-    [TestClass]
     public class WhitePawnPromotionMoveTest : BasePawnMoveTest {
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationTest() {
             var board = new ChessBoard();
             FEN.Setup(board, "rnbqkbn1/pppppppP/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq");

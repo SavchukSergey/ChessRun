@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using ChessRun.Engine.Moves.Knight;
 using ChessRun.Engine.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Knight {
     public abstract class BaseKnightMoveTest<TKnightMoveType> : BaseMoveTest where TKnightMoveType : KnightMove {

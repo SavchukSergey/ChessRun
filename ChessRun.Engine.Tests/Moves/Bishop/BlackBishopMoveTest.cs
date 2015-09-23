@@ -1,19 +1,19 @@
 ﻿using ChessRun.Engine.Moves;
 using ChessRun.Engine.Moves.Bishop;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Bishop {
-    [TestClass]
     public class BlackBishopMoveTest : BaseBishopMoveTest<BlackBishopMove> {
 
-        [TestMethod]
+        [Test]
         public void FastValidateTest() {
             var move = new BlackBishopMove(CellName.A1, CellName.G7);
 
-            var board = new ChessBoard();
-            board[move.From] = PieceType.BlackQueen;
+            var board = new ChessBoard {
+                [move.From] = PieceType.BlackQueen,
+                [move.To] = PieceType.WhiteKnight
+            };
 
-            board[move.To] = PieceType.WhiteKnight;
             Assert.AreEqual(ValidationResult.ValidAndStop, move.FastValidate(board));
 
             board[move.To] = PieceType.None;
@@ -23,49 +23,47 @@ namespace ChessRun.Engine.Tests.Moves.Bishop {
             Assert.AreEqual(ValidationResult.Invalid, move.FastValidate(board));
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureNotationTest() {
             RunToShortNotationCaptureNotationTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureDisambiguatingFileTest() {
             RunToShortNotationCaptureDisambiguatingFileTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureDisambiguatingRankTest() {
             RunToShortNotationCaptureDisambiguatingRankTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationCaptureDisambiguatingRankAndFileTest() {
             RunToShortNotationCaptureDisambiguatingRankAndFileTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationTest() {
             RunToShortNotationTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationDisambiguatingFileTest() {
             RunToShortNotationDisambiguatingFileTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationDisambiguatingRankTest() {
             RunToShortNotationDisambiguatingRankTest();
         }
 
-        [TestMethod]
+        [Test]
         public void ToShortNotationDisambiguatingRankAndFileTest() {
             RunToShortNotationDisambiguatingRankAndFileTest();
         }
 
-        protected override PieceType PieceType {
-            get { return PieceType.BlackBishop; }
-        }
+        protected override PieceType PieceType => PieceType.BlackBishop;
 
     }
 }
