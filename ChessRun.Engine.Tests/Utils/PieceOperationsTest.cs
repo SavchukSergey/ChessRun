@@ -176,9 +176,8 @@ namespace ChessRun.Engine.Tests.Utils {
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void GetPromotionPieceFailTest() {
-            PieceOperations.GetPromotionPiece('x', PieceColor.White);
+            Assert.Throws<InvalidOperationException>(() => PieceOperations.GetPromotionPiece('x', PieceColor.White));
         }
 
         [Test]
@@ -194,15 +193,13 @@ namespace ChessRun.Engine.Tests.Utils {
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void GetPromotionPieceSymbolPawnFailTest() {
-            PieceOperations.GetPromotionPieceSymbol(PieceType.WhitePawn);
+            Assert.Throws<InvalidOperationException>(()=> PieceOperations.GetPromotionPieceSymbol(PieceType.WhitePawn));
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void GetPromotionPieceSymbolKingFailTest() {
-            PieceOperations.GetPromotionPieceSymbol(PieceType.WhiteKing);
+            Assert.Throws<InvalidOperationException>(() => PieceOperations.GetPromotionPieceSymbol(PieceType.WhiteKing));
         }
 
     }
