@@ -141,8 +141,7 @@ namespace ChessRun.Engine {
         }
 
         public SpeculativeMove GetMove(string moveString) {
-            AlgebraicMove algMove;
-            AlgebraicMove.ParseMove(moveString, Turn, out algMove);
+            AlgebraicMove.ParseMove(moveString, Turn, out AlgebraicMove algMove);
             IEnumerable<SpeculativeMove> moves = GetValidMovesList();
             if (algMove.HintFileFrom > 0) {
                 moves = moves.Where(move => move.From.GetFile() == algMove.HintFileFrom);
@@ -239,35 +238,43 @@ namespace ChessRun.Engine {
         public void GenerateValidMoves(MovesIterator iterator) {
             var pieces = Turn == PieceColor.White ? Whites.Pieces : Blacks.Pieces;
             RollbackData rollback;
-            for (var i = 0; i < 64; i++) {
-                if ((pieces & 0x01) != 0) {
-                    var currentMove = MoveMatrix.GetDirectFirstMove(_cells[i], (CellName)i);
-                    while (currentMove != null) {
-                        var res = currentMove.FastValidate(this);
-                        switch (res) {
-                            case ValidationResult.Invalid:
-                                currentMove = currentMove.NextGroupMove;
-                                break;
-                            case ValidationResult.Valid:
-                                Move(currentMove, out rollback);
-                                if (ValidateAfterMove()) {
-                                    iterator.Handle(currentMove);
-                                }
-                                Unmove(currentMove, ref rollback);
-                                currentMove = currentMove.NextMove;
-                                break;
-                            case ValidationResult.ValidAndStop:
-                                Move(currentMove, out rollback);
-                                if (ValidateAfterMove()) {
-                                    iterator.Handle(currentMove);
-                                }
-                                Unmove(currentMove, ref rollback);
-                                currentMove = currentMove.NextGroupMove;
-                                break;
-                        }
+            while (pieces != 0) {
+                var firstBitSet = pieces & (ulong)(-(long)pieces);
+                var i = 0x0ul;
+                i |= (firstBitSet & 0xffffffff00000000ul) != 0 ? 32ul : 0ul;
+                i |= (firstBitSet & 0xffff0000ffff0000ul) != 0 ? 16ul : 0ul;
+                i |= (firstBitSet & 0xff00ff00ff00ff00ul) != 0 ? 8ul : 0ul;
+                i |= (firstBitSet & 0xf0f0f0f0f0f0f0f0ul) != 0 ? 4ul : 0ul;
+                i |= (firstBitSet & 0xccccccccccccccccul) != 0 ? 2ul : 0ul;
+                i |= (firstBitSet & 0xaaaaaaaaaaaaaaaaul) != 0 ? 1ul : 0ul;
+
+                var currentMove = MoveMatrix.GetDirectFirstMove(_cells[i], (CellName)i);
+                while (currentMove != null) {
+                    var res = currentMove.FastValidate(this);
+                    switch (res) {
+                        case ValidationResult.Invalid:
+                            currentMove = currentMove.NextGroupMove;
+                            break;
+                        case ValidationResult.Valid:
+                            Move(currentMove, out rollback);
+                            if (ValidateAfterMove()) {
+                                iterator.Handle(currentMove);
+                            }
+                            Unmove(currentMove, ref rollback);
+                            currentMove = currentMove.NextMove;
+                            break;
+                        case ValidationResult.ValidAndStop:
+                            Move(currentMove, out rollback);
+                            if (ValidateAfterMove()) {
+                                iterator.Handle(currentMove);
+                            }
+                            Unmove(currentMove, ref rollback);
+                            currentMove = currentMove.NextGroupMove;
+                            break;
                     }
                 }
-                pieces >>= 1;
+
+                pieces ^= firstBitSet;
             }
         }
 
@@ -462,7 +469,7 @@ namespace ChessRun.Engine {
         #region Pool
 
         public PiecesPool Whites;
-        public PiecesPool Blacks; 
+        public PiecesPool Blacks;
 
         public CellName WhiteKingPosition = CellName.None;
         public CellName BlackKingPosition = CellName.None;

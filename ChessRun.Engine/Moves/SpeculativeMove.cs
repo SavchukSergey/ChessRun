@@ -99,8 +99,7 @@ namespace ChessRun.Engine.Moves {
         /// <returns></returns>
         public string ToShortNotation(ChessBoard board) {
             var body = GetNotationBody(board);
-            RollbackData rollback;
-            board.Move(this, out rollback);
+            board.Move(this, out RollbackData rollback);
             var suffix = GetCheckmateState(board);
             board.Unmove(this, ref rollback);
             return body + suffix;

@@ -1,24 +1,22 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace ChessRun.Engine.Utils {
     public static class PieceOperations {
 
-        public static bool IsWhite(this PieceType piece) {
-            return ((int)piece & 0x08) == 0 && (int)piece != 0;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsWhite(this PieceType piece) => ((int)piece & 0x08) == 0 && (int)piece != 0;
 
-        public static bool IsBlack(this PieceType piece) {
-            return ((int)piece & 0x08) != 0;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsBlack(this PieceType piece) => ((int)piece & 0x08) != 0;
 
-        public static bool IsWhiteOrEmpty(this PieceType piece) {
-            return (int)piece < 8;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsWhiteOrEmpty(this PieceType piece) => (int)piece < 8;
 
-        public static bool IsBlackOrEmpty(this PieceType piece) {
-            return piece == PieceType.None || (int)piece >= 8;
-        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsBlackOrEmpty(this PieceType piece) => piece == PieceType.None || (int)piece >= 8;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static PieceColor GetColor(this PieceType piece) {
             if (IsWhite(piece)) return PieceColor.White;
             if (IsBlack(piece)) return PieceColor.Black;

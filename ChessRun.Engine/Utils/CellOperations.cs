@@ -1,48 +1,60 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace ChessRun.Engine.Utils {
     public static class CellOperations {
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ulong Bit(this CellName cell) {
             return 1ul << (int)cell;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellName IncreaseRank(this CellName cell) {
             return (CellName)((int)cell + 8);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellName IncreaseRank(this CellName cell, int count) {
             return (CellName)((int)cell + 8 * count);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellName DecreaseRank(this CellName cell) {
             return (CellName)((int)cell - 8);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellName DecreaseRank(this CellName cell, int count) {
             return (CellName)((int)cell - 8 * count);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellName IncreaseFile(this CellName cell) {
             return (CellName)((int)cell + 1);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellName IncreaseFile(this CellName cell, int count) {
             return (CellName)((int)cell + count);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellName DecreaseFile(this CellName cell) {
             return (CellName)((int)cell - 1);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellName Shift(this CellName cell, int deltaFile, int deltaRank) {
             return (CellName)(((int)cell) + 8 * deltaRank + deltaFile);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellRank GetRank(this CellName cell) {
             return (CellRank)(1 + (((int)cell) >> 3));
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static CellFile GetFile(this CellName cell) {
             return (CellFile)(1 + (((int)cell) & 0x7));
         }
