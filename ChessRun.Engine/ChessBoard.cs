@@ -236,63 +236,25 @@ namespace ChessRun.Engine {
 
         public void ClearCell(CellName cell) {
             var oldValue = _cells[(int)cell];
-            var mask = 0x1ul << (int)cell;
-            var negMask = ~mask;
-
             switch (oldValue) {
-                case PieceType.WhiteKing:
-                    Whites.Kings &= negMask;
-                    Whites.Pieces &= negMask;
-                    break;
-                case PieceType.WhiteKnight:
-                    Whites.Knights &= negMask;
-                    Whites.Pieces &= negMask;
-                    break;
-                case PieceType.WhiteBishop:
-                    Whites.Bishops &= negMask;
-                    Whites.Pieces &= negMask;
-                    break;
-                case PieceType.WhiteQueen:
-                    Whites.Queens &= negMask;
-                    Whites.Pieces &= negMask;
-                    break;
-                case PieceType.WhiteRook:
-                    Whites.Rooks &= negMask;
-                    Whites.Pieces &= negMask;
-                    break;
-                case PieceType.WhitePawn:
-                    Whites.Pawns &= negMask;
-                    Whites.Pieces &= negMask;
-                    break;
-                case PieceType.BlackKing:
-                    Blacks.Kings &= negMask;
-                    Blacks.Pieces &= negMask;
-                    break;
-                case PieceType.BlackKnight:
-                    Blacks.Knights &= negMask;
-                    Blacks.Pieces &= negMask;
-                    break;
-                case PieceType.BlackBishop:
-                    Blacks.Bishops &= negMask;
-                    Blacks.Pieces &= negMask;
-                    break;
-                case PieceType.BlackQueen:
-                    Blacks.Queens &= negMask;
-                    Blacks.Pieces &= negMask;
-                    break;
-                case PieceType.BlackRook:
-                    Blacks.Rooks &= negMask;
-                    Blacks.Pieces &= negMask;
-                    break;
-                case PieceType.BlackPawn:
-                    Blacks.Pawns &= negMask;
-                    Blacks.Pieces &= negMask;
-                    break;
+                case PieceType.WhiteKing: ClearWhiteKing(cell); break;
+                case PieceType.WhiteKnight: ClearWhiteKnight(cell); break;
+                case PieceType.WhiteBishop: ClearWhiteBishop(cell); break;
+                case PieceType.WhiteQueen: ClearWhiteQueen(cell); break;
+                case PieceType.WhiteRook: ClearWhiteRook(cell); break;
+                case PieceType.WhitePawn: ClearWhitePawn(cell); break;
+                case PieceType.BlackKing: ClearBlackKing(cell); break;
+                case PieceType.BlackKnight: ClearBlackKnight(cell); break;
+                case PieceType.BlackBishop: ClearBlackBishop(cell); break;
+                case PieceType.BlackQueen: ClearBlackQueen(cell); break;
+                case PieceType.BlackRook: ClearBlackRook(cell); break;
+                case PieceType.BlackPawn: ClearBlackPawn(cell); break;
             }
             _cells[(int)cell] = PieceType.None;
         }
 
         public PieceType this[CellName cell] {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get { return _cells[(int)cell]; }
             set {
                 ClearCell(cell);
@@ -300,56 +262,18 @@ namespace ChessRun.Engine {
                 var mask = 0x1ul << (int)cell;
 
                 switch (value) {
-                    case PieceType.WhiteKing:
-                        WhiteKingPosition = cell;
-                        Whites.Kings |= mask;
-                        Whites.Pieces |= mask;
-                        break;
-                    case PieceType.WhiteKnight:
-                        Whites.Knights |= mask;
-                        Whites.Pieces |= mask;
-                        break;
-                    case PieceType.WhiteBishop:
-                        Whites.Bishops |= mask;
-                        Whites.Pieces |= mask;
-                        break;
-                    case PieceType.WhiteQueen:
-                        Whites.Queens |= mask;
-                        Whites.Pieces |= mask;
-                        break;
-                    case PieceType.WhiteRook:
-                        Whites.Rooks |= mask;
-                        Whites.Pieces |= mask;
-                        break;
-                    case PieceType.WhitePawn:
-                        Whites.Pawns |= mask;
-                        Whites.Pieces |= mask;
-                        break;
-                    case PieceType.BlackKing:
-                        BlackKingPosition = cell;
-                        Blacks.Kings |= mask;
-                        Blacks.Pieces |= mask;
-                        break;
-                    case PieceType.BlackKnight:
-                        Blacks.Knights |= mask;
-                        Blacks.Pieces |= mask;
-                        break;
-                    case PieceType.BlackBishop:
-                        Blacks.Bishops |= mask;
-                        Blacks.Pieces |= mask;
-                        break;
-                    case PieceType.BlackQueen:
-                        Blacks.Queens |= mask;
-                        Blacks.Pieces |= mask;
-                        break;
-                    case PieceType.BlackRook:
-                        Blacks.Rooks |= mask;
-                        Blacks.Pieces |= mask;
-                        break;
-                    case PieceType.BlackPawn:
-                        Blacks.Pawns |= mask;
-                        Blacks.Pieces |= mask;
-                        break;
+                    case PieceType.WhiteKing: SetWhiteKing(cell); break;
+                    case PieceType.WhiteKnight: SetWhiteKnight(cell); break;
+                    case PieceType.WhiteBishop: SetWhiteBishop(cell); break;
+                    case PieceType.WhiteQueen: SetWhiteQueen(cell); break;
+                    case PieceType.WhiteRook: SetWhiteRook(cell); break;
+                    case PieceType.WhitePawn: SetWhitePawn(cell); break;
+                    case PieceType.BlackKing: SetBlackKing(cell); break;
+                    case PieceType.BlackKnight: SetBlackKnight(cell); break;
+                    case PieceType.BlackBishop: SetBlackBishop(cell); break;
+                    case PieceType.BlackQueen: SetBlackQueen(cell); break;
+                    case PieceType.BlackRook: SetBlackRook(cell); break;
+                    case PieceType.BlackPawn: SetBlackPawn(cell); break;
                 }
             }
         }

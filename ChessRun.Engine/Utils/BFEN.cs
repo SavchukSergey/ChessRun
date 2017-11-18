@@ -34,54 +34,53 @@ namespace ChessRun.Engine.Utils {
                 j++;
                 switch (ch) {
                     case 0:
-                        board[cell] = PieceType.WhitePawn;
+                        board.SetWhitePawn(cell);
                         break;
                     case 1:
-                        board[cell] = PieceType.WhiteKnight;
+                        board.SetWhiteKnight(cell);
                         break;
                     case 2:
-                        board[cell] = PieceType.WhiteBishop;
+                        board.SetWhiteBishop(cell);
                         break;
                     case 3:
-                        board[cell] = PieceType.WhiteRook;
+                        board.SetWhiteRook(cell);
                         break;
                     case 4:
-                        board[cell] = PieceType.WhiteQueen;
+                        board.SetWhiteQueen(cell);
                         break;
                     case 5:
-                        board[cell] = PieceType.WhiteKing;
+                        board.SetWhiteKing(cell);
                         break;
                     case 6:
-                        board[cell] = PieceType.BlackPawn;
+                        board.SetBlackPawn(cell);
                         break;
                     case 7:
-                        board[cell] = PieceType.BlackKnight;
+                        board.SetBlackKnight(cell);
                         break;
                     case 8:
-                        board[cell] = PieceType.BlackBishop;
+                        board.SetBlackBishop(cell);
                         break;
                     case 9:
-                        board[cell] = PieceType.BlackRook;
+                        board.SetBlackRook(cell);
                         break;
                     case 10:
-                        board[cell] = PieceType.BlackQueen;
+                        board.SetBlackQueen(cell);
                         break;
                     case 11:
-                        board[cell] = PieceType.BlackKing;
+                        board.SetBlackKing(cell);
                         break;
                     case 12:
                     case 13:
                     case 14:
                     case 15:
-                        board[cell] = PieceType.None;
+                        board.ClearCell(cell);
                         emptyCount = ch - 12;
                         break;
                     default:
                         throw new FormatException("Unknown piece type '" + ch + "' at " + j);
                 }
             }
-            bool hasEnPassant;
-            ReadFlags(board, bfen, ref j, out hasEnPassant);
+            ReadFlags(board, bfen, ref j, out bool hasEnPassant);
             ReadCastles(board, bfen, ref j);
             if (hasEnPassant) ReadEnPassant(board, bfen, ref j);
             else board.EnPassantMove = CellName.None;
