@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using ChessRun.Engine.Moves;
 using ChessRun.Engine.Utils;
 using ChessRun.Engine.Utils.Iterators;
@@ -26,64 +27,228 @@ namespace ChessRun.Engine {
             Castles = CastleFlags.All;
         }
 
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearWhitePawn(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Whites.Pawns &= negMask;
+            Whites.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearWhiteKnight(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Whites.Knights &= negMask;
+            Whites.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearWhiteBishop(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Whites.Bishops &= negMask;
+            Whites.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearWhiteRook(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Whites.Rooks &= negMask;
+            Whites.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearWhiteQueen(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Whites.Queens &= negMask;
+            Whites.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearWhiteKing(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Whites.Kings &= negMask;
+            Whites.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearBlackPawn(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Blacks.Pawns &= negMask;
+            Blacks.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearBlackKnight(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Blacks.Knights &= negMask;
+            Blacks.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearBlackBishop(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Blacks.Bishops &= negMask;
+            Blacks.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearBlackRook(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Blacks.Rooks &= negMask;
+            Blacks.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearBlackQueen(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Blacks.Queens &= negMask;
+            Blacks.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void ClearBlackKing(CellName cell) {
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+            Blacks.Kings &= negMask;
+            Blacks.Pieces &= negMask;
+            _cells[(int)cell] = PieceType.None;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetWhitePawn(CellName cell) {
+            _cells[(int)cell] = PieceType.WhitePawn;
+            var mask = 0x1ul << (int)cell;
+            Whites.Pawns |= mask;
+            Whites.Pieces |= mask;
+        }
+
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetWhiteRook(CellName cell) {
+            _cells[(int)cell] = PieceType.WhiteRook;
+            var mask = 0x1ul << (int)cell;
+            Whites.Rooks |= mask;
+            Whites.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetWhiteQueen(CellName cell) {
+            _cells[(int)cell] = PieceType.WhiteQueen;
+            var mask = 0x1ul << (int)cell;
+            Whites.Queens |= mask;
+            Whites.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetBlackPawn(CellName cell) {
+            _cells[(int)cell] = PieceType.BlackPawn;
+            var mask = 0x1ul << (int)cell;
+            Blacks.Pawns |= mask;
+            Blacks.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetBlackRook(CellName cell) {
+            _cells[(int)cell] = PieceType.BlackRook;
+            var mask = 0x1ul << (int)cell;
+            Blacks.Rooks |= mask;
+            Blacks.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetBlackQueen(CellName cell) {
+            _cells[(int)cell] = PieceType.BlackQueen;
+            var mask = 0x1ul << (int)cell;
+            Blacks.Queens |= mask;
+            Blacks.Pieces |= mask;
+        }
+
+        public void ClearCell(CellName cell) {
+            var oldValue = _cells[(int)cell];
+            var mask = 0x1ul << (int)cell;
+            var negMask = ~mask;
+
+            switch (oldValue) {
+                case PieceType.WhiteKing:
+                    Whites.Kings &= negMask;
+                    Whites.Pieces &= negMask;
+                    break;
+                case PieceType.WhiteKnight:
+                    Whites.Knights &= negMask;
+                    Whites.Pieces &= negMask;
+                    break;
+                case PieceType.WhiteBishop:
+                    Whites.Bishops &= negMask;
+                    Whites.Pieces &= negMask;
+                    break;
+                case PieceType.WhiteQueen:
+                    Whites.Queens &= negMask;
+                    Whites.Pieces &= negMask;
+                    break;
+                case PieceType.WhiteRook:
+                    Whites.Rooks &= negMask;
+                    Whites.Pieces &= negMask;
+                    break;
+                case PieceType.WhitePawn:
+                    Whites.Pawns &= negMask;
+                    Whites.Pieces &= negMask;
+                    break;
+                case PieceType.BlackKing:
+                    Blacks.Kings &= negMask;
+                    Blacks.Pieces &= negMask;
+                    break;
+                case PieceType.BlackKnight:
+                    Blacks.Knights &= negMask;
+                    Blacks.Pieces &= negMask;
+                    break;
+                case PieceType.BlackBishop:
+                    Blacks.Bishops &= negMask;
+                    Blacks.Pieces &= negMask;
+                    break;
+                case PieceType.BlackQueen:
+                    Blacks.Queens &= negMask;
+                    Blacks.Pieces &= negMask;
+                    break;
+                case PieceType.BlackRook:
+                    Blacks.Rooks &= negMask;
+                    Blacks.Pieces &= negMask;
+                    break;
+                case PieceType.BlackPawn:
+                    Blacks.Pawns &= negMask;
+                    Blacks.Pieces &= negMask;
+                    break;
+            }
+            _cells[(int)cell] = PieceType.None;
+        }
+
         public PieceType this[CellName cell] {
             get { return _cells[(int)cell]; }
             set {
-                var oldValue = _cells[(int)cell];
+                ClearCell(cell);
                 _cells[(int)cell] = value;
                 var mask = 0x1ul << (int)cell;
-                var negMask = ~mask;
-
-                switch (oldValue) {
-                    case PieceType.WhiteKing:
-                        Whites.Kings &= negMask;
-                        Whites.Pieces &= negMask;
-                        break;
-                    case PieceType.WhiteKnight:
-                        Whites.Knights &= negMask;
-                        Whites.Pieces &= negMask;
-                        break;
-                    case PieceType.WhiteBishop:
-                        Whites.Bishops &= negMask;
-                        Whites.Pieces &= negMask;
-                        break;
-                    case PieceType.WhiteQueen:
-                        Whites.Queens &= negMask;
-                        Whites.Pieces &= negMask;
-                        break;
-                    case PieceType.WhiteRook:
-                        Whites.Rooks &= negMask;
-                        Whites.Pieces &= negMask;
-                        break;
-                    case PieceType.WhitePawn:
-                        Whites.Pawns &= negMask;
-                        Whites.Pieces &= negMask;
-                        break;
-                    case PieceType.BlackKing:
-                        Blacks.Kings &= negMask;
-                        Blacks.Pieces &= negMask;
-                        break;
-                    case PieceType.BlackKnight:
-                        Blacks.Knights &= negMask;
-                        Blacks.Pieces &= negMask;
-                        break;
-                    case PieceType.BlackBishop:
-                        Blacks.Bishops &= negMask;
-                        Blacks.Pieces &= negMask;
-                        break;
-                    case PieceType.BlackQueen:
-                        Blacks.Queens &= negMask;
-                        Blacks.Pieces &= negMask;
-                        break;
-                    case PieceType.BlackRook:
-                        Blacks.Rooks &= negMask;
-                        Blacks.Pieces &= negMask;
-                        break;
-                    case PieceType.BlackPawn:
-                        Blacks.Pawns &= negMask;
-                        Blacks.Pieces &= negMask;
-                        break;
-                }
 
                 switch (value) {
                     case PieceType.WhiteKing:
@@ -166,6 +331,7 @@ namespace ChessRun.Engine {
 
         public PieceColor Turn;
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SwitchTurn() {
             Turn = (PieceColor)(1 - (byte)Turn);
         }
@@ -240,13 +406,13 @@ namespace ChessRun.Engine {
             RollbackData rollback;
             while (pieces != 0) {
                 var firstBitSet = pieces & (ulong)(-(long)pieces);
-                var i = 0x0ul;
-                i |= (firstBitSet & 0xffffffff00000000ul) != 0 ? 32ul : 0ul;
-                i |= (firstBitSet & 0xffff0000ffff0000ul) != 0 ? 16ul : 0ul;
-                i |= (firstBitSet & 0xff00ff00ff00ff00ul) != 0 ? 8ul : 0ul;
-                i |= (firstBitSet & 0xf0f0f0f0f0f0f0f0ul) != 0 ? 4ul : 0ul;
-                i |= (firstBitSet & 0xccccccccccccccccul) != 0 ? 2ul : 0ul;
-                i |= (firstBitSet & 0xaaaaaaaaaaaaaaaaul) != 0 ? 1ul : 0ul;
+                var i = 0x0;
+                if ((firstBitSet & 0xffffffff00000000ul) != 0) i |= 32;
+                if ((firstBitSet & 0xffff0000ffff0000ul) != 0) i |= 16;
+                if ((firstBitSet & 0xff00ff00ff00ff00ul) != 0) i |= 8;
+                if ((firstBitSet & 0xf0f0f0f0f0f0f0f0ul) != 0) i |= 4;
+                if ((firstBitSet & 0xccccccccccccccccul) != 0) i |= 2;
+                if ((firstBitSet & 0xaaaaaaaaaaaaaaaaul) != 0) i |= 1;
 
                 var currentMove = MoveMatrix.GetDirectFirstMove(_cells[i], (CellName)i);
                 while (currentMove != null) {

@@ -5,6 +5,7 @@ using ChessRun.Engine.Utils;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Pawn {
+    [TestOf(typeof(BlackPawnDoubleMove))]
     public class BlackPawnDoubleMoveTest : BaseTestFixture {
 
         [Test]

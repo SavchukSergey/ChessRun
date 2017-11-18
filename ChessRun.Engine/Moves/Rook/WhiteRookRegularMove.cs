@@ -7,13 +7,14 @@
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
             rollbackData.CapturedPiece = board[To];
-            board[From] = PieceType.None;
-            board[To] = PieceType.WhiteRook;
+            board.ClearWhiteRook(From);
+            board.ClearCell(To);
+            board.SetWhiteRook(To);
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
             board[To] = rollbackData.CapturedPiece;
-            board[From] = PieceType.WhiteRook;
+            board.SetWhiteRook(From);
         }
     }
 }

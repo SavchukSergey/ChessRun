@@ -17,16 +17,16 @@
         }
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
-            board[CellName.E8] = PieceType.None;
+            board.ClearBlackKing(CellName.E8);
             board[CellName.F8] = PieceType.BlackRook;
             board[CellName.G8] = PieceType.BlackKing;
-            board[CellName.H8] = PieceType.None;
+            board.ClearBlackRook(CellName.H8);
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
             board[CellName.E8] = PieceType.BlackKing;
-            board[CellName.F8] = PieceType.None;
-            board[CellName.G8] = PieceType.None;
+            board.ClearBlackRook(CellName.F8);
+            board.ClearBlackKing(CellName.G8);
             board[CellName.H8] = PieceType.BlackRook;
         }
 

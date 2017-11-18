@@ -17,13 +17,14 @@ namespace ChessRun.Engine.Moves.Queen {
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
             rollbackData.CapturedPiece = board[To];
-            board[From] = PieceType.None;
-            board[To] = PieceType.WhiteQueen;
+            board.ClearWhiteQueen(From);
+            board.ClearCell(To);
+            board.SetWhiteQueen(To);
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
             board[To] = rollbackData.CapturedPiece;
-            board[From] = PieceType.WhiteQueen;
+            board.SetWhiteQueen(From);
         }
 
     }

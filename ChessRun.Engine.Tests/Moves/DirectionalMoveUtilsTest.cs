@@ -2,6 +2,7 @@
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves {
+    [TestOf(typeof(DirectionalMoveUtils))]
     public class DirectionalMoveUtilsTest : BaseTestFixture {
 
         [Test]

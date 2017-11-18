@@ -4,6 +4,7 @@ using ChessRun.Engine.Utils;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Pawn {
+    [TestOf(typeof(BlackPawnEnPassantCaptureMove))]
     public class BlackPawnEnPassantCaptureMoveTest : BaseTestFixture {
 
         [Test]

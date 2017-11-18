@@ -3,6 +3,7 @@ using ChessRun.Engine.Utils;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests {
+    [TestOf(typeof(ChessBoard))]
     public class ChessBoardTest : BaseTestFixture {
 
         [Test]

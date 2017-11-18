@@ -3,6 +3,7 @@ using ChessRun.Engine.Utils;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests {
+    [TestOf(typeof(ChessBoard))]
     public class CastleTest : BaseTestFixture {
 
         [Test]
@@ -10,8 +11,7 @@ namespace ChessRun.Engine.Tests {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
             var move = board.GetMove("Ra1a8");
-            RollbackData rollback;
-            board.Move(move, out rollback);
+            board.Move(move, out RollbackData rollback);
             Assert.IsFalse(board.BlackCanDoLongCastle);
             Assert.IsFalse(board.WhiteCanDoLongCastle);
         }
@@ -21,8 +21,7 @@ namespace ChessRun.Engine.Tests {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1");
             var move = board.GetMove("Ra8a1");
-            RollbackData rollback;
-            board.Move(move, out rollback);
+            board.Move(move, out RollbackData rollback);
             Assert.IsFalse(board.BlackCanDoLongCastle);
             Assert.IsFalse(board.WhiteCanDoLongCastle);
         }
@@ -32,8 +31,7 @@ namespace ChessRun.Engine.Tests {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
             var move = board.GetMove("Rh1h8");
-            RollbackData rollback;
-            board.Move(move, out rollback);
+            board.Move(move, out RollbackData rollback);
             Assert.IsFalse(board.BlackCanDoShortCastle);
             Assert.IsFalse(board.WhiteCanDoShortCastle);
         }
@@ -43,8 +41,7 @@ namespace ChessRun.Engine.Tests {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1");
             var move = board.GetMove("Rh8h1");
-            RollbackData rollback;
-            board.Move(move, out rollback);
+            board.Move(move, out RollbackData rollback);
             Assert.IsFalse(board.BlackCanDoShortCastle);
             Assert.IsFalse(board.WhiteCanDoShortCastle);
         }
@@ -54,8 +51,7 @@ namespace ChessRun.Engine.Tests {
             var board = new ChessBoard();
             FEN.Setup(board, "r3knRr/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
             var move = board.GetMove("Rg8h8");
-            RollbackData rollback;
-            board.Move(move, out rollback);
+            board.Move(move, out RollbackData rollback);
             Assert.IsFalse(board.BlackCanDoShortCastle);
             Assert.IsTrue(board.WhiteCanDoShortCastle);
         }
@@ -65,8 +61,7 @@ namespace ChessRun.Engine.Tests {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R3KNrR b KQkq - 0 1");
             var move = board.GetMove("Rg1h1");
-            RollbackData rollback;
-            board.Move(move, out rollback);
+            board.Move(move, out RollbackData rollback);
             Assert.IsFalse(board.WhiteCanDoShortCastle);
             Assert.IsTrue(board.BlackCanDoShortCastle);
         }
@@ -76,8 +71,7 @@ namespace ChessRun.Engine.Tests {
             var board = new ChessBoard();
             FEN.Setup(board, "r1Rnk2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1");
             var move = board.GetMove("Rc8a8");
-            RollbackData rollback;
-            board.Move(move, out rollback);
+            board.Move(move, out RollbackData rollback);
             Assert.IsFalse(board.BlackCanDoLongCastle);
             Assert.IsTrue(board.WhiteCanDoLongCastle);
         }
@@ -87,8 +81,7 @@ namespace ChessRun.Engine.Tests {
             var board = new ChessBoard();
             FEN.Setup(board, "r3k2r/8/8/8/8/8/8/R1rNK2R b KQkq - 0 1");
             var move = board.GetMove("Rc1a1");
-            RollbackData rollback;
-            board.Move(move, out rollback);
+            board.Move(move, out RollbackData rollback);
             Assert.IsFalse(board.WhiteCanDoLongCastle);
             Assert.IsTrue(board.BlackCanDoLongCastle);
         }

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Knight {
+    [TestOf(typeof(WhiteKnightMove))]
     public class WhiteKnightMoveTest : BaseKnightMoveTest<WhiteKnightMove> {
 
         [Test]

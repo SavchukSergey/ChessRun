@@ -2,6 +2,7 @@
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.King {
+    [TestOf(typeof(WhiteLongCastleMove))]
     public class WhiteLongCastleMoveTest : BaseTestFixture {
 
         [Test]

@@ -4,6 +4,7 @@ using ChessRun.Engine.Utils;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Pawn {
+    [TestOf(typeof(BlackPawnPromotionMove))]
     public class BlackPawnPromotionMoveTest : BasePawnMoveTest {
 
         [Test]

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 
 namespace ChessRun.Pgn.Tests {
+    [TestOf(typeof(PgnFile))]
     public class PgnFileTest {
 
         [Test]

@@ -12,13 +12,13 @@ namespace ChessRun.Engine.Moves.Pawn {
         }
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
-            board[From] = PieceType.None;
-            board[To] = PieceType.WhitePawn;
+            board.ClearWhitePawn(From);
+            board.SetWhitePawn(To);
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
-            board[To] = PieceType.None;
-            board[From] = PieceType.WhitePawn;
+            board.ClearWhitePawn(To);
+            board.SetWhitePawn(From);
         }
 
         protected override string GetNotationBody(ChessBoard board) {

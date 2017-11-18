@@ -3,6 +3,7 @@ using ChessRun.Engine.Moves;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves {
+    [TestOf(typeof(BitBoard))]
     public class BitBoardTest {
 
         [Test]

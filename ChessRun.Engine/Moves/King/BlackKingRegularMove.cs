@@ -14,7 +14,7 @@ namespace ChessRun.Engine.Moves.King {
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
             rollbackData.CapturedPiece = board[To];
-            board[From] = PieceType.None;
+            board.ClearBlackKing(From);
             board[To] = PieceType.BlackKing;
         }
 

@@ -3,6 +3,7 @@ using ChessRun.Engine.Moves.Bishop;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Bishop {
+    [TestOf(typeof(BlackBishopMove))]
     public class BlackBishopMoveTest : BaseBishopMoveTest<BlackBishopMove> {
 
         [Test]

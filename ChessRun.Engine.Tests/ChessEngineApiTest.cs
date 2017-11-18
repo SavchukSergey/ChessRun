@@ -3,6 +3,7 @@ using System.IO;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests {
+    [TestOf(typeof(ChessEngineApi))]
     public class ChessEngineApiTest : BaseTestFixture {
 
         [Test]

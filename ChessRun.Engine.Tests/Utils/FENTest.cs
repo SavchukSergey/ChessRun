@@ -2,6 +2,7 @@
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Utils {
+    [TestOf(typeof(FEN))]
     public class FENTest : BaseTestFixture {
 
         [Test]
@@ -32,8 +33,9 @@ namespace ChessRun.Engine.Tests.Utils {
 
         [Test]
         public void WriteEnpassantTest() {
-            var board = new ChessBoard();
-            board.EnPassantMove = CellName.None;
+            var board = new ChessBoard {
+                EnPassantMove = CellName.None
+            };
             var res = FEN.GetFEN(board);
             Assert.AreEqual(@"8/8/8/8/8/8/8/8 w KQkq -", res);
             board.EnPassantMove = CellName.E3;
@@ -43,8 +45,9 @@ namespace ChessRun.Engine.Tests.Utils {
 
         [Test]
         public void ReadEnpassantTest() {
-            var board = new ChessBoard();
-            board.EnPassantMove = CellName.None;
+            var board = new ChessBoard {
+                EnPassantMove = CellName.None
+            };
             FEN.Setup(board, @"8/8/8/8/8/8/8/8 w KQkq -");
             Assert.AreEqual(CellName.None, board.EnPassantMove);
             FEN.Setup(board, @"8/8/8/8/8/8/8/8 w KQkq e3");
@@ -53,8 +56,9 @@ namespace ChessRun.Engine.Tests.Utils {
 
         [Test]
         public void WriteTurnTest() {
-            var board = new ChessBoard();
-            board.Turn = PieceColor.White;
+            var board = new ChessBoard {
+                Turn = PieceColor.White
+            };
             var res = FEN.GetFEN(board);
             Assert.AreEqual(@"8/8/8/8/8/8/8/8 w KQkq -", res);
             board.Turn = PieceColor.Black;

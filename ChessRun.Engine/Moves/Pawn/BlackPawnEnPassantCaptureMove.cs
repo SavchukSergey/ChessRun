@@ -20,21 +20,19 @@ namespace ChessRun.Engine.Moves.Pawn {
         }
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
-            board[_opponentCell] = PieceType.None;
-            board[From] = PieceType.None;
-            board[To] = PieceType.BlackPawn;
+            board.ClearWhitePawn(_opponentCell);
+            board.ClearBlackPawn(From);
+            board.SetBlackPawn(To);
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
-            board[_opponentCell] = PieceType.WhitePawn;
-            board[To] = PieceType.None;
-            board[From] = PieceType.BlackPawn;
+            board.SetWhitePawn(_opponentCell);
+            board.ClearBlackPawn(To);
+            board.SetBlackPawn(From);
         }
 
-        public override bool IsCapture(ChessBoard board) {
-            return true;
-        }
-
+        public override bool IsCapture(ChessBoard board) => true;
+        
         protected override string GetNotationBody(ChessBoard board) {
             return GetCaptureNotationBody(board);
         }

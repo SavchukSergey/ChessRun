@@ -5,6 +5,7 @@ using ChessRun.Engine.Utils;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.King {
+    [TestOf(typeof(WhiteKingRegularMove))]
     public class WhiteKingRegularMoveTest : BaseTestFixture {
 
         [Test]

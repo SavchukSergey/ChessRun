@@ -2,6 +2,7 @@
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Utils {
+    [TestOf(typeof(BFEN))]
     public class BFENTest : BaseTestFixture {
 
         [Test]

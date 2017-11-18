@@ -15,7 +15,7 @@ namespace ChessRun.Engine.Moves.Knight {
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
             rollbackData.CapturedPiece = board[To];
-            board[From] = PieceType.None;
+            board.ClearWhiteKnight(From);
             board[To] = PieceType.WhiteKnight;
         }
 

@@ -17,7 +17,7 @@ namespace ChessRun.Engine.Moves.Bishop {
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
             rollbackData.CapturedPiece = board[To];
-            board[From] = PieceType.None;
+            board.ClearWhiteBishop(From);
             board[To] = PieceType.WhiteBishop;
         }
 

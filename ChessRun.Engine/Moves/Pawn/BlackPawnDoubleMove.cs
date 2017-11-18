@@ -19,14 +19,14 @@ namespace ChessRun.Engine.Moves.Pawn {
         }
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
-            board[From] = PieceType.None;
-            board[To] = PieceType.BlackPawn;
+            board.ClearBlackPawn(From);
+            board.SetBlackPawn(To);
             board.EnPassantMove = _middleCell;
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
-            board[To] = PieceType.None;
-            board[From] = PieceType.BlackPawn;
+            board.ClearBlackPawn(To);
+            board.SetBlackPawn(From);
         }
 
         protected override string GetNotationBody(ChessBoard board) {

@@ -3,6 +3,7 @@ using ChessRun.Engine.Moves.Queen;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Queen {
+    [TestOf(typeof(BlackQueenMove))]
     public class BlackQueenMoveTest : BaseQueenMoveTest<BlackQueenMove> {
 
         [Test]

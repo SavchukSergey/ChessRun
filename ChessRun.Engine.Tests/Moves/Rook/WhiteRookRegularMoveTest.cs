@@ -3,6 +3,7 @@ using ChessRun.Engine.Moves.Rook;
 using NUnit.Framework;
 
 namespace ChessRun.Engine.Tests.Moves.Rook {
+    [TestOf(typeof(WhiteRookRegularMove))]
     public class WhiteRookRegularMoveTest : BaseRookMoveTest<WhiteRookMove> {
 
         [Test]
