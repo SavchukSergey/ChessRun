@@ -39,16 +39,16 @@ namespace ChessRun.Engine.Moves {
             var i = (int)cell;
             var rank = i >> 3;
             var file = i & 0x07;
-            for (var j = 0; j < 256; j++) {
+            for (var j = 0ul; j < 256; j++) {
                 ulong mask = 0;
                 for (var k = file + 1; k < 8; k++) {
-                    var submask = 1 << k;
-                    mask |= (ulong)submask;
+                    var submask = 1ul << k;
+                    mask |= submask;
                     if ((j & submask) != 0) break;
                 }
                 for (var k = file - 1; k >= 0; k--) {
-                    var submask = 1 << k;
-                    mask |= (ulong)submask;
+                    var submask = 1ul << k;
+                    mask |= submask;
                     if ((j & submask) != 0) break;
                 }
                 mask <<= rank * 8;

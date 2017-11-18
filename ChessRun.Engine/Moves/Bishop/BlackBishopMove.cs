@@ -18,12 +18,13 @@ namespace ChessRun.Engine.Moves.Bishop {
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
             rollbackData.CapturedPiece = board[To];
             board.ClearBlackBishop(From);
-            board[To] = PieceType.BlackBishop;
+            board.ClearCell(To);
+            board.SetBlackBishop(To);
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
             board[To] = rollbackData.CapturedPiece;
-            board[From] = PieceType.BlackBishop;
+            board.SetBlackBishop(From);
         }
 
     }

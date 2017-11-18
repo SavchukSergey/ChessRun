@@ -153,6 +153,14 @@ namespace ChessRun.Engine {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetWhiteBishop(CellName cell) {
+            _cells[(int)cell] = PieceType.WhiteBishop;
+            var mask = 0x1ul << (int)cell;
+            Whites.Bishops |= mask;
+            Whites.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetWhiteRook(CellName cell) {
             _cells[(int)cell] = PieceType.WhiteRook;
             var mask = 0x1ul << (int)cell;
@@ -182,6 +190,22 @@ namespace ChessRun.Engine {
             _cells[(int)cell] = PieceType.BlackPawn;
             var mask = 0x1ul << (int)cell;
             Blacks.Pawns |= mask;
+            Blacks.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetBlackKnight(CellName cell) {
+            _cells[(int)cell] = PieceType.BlackKnight;
+            var mask = 0x1ul << (int)cell;
+            Blacks.Knights |= mask;
+            Blacks.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetBlackBishop(CellName cell) {
+            _cells[(int)cell] = PieceType.BlackBishop;
+            var mask = 0x1ul << (int)cell;
+            Blacks.Bishops |= mask;
             Blacks.Pieces |= mask;
         }
 
