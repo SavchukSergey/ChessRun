@@ -15,12 +15,13 @@ namespace ChessRun.Engine.Moves.King {
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
             rollbackData.CapturedPiece = board[To];
             board.ClearBlackKing(From);
-            board[To] = PieceType.BlackKing;
+            board.ClearCell(To);
+            board.SetBlackKing(To);
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
             board[To] = rollbackData.CapturedPiece;
-            board[From] = PieceType.BlackKing;
+            board.SetBlackKing(From);
         }
 
     }

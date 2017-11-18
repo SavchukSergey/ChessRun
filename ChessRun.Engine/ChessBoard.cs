@@ -144,6 +144,13 @@ namespace ChessRun.Engine {
             Whites.Pieces |= mask;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetWhiteKnight(CellName cell) {
+            _cells[(int)cell] = PieceType.WhiteKnight;
+            var mask = 0x1ul << (int)cell;
+            Whites.Knights |= mask;
+            Whites.Pieces |= mask;
+        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void SetWhiteRook(CellName cell) {
@@ -159,6 +166,15 @@ namespace ChessRun.Engine {
             var mask = 0x1ul << (int)cell;
             Whites.Queens |= mask;
             Whites.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetWhiteKing(CellName cell) {
+            _cells[(int)cell] = PieceType.WhiteKing;
+            var mask = 0x1ul << (int)cell;
+            Whites.Kings |= mask;
+            Whites.Pieces |= mask;
+            WhiteKingPosition = cell;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -183,6 +199,15 @@ namespace ChessRun.Engine {
             var mask = 0x1ul << (int)cell;
             Blacks.Queens |= mask;
             Blacks.Pieces |= mask;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void SetBlackKing(CellName cell) {
+            _cells[(int)cell] = PieceType.BlackKing;
+            var mask = 0x1ul << (int)cell;
+            Blacks.Kings |= mask;
+            Blacks.Pieces |= mask;
+            BlackKingPosition = cell;
         }
 
         public void ClearCell(CellName cell) {

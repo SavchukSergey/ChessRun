@@ -142,7 +142,7 @@ namespace ChessRun.Engine.Utils {
 
         #region Reading
 
-        public static void Setup(ChessBoard board, string fen) {
+        public static ChessBoard Setup(ChessBoard board, string fen) {
             int j = 0;
             int emptyCount = 0;
             for (var i = 0; i < _cellSequence.Length; i++) {
@@ -226,6 +226,7 @@ namespace ChessRun.Engine.Utils {
             ReadCastles(board, ref fen, ref j);
             SkipWhite(ref fen, ref j);
             ReadEnPassant(board, ref fen, ref j);
+            return board;
         }
 
         private static void ReadTurn(ChessBoard board, ref string fen, ref int i) {

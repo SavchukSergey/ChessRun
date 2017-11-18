@@ -19,16 +19,16 @@
 
         public override void Execute(ChessBoard board, ref RollbackData rollbackData) {
             board.ClearWhiteRook(CellName.A1);
-            board[CellName.C1] = PieceType.WhiteKing;
-            board[CellName.D1] = PieceType.WhiteRook;
+            board.SetWhiteKing(CellName.C1);
+            board.SetWhiteRook(CellName.D1);
             board.ClearWhiteKing(CellName.E1);
         }
 
         public override void Unexecute(ChessBoard board, ref RollbackData rollbackData) {
-            board[CellName.A1] = PieceType.WhiteRook;
+            board.SetWhiteRook(CellName.A1);
             board.ClearWhiteKing(CellName.C1);
             board.ClearWhiteRook(CellName.D1);
-            board[CellName.E1] = PieceType.WhiteKing;
+            board.SetWhiteKing(CellName.E1);
         }
 
         protected override string GetNotationBody(ChessBoard board) {
