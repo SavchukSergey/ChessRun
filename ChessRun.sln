@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Engine", "ChessRun.Engine\ChessRun.Engine.csproj", "{C5DEA7DE-0DD8-454E-8C04-4EAC916BC8FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessRun.Engine", "ChessRun.Engine\ChessRun.Engine.csproj", "{C5DEA7DE-0DD8-454E-8C04-4EAC916BC8FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Pgn", "ChessRun.Pgn\ChessRun.Pgn.csproj", "{8114B0C8-0F98-42D0-AF9E-237A79FBA0CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessRun.Pgn", "ChessRun.Pgn\ChessRun.Pgn.csproj", "{8114B0C8-0F98-42D0-AF9E-237A79FBA0CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Engine.Tests", "ChessRun.Engine.Tests\ChessRun.Engine.Tests.csproj", "{A9527B19-CEB3-4393-B742-FBCF7E495C50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessRun.Engine.Tests", "ChessRun.Engine.Tests\ChessRun.Engine.Tests.csproj", "{A9527B19-CEB3-4393-B742-FBCF7E495C50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Pgn.Tests", "ChessRun.Pgn.Tests\ChessRun.Pgn.Tests.csproj", "{E41B5880-E81F-4E1D-AD6E-2C542A661ACC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessRun.Pgn.Tests", "ChessRun.Pgn.Tests\ChessRun.Pgn.Tests.csproj", "{E41B5880-E81F-4E1D-AD6E-2C542A661ACC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessRun.Engine.Debugger", "ChessRun.Engine.Debugger\ChessRun.Engine.Debugger.csproj", "{0D028D96-0F58-4DDC-A614-5962D3AA1D33}"
 EndProject

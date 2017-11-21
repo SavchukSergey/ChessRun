@@ -27,7 +27,7 @@ namespace ChessRun.Engine {
             }
             long nodes = 0;
             int topLevelNodes = 0;
-            var done = new Semaphore(0, int.MaxValue);
+            var done = new SemaphoreSlim(0, int.MaxValue);
             var iterator = new DelegateIterator(_board, move => {
                 var clonedBoard = _board.Clone();
                 Enqueue(() => {
@@ -42,7 +42,7 @@ namespace ChessRun.Engine {
             });
             _board.GenerateValidMoves(iterator);
             for (var i = 0; i < topLevelNodes; i++) {
-                done.WaitOne();
+                done.Wait();
             }
             return (ulong)nodes;
         }
